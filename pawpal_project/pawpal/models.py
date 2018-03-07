@@ -31,7 +31,7 @@ class Rating(models.Model):
         #super(Rating, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.petId
+        return str(self.toWho) + ":  " + str(self.rating)
 
 
 class UserProfile(models.Model):
@@ -57,9 +57,10 @@ class Messages(models.Model):
     petId = models.ForeignKey(Pet)
     seekerUsername = models.ForeignKey(User)
     date = models.DateField()
+    messages = models.CharField(max_length=200)
 
     #def save(self, *args, **kwargs):
         #super(Messages, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.
+        return self.messages

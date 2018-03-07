@@ -8,8 +8,7 @@ from pawpal.models import UserProfile, Pet, Rating, Messages
 
 """
 class PetAdmin(admin.ModelAdmin):
-    #list_display = ('title', 'category', 'url')
-
+    list_display = ('owner', 'name', 'description')
 
 class RatingAdmin(admin.ModelAdmin):
     #prepopulated_fields = {'slug': ('name',)}
