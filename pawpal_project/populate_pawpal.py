@@ -2,9 +2,9 @@ import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE',
                       'pawpal_project.settings')
 
-import pawpal
+import django
 from django.db import models
-pawpal.setup()
+django.setup()
 from pawpal.models import Pet, Rating, Messages, UserProfile
 
 def populate():
