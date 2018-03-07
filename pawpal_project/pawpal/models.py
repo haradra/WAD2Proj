@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 
 
 class Pet(models.Model):
+    owner = models.ForeignKey(User)
     name = models.CharField(max_length=50, unique=True)
     description = models.CharField(max_length=200)
     species = models.CharField(max_length=30)
@@ -21,10 +22,9 @@ class Pet(models.Model):
 
 
 class Rating(models.Model):
-    petId = models.CharField(max_length=30)
-    seekerUsername  = models.CharField(max_length=30)
-    date  = models.DateField()
-    messages  = models.CharField(max_length=200)
+    madeBy = models.ForeignKey(User)
+    toWho = models.ForeignKey(Pet)
+    rating = models.CharField(max_length=30)
 
     #def save(self, *args, **kwargs):
         #super(Rating, self).save(*args, **kwargs)
@@ -50,8 +50,8 @@ class UserProfile(models.Model):
 
 
 class Messages(models.Model):
-    petId = models.CharField(max_length=30)
-    seekerUsername = models.CharField(max_length=30)
+    petId = models.ForeignKey(Pet)
+    seekerUsername = models.ForeignKey(User)
     date = models.DateField()
     url = models.URLField()
 
