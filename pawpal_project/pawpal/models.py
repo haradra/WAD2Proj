@@ -38,7 +38,7 @@ class UserProfile(models.Model):
     dateOfBirth = models.DateField()
     profilePicture = models.ImageField(upload_to='profile_images', blank=True)
     experience = models.IntegerField()
-    Description = models.CharField(max_length=200)
+    description = models.CharField(max_length=200)
     showPets = models.BooleanField()
 
     user = models.OneToOneField(User) #is this line ok?
