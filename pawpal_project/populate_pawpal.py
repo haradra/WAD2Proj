@@ -8,14 +8,9 @@ pawpal.setup()
 from pawpal.models import Pet, Rating, Messages, UserProfile
 
 def populate():
-    # First, we will create lists of dictionaries containing the pages
-    # we want to add into each category.
-    # Then we will create a dictionary of dictionaries for our categories.
-    # This might seem a little bit confusing, but it allows us to iterate
-    # through each data structure, and add the data to our models.
 
     users = [
-        {"username":"Love Iguanas",
+        {"username":"LoveIguanas",
          "password": "IreallyLoveIguanas123456789",
          "first_name":"Donald",
          "last_name": "Duck",
@@ -24,10 +19,11 @@ def populate():
          "dateOfBirth": models.DatetimeField(auto_now_add=True),
          "profilePicture": models.ImageField(verbose_name="picture"),
          "experience": 4,
-         "Description": "I love Iguanas, like really. Iguanas <3",
+         "description": "I love Iguanas, like really. Iguanas <3",
          "showPets": False,
+         "pets": loveIguanas_pets,
          }
-        {"username": "Doggggos",
+        {"username": "Doggos",
          "password": "IreallyLoveDoggos123456789",
          "first_name": "Mark",
          "last_name": "Nicold",
@@ -36,8 +32,9 @@ def populate():
          "dateOfBirth": models.DatetimeField(auto_now_add=True),
          "profilePicture": models.ImageField(verbose_name="picture"),
          "experience": 8,
-         "Description": "Doggos, doggos, I have one, let's spend with him all our time!",
+         "description": "Doggos, doggos, I have one, let's spend with him all our time!",
          "showPets": True,
+         "pets": doggos_pets,
          }
         {"username": "anilano",
          "password": "Irsdawnilano123456789",
@@ -48,9 +45,34 @@ def populate():
          "dateOfBirth": models.DatetimeField(auto_now_add=True),
          "profilePicture": models.ImageField(verbose_name="picture"),
          "experience": 0,
-         "Description": "I'm looking for a Cat or a Dog I could take for a walk.",
+         "description": "I'm looking for a Cat or a Dog I could take for a walk.",
          "showPets": False,
+         "pets": anilano_pets,
          }  ]
+
+    loveIguanas_pets =
+    doggos_pets =
+    anilano_pets =
+
+
+    pets = [
+
+
+    ]
+
+
+    ratings = [
+
+
+    ]
+
+
+    messages = [
+
+
+    ]
+
+
 
 
 """
@@ -89,9 +111,6 @@ def populate():
             "Django": {"pages": django_pages, "views": 64, "likes": 32},
             "Other Frameworks": {"pages": other_pages, "views": 32, "likes": 16} }
 
-    # If you want to add more catergories or pages,
-    # add them to the dictionaries above.
-
     # The code below goes through the cats dictionary, then adds each category,
     # and then adds all the associated pages for that category.
     # if you are using Python 2.x then use cats.iteritems() see
@@ -122,6 +141,39 @@ def add_cat(name, views=0, likes=0):
     c.save()
     return c
 """
+
+
+def add_user(username, password, first_name,
+             last_name, last_login, location, dateOfBirth,
+             profilePicture, experience, description, showPets):
+    u = UserProfile.objects.get_or_create(username = username)[0]
+    u.user.username = username
+    u.user.password = password
+    u.user.first_name = first_name
+    u.user.last_name = last_name
+    u.user.last_login = last_login
+    u.location = location
+    u.dateOfBirth = dateOfBirth
+    u.profilePicture = profilePicture
+    u.experience = experience
+    u.description = description
+    u.showPets = showPets
+    u.save()
+    return u
+
+def add_pet():
+
+
+def add_rating():
+
+
+def add_message():
+
+
+
+
+
+
 # Start execution here!
 if __name__ == '__main__':
     print("Starting Pawpal population script...")
