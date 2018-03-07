@@ -13,9 +13,10 @@ class Pet(models.Model):
     name = models.CharField(max_length=50, unique=True)
     description = models.CharField(max_length=200)
     species = models.CharField(max_length=30)
+    petPicture = models.ImageField(upload_to='pet_images', blank=True)
 
-    def save(self, *args, **kwargs):
-        super(Pet, self).save(*args, **kwargs)
+    #def save(self, *args, **kwargs):
+        #super(Pet, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -41,8 +42,11 @@ class UserProfile(models.Model):
     description = models.CharField(max_length=200)
     showPets = models.BooleanField()
 
-    user = models.OneToOneField(User) #is this line ok?
+    user = models.OneToOneField(User)
     website = models.URLField(blank=True)  #should we include this line too?
+
+    #def save(self, *args, **kwargs):
+        #super(UserProfile, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.user.username
@@ -53,7 +57,9 @@ class Messages(models.Model):
     petId = models.ForeignKey(Pet)
     seekerUsername = models.ForeignKey(User)
     date = models.DateField()
-    url = models.URLField()
+
+    #def save(self, *args, **kwargs):
+        #super(Messages, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.user.username
+        return self.
