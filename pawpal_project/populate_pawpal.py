@@ -55,20 +55,17 @@ def populate():
     anilano_pets =
 
 
-    pets = [
-
-
-    ]
-
-
-    ratings = [
-
+    pets = [owner, name, description, species, petPicture
 
     ]
 
 
-    messages = [
+    ratings = [madeBy, toWho, rating
 
+    ]
+
+
+    messages = [petId, seekerUsername, date, messages
 
     ]
 
@@ -91,14 +88,25 @@ def add_user(username, password, first_name,
     u.save()
     return u
 
-def add_pet():
+def add_pet(owner, name, description, species, petPicture):
+    p = Pet.objects.get_or_create(owner = owner)[0]
+    p.name = name
+    p.description = description
+    p.species = species
+    p.petPicture = petPicture
+    return p
 
 
-def add_rating():
+def add_rating(madeBy, toWho, rating):
+    r = Rating.objects.get_or_create(madeBy = madeBy, toWho = toWho)[0]
+    r.rating = rating
+    return r
 
-
-def add_message():
-
+def add_message(petId, seekerUsername, date, messages):
+    m = Messages.objects.get_or_create(petId = petId, seekerUsername = seekerUsername)[0]
+    m.date = date
+    m.messages = messages
+    return m
 
 
 # Start execution here!
