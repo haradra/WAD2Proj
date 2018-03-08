@@ -19,7 +19,7 @@ def populate():
          "last_login": models.DateTimeField(auto_now_add=True),
          "location": "Glasgow",
          "dateOfBirth": datetime.date(1995, 2, 1),
-         "profilePicture": models.ImageField(verbose_name="picture"),
+         "profilePicture": models.ImageField(verbose_name="picture", ),
          "experience": int(4),
          "description": "I love Iguanas, like really. Iguanas <3",
          "showPets": False,
@@ -43,7 +43,7 @@ def populate():
          "last_login": models.DateTimeField(auto_now_add=True),
          "location": "Edinburgh",
          "dateOfBirth": datetime.date(1995, 2, 1),
-         "profilePicture": models.ImageField(verbose_name="picture", default = settings.MEDIA_ROOT + "1.jpeg"), #testing if the image will work
+         "profilePicture": models.ImageField(verbose_name="picture", default = settings.MEDIA_ROOT + "profile_images/1.jpeg"), #testing if the image will work
          "experience": int(0),
          "description": "I'm looking for a Cat or a Dog I could take for a walk.",
          "showPets": False,
@@ -108,16 +108,16 @@ def populate():
 
 
     messages = [
-        {"petId":Pet.objects.get(name="Cameleon"),
-         "seekerUsername":UserProfile.objects.get("Doggos"),
-         "date":models.DateField(auto_now_add=True),
+        {"petId": Pet.objects.get(name="Cameleon"),
+         "seekerUsername": User.objects.get(username="Doggos"),
+         "date": models.DateField(auto_now_add=True),
          "messages":"Can I steal your lizard for the weekend, please?"},
         {"petId": Pet.objects.get(name="Monte"),
-         "seekerUsername": UserProfile.objects.get("Doggos"),
+         "seekerUsername": User.objects.get(username="Doggos"),
          "date": models.DateField(auto_now_add=True),
          "messages": "That's a nice cat! Can I cuddle it?"},
         {"petId": Pet.objects.get(name="Carno"),
-         "seekerUsername": UserProfile.objects.get("anilano"),
+         "seekerUsername": User.objects.get(username="anilano"),
          "date": models.DateField(auto_now_add=True),
          "messages": "I love dogs! What would you say for a walk together?"},   ]
 
@@ -125,7 +125,8 @@ def populate():
         add_message(message["petId"], message["seekerUsername"], message["date"], message["messages"])
 
 
-    print(User.objects.get(username="LoveIguanas"))#testing this one!!!!!!!!!!!!!!!!!!!!!!
+
+
 
 def add_user(username, password, first_name, last_name,
              last_login, location, dateOfBirth, profilePicture,
@@ -138,7 +139,7 @@ def add_user(username, password, first_name, last_name,
     u = UserProfile.objects.get_or_create(user = u)[0]
     u.location = location
     u.dateOfBirth = dateOfBirth
-    u.profilePicture = profilePicture
+    #u.profilePicture = profilePicture # don't know how to make it work...
     u.experience = experience
     u.description = description
     u.showPets = showPets
@@ -149,19 +150,21 @@ def add_pet(owner, name, description, species, petPicture):
     p = Pet.objects.get_or_create(owner = owner, name = name)[0]
     p.description = description
     p.species = species
-    p.petPicture = petPicture
+    #p.petPicture = petPicture  # don't know how to make it work...
+    p.save()
     return p
-
 
 def add_rating(madeBy, toWho, rating):
     r = Rating.objects.get_or_create(madeBy = madeBy, toWho = toWho)[0]
     r.rating = rating
+    r.save()
     return r
 
 def add_message(petId, seekerUsername, date, messages):
     m = Messages.objects.get_or_create(petId = petId, seekerUsername = seekerUsername)[0]
     m.date = date
     m.messages = messages
+    m.save()
     return m
 
 

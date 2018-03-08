@@ -15,27 +15,26 @@ class Pet(models.Model):
     species = models.CharField(max_length=30)
     petPicture = models.ImageField(upload_to='pet_images', blank=True)
 
-    #def save(self, *args, **kwargs):
-        #super(Pet, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        super(Pet, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
 
 
 class Rating(models.Model):
-    madeBy = models.ForeignKey(User, on_delete=models.CASCADE)
-    toWho = models.ForeignKey(Pet, on_delete=models.CASCADE)
+    madeBy = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='madBy')
+    toWho = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='toWho')
     rating = models.CharField(max_length=30)
 
-    #def save(self, *args, **kwargs):
-        #super(Rating, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        super(Rating, self).save(*args, **kwargs)
 
     def __str__(self):
         return str(self.toWho) + ":  " + str(self.rating)
 
 
 class UserProfile(models.Model):
-    username = models.CharField(max_length=30, unique = True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     location = models.CharField(max_length=128)
     dateOfBirth = models.DateField(auto_now_add=True)
@@ -46,8 +45,8 @@ class UserProfile(models.Model):
 
     #website = models.URLField(blank=True)  #should we include this line too?
 
-    #def save(self, *args, **kwargs):
-        #super(UserProfile, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        super(UserProfile, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.user.username
@@ -60,8 +59,8 @@ class Messages(models.Model):
     date = models.DateField(auto_now_add=True)
     messages = models.CharField(max_length=200)
 
-    #def save(self, *args, **kwargs):
-        #super(Messages, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        super(Messages, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.messages
