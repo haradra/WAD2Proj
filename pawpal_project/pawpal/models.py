@@ -35,15 +35,16 @@ class Rating(models.Model):
 
 
 class UserProfile(models.Model):
-    location = models.CharField(max_length=128)
-    dateOfBirth = models.DateField()
-    profilePicture = models.ImageField(upload_to='profile_images', blank=True)
-    experience = models.IntegerField()
-    description = models.CharField(max_length=200)
-    showPets = models.BooleanField()
-
+    username = models.CharField(max_length=30, unique = True)
     user = models.OneToOneField(User)
-    website = models.URLField(blank=True)  #should we include this line too?
+    location = models.CharField(max_length=128)
+    dateOfBirth = models.DateField(auto_now_add=True)
+    profilePicture = models.ImageField(upload_to='profile_images', blank=True)
+    experience = models.IntegerField(default=0)
+    description = models.CharField(max_length=200)
+    showPets = models.BooleanField(default=False)
+
+    #website = models.URLField(blank=True)  #should we include this line too?
 
     #def save(self, *args, **kwargs):
         #super(UserProfile, self).save(*args, **kwargs)
@@ -56,7 +57,7 @@ class UserProfile(models.Model):
 class Messages(models.Model):
     petId = models.ForeignKey(Pet)
     seekerUsername = models.ForeignKey(User)
-    date = models.DateField()
+    date = models.DateField(auto_now_add=True)
     messages = models.CharField(max_length=200)
 
     #def save(self, *args, **kwargs):
