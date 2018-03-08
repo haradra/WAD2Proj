@@ -17,9 +17,12 @@ class MessagesAdmin(admin.ModelAdmin):
     #prepopulated_fields = {'slug': ('name',)}
 """
 
+class UserProfileAdmin(admin.ModelAdmin):
+    list_dispay = ("user", "location", "dateOfBirth", "profilePicture", "experience", "description", "showPets")
+
 # Register your models here.
 
 admin.site.register(Pet)#, PetAdmin)
 admin.site.register(Rating)#, RatingAdmin)
 admin.site.register(Messages)#, MessagesAdmin)
-admin.site.register(UserProfile)
+admin.site.register(UserProfile, UserProfileAdmin)

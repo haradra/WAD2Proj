@@ -4,6 +4,8 @@ from __future__ import unicode_literals
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
+import datetime
+from django.utils.timezone import *
 
 # Create your models here.
 
@@ -23,8 +25,8 @@ class Pet(models.Model):
 
 
 class Rating(models.Model):
-    madeBy = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='madBy')
-    toWho = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='toWho')
+    madeBy = models.ForeignKey(User, on_delete=models.CASCADE, related_name='madBy')
+    toWho = models.ForeignKey(User, on_delete=models.CASCADE, related_name='toWho')
     rating = models.CharField(max_length=30)
 
     def save(self, *args, **kwargs):
@@ -37,7 +39,7 @@ class Rating(models.Model):
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     location = models.CharField(max_length=128)
-    dateOfBirth = models.DateField(auto_now_add=True)
+    dateOfBirth = models.DateField(default=now)
     profilePicture = models.ImageField(upload_to='profile_images', blank=True)
     experience = models.IntegerField(default=0)
     description = models.CharField(max_length=200)
@@ -54,9 +56,9 @@ class UserProfile(models.Model):
 
 
 class Messages(models.Model):
-    petId = models.ForeignKey(Pet, on_delete=models.CASCADE)
-    seekerUsername = models.ForeignKey(User)
-    date = models.DateField(auto_now_add=True)
+    petId = models.ForeignKey(Pet, on_delete=models.CASCADE, related_name='petId')
+    seekerUsername = models.ForeignKey(User, on_delete=models.CASCADE, related_name='seekerUsername')
+    date = models.DateField(default=now)
     messages = models.CharField(max_length=200)
 
     def save(self, *args, **kwargs):
