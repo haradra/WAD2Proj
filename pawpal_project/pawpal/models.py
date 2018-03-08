@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 
 
 class Pet(models.Model):
-    owner = models.ForeignKey(User)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50, unique=True)
     description = models.CharField(max_length=200)
     species = models.CharField(max_length=30)
@@ -23,8 +23,8 @@ class Pet(models.Model):
 
 
 class Rating(models.Model):
-    madeBy = models.ForeignKey(User)
-    toWho = models.ForeignKey(Pet)
+    madeBy = models.ForeignKey(User, on_delete=models.CASCADE)
+    toWho = models.ForeignKey(Pet, on_delete=models.CASCADE)
     rating = models.CharField(max_length=30)
 
     #def save(self, *args, **kwargs):
@@ -36,7 +36,7 @@ class Rating(models.Model):
 
 class UserProfile(models.Model):
     username = models.CharField(max_length=30, unique = True)
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     location = models.CharField(max_length=128)
     dateOfBirth = models.DateField(auto_now_add=True)
     profilePicture = models.ImageField(upload_to='profile_images', blank=True)
@@ -55,7 +55,7 @@ class UserProfile(models.Model):
 
 
 class Messages(models.Model):
-    petId = models.ForeignKey(Pet)
+    petId = models.ForeignKey(Pet, on_delete=models.CASCADE)
     seekerUsername = models.ForeignKey(User)
     date = models.DateField(auto_now_add=True)
     messages = models.CharField(max_length=200)

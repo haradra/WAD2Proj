@@ -6,14 +6,13 @@ import django
 from django.db import models
 django.setup()
 from django.conf import settings
-from pawpal.models import Pet, Rating, Messages, UserProfile
+from pawpal.models import *
 import datetime
 
 def populate():
 
     users = [
-        {"user_id": 1,
-         "username":"LoveIguanas",
+        {"username":"LoveIguanas",
          "password": "IreallyLoveIguanas123456789",
          "first_name":"Donald",
          "last_name": "Duck",
@@ -25,8 +24,7 @@ def populate():
          "description": "I love Iguanas, like really. Iguanas <3",
          "showPets": False,
          },
-        {"user_id": 2,
-         "username": "Doggos",
+        {"username": "Doggos",
          "password": "IreallyLoveDoggos123456789",
          "first_name": "Mark",
          "last_name": "Nicold",
@@ -38,8 +36,7 @@ def populate():
          "description": "Doggos, doggos, I have one, let's spend with him all our time!",
          "showPets": True,
          },
-        {"user_id": 3,
-         "username": "anilano",
+        {"username": "anilano",
          "password": "Irsdawnilano123456789",
          "first_name": "Anilano",
          "last_name": "Korton",
@@ -53,34 +50,34 @@ def populate():
          }  ]
 
     for user in users:
-        add_user(user["user_id"], user["username"], user["password"], user["first_name"],
+        add_user(user["username"], user["password"], user["first_name"],
                  user["last_name"], user["last_login"], user["location"], user["dateOfBirth"],
                  user["profilePicture"], user["experience"], user["description"], user["showPets"])
 
 
 
     pets = [
-        {"owner": UserProfile.objects.get(user__username="LoveIguanas"),
+        {"owner": User.objects.get(username="LoveIguanas"),
         "name": "Cameleon",
          "description": "I'm a wee lizard, I like to eat fruit flies and creepy spiders. I don't like grasshoppers though, YAK!",
          "species": "Lizard",
          "petPicture":models.ImageField(verbose_name="Cameleon_picture")},
-        {"owner": UserProfile.objects.get(user__username="LoveIguanas"),
+        {"owner": User.objects.get(username="LoveIguanas"),
          "name": "Gecko",
          "description": "A cute, small thing!",
          "species": "Lizard",
          "petPicture": models.ImageField(verbose_name="Lizard_picture")},
-        {"owner": UserProfile.objects.get(user__username="Doggos"),
+        {"owner": User.objects.get(username="Doggos"),
          "name": "Anika",
          "description": "3-year old dog.",
          "species": "Dog",
          "petPicture": models.ImageField(verbose_name="Dog_picture")},
-        {"owner": UserProfile.objects.get(user__username="anilano"),
+        {"owner": User.objects.get(username="anilano"),
          "name": "Monte",
          "description": "An independent cat!",
          "species": "Cat",
          "petPicture": models.ImageField(verbose_name="Cat_picture")},
-        {"owner": UserProfile.objects.get(user__username="anilano"),
+        {"owner": User.objects.get(username="anilano"),
          "name": "Carno",
          "description": "Energetic and loud dog. Loves cuddling and playin with a ball.",
          "species": "Dog",
@@ -92,17 +89,17 @@ def populate():
 
 
     ratings = [
-        {"madeBy": UserProfile.objects.get(user__username="LoveIguanas"),
-         "toWho": UserProfile.objects.get(user__username="Doggos"),
+        {"madeBy": User.objects.get(username="LoveIguanas"),
+         "toWho": User.objects.get(username="Doggos"),
          "rating": 3},
-        {"madeBy": UserProfile.objects.get(user__username="Doggos"),
-         "toWho": UserProfile.objects.get(user__username="LoveIguanas"),
+        {"madeBy": User.objects.get(username="Doggos"),
+         "toWho": User.objects.get(username="LoveIguanas"),
          "rating": 5},
-        {"madeBy": UserProfile.objects.get(user__username="LoveIguanas"),
-         "toWho": UserProfile.objects.get(user__username="anilano"),
+        {"madeBy": User.objects.get(username="LoveIguanas"),
+         "toWho": User.objects.get(username="anilano"),
          "rating": 1},
-        {"madeBy": UserProfile.objects.get(user__username="Doggos"),
-         "toWho": UserProfile.objects.get(user__username="anilano"),
+        {"madeBy": User.objects.get(username="Doggos"),
+         "toWho": User.objects.get(username="anilano"),
          "rating": 2}   ]
 
     for rating in ratings:
@@ -128,19 +125,17 @@ def populate():
         add_message(message["petId"], message["seekerUsername"], message["date"], message["messages"])
 
 
-    print(UserProfile.objects.get(user__username="LoveIguanas"))#testing this one!!!!!!!!!!!!!!!!!!!!!!
+    print(User.objects.get(username="LoveIguanas"))#testing this one!!!!!!!!!!!!!!!!!!!!!!
 
-def add_user(user_id, username, password, first_name, last_name,
+def add_user(username, password, first_name, last_name,
              last_login, location, dateOfBirth, profilePicture,
              experience, description, showPets):
-    print("\n\ntesting\n\n")
-    u = UserProfile.objects.get_or_create(username = username, user_id = user_id)[0]
-    print("\n\ntesting222222\n\n")
-    u.user.username = username
-    u.user.password = password
-    u.user.first_name = first_name
-    u.user.last_name = last_name
-    u.user.last_login = last_login
+    u = User.objects.get_or_create(username = username)[0]
+    u.set_password(password)
+    u.first_name = first_name
+    u.last_name = last_name
+    u.last_login = last_login
+    u = UserProfile.objects.get_or_create(user = u)[0]
     u.location = location
     u.dateOfBirth = dateOfBirth
     u.profilePicture = profilePicture
