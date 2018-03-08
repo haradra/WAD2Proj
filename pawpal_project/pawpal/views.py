@@ -1,8 +1,15 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-from django.http import HttpResponse
-
+# from __future__ import unicode_literals
 from django.shortcuts import render
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponseRedirect, HttpResponse
+from django.core.urlresolvers import reverse
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+from datetime import datetime
+from pawpal.models import UserProfile, Pet, Rating, Messages
+from pawpal.forms import ########################import forms here######################
+
 
 # Create your views here.
 def home(request):
