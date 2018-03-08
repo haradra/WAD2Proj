@@ -18,7 +18,7 @@ def populate():
          "last_name": "Duck",
          "location": "Glasgow",
          "dateOfBirth": datetime.date(1995, 2, 1),
-         "profilePicture": models.ImageField(verbose_name="picture", ),
+         "profilePicture": "profile_images/1.jpeg",
          "experience": int(4),
          "description": "I love Iguanas, like really. Iguanas <3",
          "showPets": False,
@@ -29,7 +29,7 @@ def populate():
          "last_name": "Nicold",
          "location": "Glasgow",
          "dateOfBirth": datetime.date(1995, 2, 1),
-         "profilePicture": models.ImageField(verbose_name="picture"),
+         "profilePicture": "profile_images/2.jpeg",
          "experience": int(8),
          "description": "Doggos, doggos, I have one, let's spend with him all our time!",
          "showPets": True,
@@ -40,7 +40,7 @@ def populate():
          "last_name": "Korton",
          "location": "Edinburgh",
          "dateOfBirth": datetime.date(1995, 2, 1),
-         "profilePicture": models.ImageField(verbose_name="picture", default = settings.MEDIA_ROOT + "profile_images/1.jpeg"), #testing if the image will work
+         "profilePicture": "profile_images/3.jpeg",
          "experience": int(0),
          "description": "I'm looking for a Cat or a Dog I could take for a walk.",
          "showPets": False,
@@ -58,27 +58,27 @@ def populate():
         "name": "Cameleon",
          "description": "I'm a wee lizard, I like to eat fruit flies and creepy spiders. I don't like grasshoppers though, YAK!",
          "species": "Lizard",
-         "petPicture":models.ImageField(verbose_name="Cameleon_picture")},
+         "petPicture": "pet_images/1.jpeg"},
         {"owner": User.objects.get(username="LoveIguanas"),
          "name": "Gecko",
          "description": "A cute, small thing!",
          "species": "Lizard",
-         "petPicture": models.ImageField(verbose_name="Lizard_picture")},
+         "petPicture": "pet_images/2.jpeg"},
         {"owner": User.objects.get(username="Doggos"),
          "name": "Anika",
          "description": "3-year old dog.",
          "species": "Dog",
-         "petPicture": models.ImageField(verbose_name="Dog_picture")},
+         "petPicture": "pet_images/3.jpeg"},
         {"owner": User.objects.get(username="anilano"),
          "name": "Monte",
          "description": "An independent cat!",
          "species": "Cat",
-         "petPicture": models.ImageField(verbose_name="Cat_picture")},
+         "petPicture": "pet_images/4.jpeg"},
         {"owner": User.objects.get(username="anilano"),
          "name": "Carno",
          "description": "Energetic and loud dog. Loves cuddling and playin with a ball.",
          "species": "Dog",
-         "petPicture": models.ImageField(verbose_name="Carno_picture")} ]
+         "petPicture": "pet_images/5.jpeg"} ]
 
     for pet in pets:
         add_pet(pet["owner"], pet["name"], pet["description"], pet["species"], pet["petPicture"])
@@ -136,7 +136,7 @@ def add_user(username, password, first_name, last_name,
     u = UserProfile.objects.get_or_create(user = u)[0]
     u.location = location
     u.dateOfBirth = dateOfBirth
-    #u.profilePicture = profilePicture # don't know how to make it work...
+    u.profilePicture = profilePicture
     u.experience = experience
     u.description = description
     u.showPets = showPets
@@ -147,7 +147,7 @@ def add_pet(owner, name, description, species, petPicture):
     p = Pet.objects.get_or_create(owner = owner, name = name)[0]
     p.description = description
     p.species = species
-    #p.petPicture = petPicture  # don't know how to make it work...
+    p.petPicture = petPicture
     p.save()
     return p
 
