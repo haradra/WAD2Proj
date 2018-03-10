@@ -15,7 +15,9 @@ class Pet(models.Model):
     name = models.CharField(max_length=50, unique=True)
     description = models.CharField(max_length=200)
     species = models.CharField(max_length=30)
+    location = models.CharField(max_length=30)
     petPicture = models.ImageField(upload_to='pet_images', blank=True)
+    
 
     def save(self, *args, **kwargs):
         super(Pet, self).save(*args, **kwargs)
