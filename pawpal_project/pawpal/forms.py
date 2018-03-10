@@ -1,36 +1,40 @@
 from django import forms
 from django.contrib.auth.models import User
 from pawpal.models import UserProfile, Pet, Rating, Messages
+from django import datetime
 
 
 #It's only a scheleton for a forms.py file. Need to be edited, funcionalities added etc.
 
 class PetForm(forms.ModelForm):
     name = forms.CharField(max_length=50, help_text="Please enter your pet's name.")
-
+    location = forms.CharField(max_length=50, help_text="Please enter your location.")
     class Meta:
         model = Pet
 
 
-
-
+#What is this form meant to be? We have no User form so it can't be associated
+#Need 3 forms in total (open to discussion) 1 for user, 1 for pet,
+#And 1 for edit account - not too sure about this one       
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
+        
         model = User
         fields = ('username', 'password', "first_name", "last_name")
 
 
 
-
+#This form was importing model input fields, why? Changed to form, if mistake
+#for some reason let me know        
 class UserProfileForm(forms.ModelForm):
-    location = models.CharField(max_length=128)
-    dateOfBirth = models.DateField(default=now)
-    profilePicture = models.ImageField(upload_to='profile_images', blank=True)
-    experience = models.IntegerField(default=0)
-    description = models.CharField(max_length=200)
-    showPets = models.BooleanField(default=False)
+    location = forms.CharField(max_length=128)
+    dateOfBirth = forms.DateField(initial=datetime.today)
+    profilePicture = forms.ImageField(upload_to='profile_images', blank=True)
+    experience = forms.IntegerField(default=0)
+    description = forms.CharField(max_length=200)
+    showPets = forms.BooleanField(default=False)
 
 
     class Meta:
