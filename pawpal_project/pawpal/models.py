@@ -18,11 +18,11 @@ class Pet(models.Model):
     #Temporary default value for location
     location = models.CharField(max_length=30, default="Glasgow")
     petPicture = models.ImageField(upload_to='pet_images', blank=True)
-    slug = models.SlugField(unique=True)
+    #slug = models.SlugField(unique=True, blank=True)
     
     
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
+        #self.slug = slugify(self.name)
         super(Pet, self).save(*args, **kwargs)
     
     def __str__(self):
@@ -33,12 +33,12 @@ class Rating(models.Model):
     madeBy = models.ForeignKey(User, on_delete=models.CASCADE, related_name='madBy')
     toWho = models.ForeignKey(User, on_delete=models.CASCADE, related_name='toWho')
     rating = models.CharField(max_length=30)
-    slug = models.SlugField(unique=True)
+    #slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
         #Same question, what are we slugifying, is slug even necessary here?
         #Need to think how will the URL look
-        self.slug = slugify(self.toWho)
+        #self.slug = slugify(self.)
         super(Rating, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -53,13 +53,13 @@ class UserProfile(models.Model):
     experience = models.IntegerField(default=0)
     description = models.CharField(max_length=200)
     showPets = models.BooleanField(default=False)
-    slug = models.SlugField(unique=True)
+    #slug = models.SlugField(unique=True, blank=True)
 
     #website = models.URLField(blank=True)  #should we include this line too?
 
     def save(self, *args, **kwargs):
         #What are we slugifying to here? user for now
-        self.slug = slugify(self.user)
+        #self.slug = slugify(self.user)
         super(UserProfile, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -72,11 +72,10 @@ class Messages(models.Model):
     seekerUsername = models.ForeignKey(User, on_delete=models.CASCADE, related_name='seekerUsername')
     date = models.DateField(default=now)
     messages = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True)
-
+    #slug = models.SlugField(unique=True)
     def save(self, *args, **kwargs):
-        #Can string concatenation be done in thise case? We shall find out
-        self.slug = slugify(self.seekerUsername + petId)
+        
+        #self.slug = slugify(self.)
         super(Messages, self).save(*args, **kwargs)
 
     def __str__(self):
