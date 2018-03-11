@@ -101,6 +101,10 @@ def register(request):
     """
     return HttpResponse("""Register page
     <a href="/pawpal/">home</a>""")
+@login_required 
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('home'))
 
 def pets(request):
     return HttpResponse("""Pets page
