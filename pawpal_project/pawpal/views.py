@@ -14,6 +14,11 @@ from pawpal.forms import PetForm, UserForm, UserProfileForm
 # Create your views here.
 def home(request):
     context_dict = {}
+    if not request.user.is_authenticated():
+        #Change this when login template is ready
+        #If user logged in, show search animals, if not logged in show generic front page
+        return HttpResponse("You are logged in, which is impressive since we haven't implemented that yet")
+    else:
 #    return HttpResponse("""Home page. PawPal
 #    <br/> <a href='/pawpal/about/'>About</a>
 #    <br/> <a href='/pawpal/contact/'>Contact us</a>
@@ -24,7 +29,7 @@ def home(request):
 #    <br/> <a href='/pawpal/messenger/'>Messenger page</a>
 #    <br/> <a href='/pawpal/chosenpet/'>Chosen pet page</a>
 #    <br/> <a href='/pawpal/myaccount/'>My account page</a>""")
-    return render(request, 'pawpal/home.html', context=context_dict)
+        return render(request, 'pawpal/home.html', context=context_dict)
 
 def about(request):
     return HttpResponse("""About page
