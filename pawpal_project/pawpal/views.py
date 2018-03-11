@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from datetime import datetime
 from pawpal.models import UserProfile, Pet, Rating, Messages
-from pawpal.forms import ########################import forms here######################
+from pawpal.forms import PetForm, UserForm, UserProfileForm
 
 
 # Create your views here.

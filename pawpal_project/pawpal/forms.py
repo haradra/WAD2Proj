@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from pawpal.models import UserProfile, Pet, Rating, Messages
-from django import datetime
+import datetime
 
 
 #It's only a scheleton for a forms.py file. Need to be edited, funcionalities added etc.
