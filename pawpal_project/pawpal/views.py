@@ -32,7 +32,33 @@ def about(request):
 def contact(request):
     return HttpResponse("""Contact page
     <a href="/pawpal/">home</a>""")
-def login(request):
+def user_login(request):
+
+    if request.method == 'POST':
+
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(username=username, password=password)
+
+        if user:
+
+            if user.is_active:
+
+                login(request, user)
+                return HttpResponseRedirect(reverse('home'))
+            else:
+
+                return HttpResponse("Your PawPal account is disabled.")
+        else:
+
+            print("Invalid login details: {0}, {1}".format(username, password))
+            return HttpResponse("Invalid login details supplied.")
+
+    else:
+
+        return render(request, 'pawpal/login.html', {})
+
     return HttpResponse("""Login page
     <a href="/pawpal/">home</a>""")
 def register(request):
