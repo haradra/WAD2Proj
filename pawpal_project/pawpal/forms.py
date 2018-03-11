@@ -31,12 +31,13 @@ class UserForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     location = forms.CharField(max_length=128)
     dateOfBirth = forms.DateField(initial=datetime.date.today)
-    profilePicture = forms.ImageField(upload_to='profile_images', blank=True)
-    experience = forms.IntegerField(default=0)
+    #Think this overrides the model image i.e not needed
+    #profilePicture = forms.ImageField(upload_to='profile_images', blank=True)
+    experience = forms.IntegerField(initial=0)
     description = forms.CharField(max_length=200)
-    showPets = forms.BooleanField(default=False)
+    showPets = forms.BooleanField(initial=False)
 
 
     class Meta:
         model = UserProfile
-        fields = ('website', 'picture')
+        fields = ('location', 'dateOfBirth')
