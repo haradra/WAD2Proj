@@ -21,6 +21,10 @@ urlpatterns = [
     url(r'^about/', views.about, name='about'),
     url(r'^contact/', views.contact, name='contact'),
     url(r'^login/', views.login, name='login'),
+    url(r'^register/', views.register, name='register'),
     url(r'^pets/', views.pets, name='pets'),
-    url(r'^signup/', views.signup, name='signup'),
+    url(r'^editaccount/', views.editaccount, name='editaccount'),
+    url(r'^messenger/', views.messenger, name='messenger'),
+    url(r'^chosenpet/', views.chosenpet, name='chosenpet'),
+    url(r'^chosenpet/', views.chosenpet, name='chosenpet'),
 ]
