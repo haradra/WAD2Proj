@@ -26,5 +26,4 @@ urlpatterns = [
     url(r'^editaccount/', views.editaccount, name='editaccount'),
     url(r'^messenger/', views.messenger, name='messenger'),
     url(r'^chosenpet/', views.chosenpet, name='chosenpet'),
-    url(r'^chosenpet/', views.chosenpet, name='chosenpet'),
 ]

@@ -13,16 +13,18 @@ from pawpal.forms import PetForm, UserForm, UserProfileForm
 
 # Create your views here.
 def home(request):
-    return HttpResponse("""Home page. PawPal
-    <br/> <a href='/pawpal/about/'>About</a>
-    <br/> <a href='/pawpal/contact/'>Contact us</a>
-    <br/> <a href='/pawpal/editaccount/'>Edit account</a>
-    <br/> <a href='/pawpal/register/'>Register page</a>
-    <br/> <a href='/pawpal/login/'>Login page</a>
-    <br/> <a href='/pawpal/pets/'>Pets page</a>
-    <br/> <a href='/pawpal/messenger/'>Messenger page</a>
-    <br/> <a href='/pawpal/chosenpet/'>Chosen pet page</a>
-    <br/> <a href='/pawpal/myaccount/'My account page</a>""")
+    context_dict = {}
+#    return HttpResponse("""Home page. PawPal
+#    <br/> <a href='/pawpal/about/'>About</a>
+#    <br/> <a href='/pawpal/contact/'>Contact us</a>
+#    <br/> <a href='/pawpal/editaccount/'>Edit account</a>
+#    <br/> <a href='/pawpal/register/'>Register page</a>
+#    <br/> <a href='/pawpal/login/'>Login page</a>
+#    <br/> <a href='/pawpal/pets/'>Pets page</a>
+#    <br/> <a href='/pawpal/messenger/'>Messenger page</a>
+#    <br/> <a href='/pawpal/chosenpet/'>Chosen pet page</a>
+#    <br/> <a href='/pawpal/myaccount/'>My account page</a>""")
+    return render(request, 'pawpal/home.html', context=context_dict)
 
 def about(request):
     return HttpResponse("""About page
