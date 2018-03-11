@@ -11,7 +11,7 @@ class PetForm(forms.ModelForm):
     location = forms.CharField(max_length=50, help_text="Please enter your location.")
     class Meta:
         model = Pet
-
+        fields = "__all__"
 
 #What is this form meant to be? We have no User form so it can't be associated
 #Need 3 forms in total (open to discussion) 1 for user, 1 for pet,
@@ -30,7 +30,7 @@ class UserForm(forms.ModelForm):
 #for some reason let me know        
 class UserProfileForm(forms.ModelForm):
     location = forms.CharField(max_length=128)
-    dateOfBirth = forms.DateField(initial=datetime.today)
+    dateOfBirth = forms.DateField(initial=datetime.date.today)
     profilePicture = forms.ImageField(upload_to='profile_images', blank=True)
     experience = forms.IntegerField(default=0)
     description = forms.CharField(max_length=200)
