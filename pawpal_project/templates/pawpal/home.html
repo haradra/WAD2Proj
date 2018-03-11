@@ -1,32 +1,37 @@
 <!DOCTYPE html>
 {% load staticfiles %} <!-- New line -->
+
 <html>
 
 	<head>
+
 		<title>PawPal</title>
+		<link rel="stylesheet" href= "{% static "css/stylesheet.css" %}" type="text/css" />
 	</head>
 
 	<body>
-		<h1>Home page</h1>
-		<div>
-			This is PawPal <br />
-			<strong>{{ boldmessage }}</strong><br />
-		</div>
+		<div id="mainContainer">
+			<h1>Home page</h1>
+			<div>
+				This is PawPal <br />
+				<strong>{{ boldmessage }}</strong><br />
+			</div>
 
-		<div>
-			<img src="{% static "images/image.jpg" %}"
-		</div>
-		<div>
-      <br/> <a href='/pawpal/about/'>About</a>
-      <br/> <a href='/pawpal/contact/'>Contact us</a>
-      <br/> <a href='/pawpal/editaccount/'>Edit account</a>
-      <br/> <a href='/pawpal/register/'>Register page</a>
-      <br/> <a href='/pawpal/login/'>Login page</a>
-      <br/> <a href='/pawpal/pets/'>Pets page</a>
-      <br/> <a href='/pawpal/messenger/'>Messenger page</a>
-      <br/> <a href='/pawpal/chosenpet/'>Chosen pet page</a>
-      <br/> <a href='/pawpal/myaccount/'>My account page</a>
+			<div>
+				<img src="{% static "images/image.jpg" %}"
+			</div>
+			<div>
+	      <br/> <a href='/pawpal/about/'>About</a>
+	      <br/> <a href='/pawpal/contact/'>Contact us</a>
+	      <br/> <a href='/pawpal/editaccount/'>Edit account</a>
+	      <br/> <a href='/pawpal/register/'>Register page</a>
+	      <br/> <a href='/pawpal/login/'>Login page</a>
+	      <br/> <a href='/pawpal/pets/'>Pets page</a>
+	      <br/> <a href='/pawpal/messenger/'>Messenger page</a>
+	      <br/> <a href='/pawpal/chosenpet/'>Chosen pet page</a>
+	      <br/> <a href='/pawpal/myaccount/'>My account page</a>
 
+			</div>
 		</div>
 
 	</body>

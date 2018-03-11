@@ -1,0 +1,16 @@
+body {
+  width: 98%;
+  /* Setting min and max to adjust resolution for everyone */
+  min-width: 900px;
+  max-width: 1050px;
+  /* Setting own fonts */
+  font-family: Verdana, Times New Roman, Sans-Serif;
+  font-size: 16px;
+  /*0px for top and bottom, auto for right and left */
+  margin: 0px auto;
+  border:1px solid black;
+}
+#mainContainer {
+  width: 100%;
+  background-image: url("../images/background.jpg");
+}
