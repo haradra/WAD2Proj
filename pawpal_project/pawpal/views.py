@@ -109,15 +109,18 @@ def user_logout(request):
 def pets(request):
     return HttpResponse("""Pets page
     <a href="/pawpal/">home</a>""")
+@login_required
 def editaccount(requst):
     return HttpResponse("""Edit account page
     <a href="/pawpal/">home</a>""")
+@login_required
 def messenger(request):
     return HttpResponse("""Messenger page
     <a href="/pawpal/">home</a>""")
 def chosenpet(request):
     return HttpResponse("""Chosen pet page
     <a href="/pawpal/">home</a>""")
+@login_required
 def myaccount(request):
     return HttpResponse("""My account page
     <a href="/pawpal/">home</a>""")

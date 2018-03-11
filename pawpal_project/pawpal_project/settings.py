@@ -17,6 +17,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
+PET_PICS_DIR = os.path.join(MEDIA_DIR, 'pet_images')
+PROFILE_PICS_DIR = os.path.join(MEDIA_DIR, 'profile_images')
 
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
