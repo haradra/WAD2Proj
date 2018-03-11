@@ -13,16 +13,14 @@ class PetForm(forms.ModelForm):
         model = Pet
         fields = "__all__"
 
-#What is this form meant to be? We have no User form so it can't be associated
-#Need 3 forms in total (open to discussion) 1 for user, 1 for pet,
-#And 1 for edit account - not too sure about this one       
+      
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
         
         model = User
-        fields = ('username', 'password', "first_name", "last_name")
+        fields = ('username', 'password', "first_name", "last_name", "is_active")
 
 
 
@@ -32,12 +30,12 @@ class UserProfileForm(forms.ModelForm):
     location = forms.CharField(max_length=128)
     dateOfBirth = forms.DateField(initial=datetime.date.today)
     #Think this overrides the model image i.e not needed
-    #profilePicture = forms.ImageField(upload_to='profile_images', blank=True)
+    profilePicture = forms.ImageField(required=False)
     experience = forms.IntegerField(initial=0)
-    description = forms.CharField(max_length=200)
+    description = forms.CharField(max_length=200, required=False)
     showPets = forms.BooleanField(initial=False)
 
 
     class Meta:
         model = UserProfile
-        fields = ('location', 'dateOfBirth')
+        fields = ('location', 'dateOfBirth','profilePicture')
