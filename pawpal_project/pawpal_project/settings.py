@@ -28,7 +28,8 @@ MEDIA_URL = '/media/'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '3okpkvnip6mv6&7)e#77wr0)m0j^p$=if0o6fvd^9bs^6l*%^5'
-
+SOCIAL_AUTH_GITHUB_KEY = '0014ebdf0e0f84f0c6f1'
+SOCIAL_AUTH_GITHUB_SECRET = 'a9f39151742c3df58a43e9d5a0b09084196859b7' 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
