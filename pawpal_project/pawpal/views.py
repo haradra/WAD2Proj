@@ -54,7 +54,7 @@ def user_login(request):
                 return HttpResponseRedirect(reverse('home'))
             else:
 
-                return HttpResponse("Your PawPal account is disabled.")
+                return HttpResponse("Your PawPal account is not active.")
         else:
 
             print("Invalid login details: {0}, {1}".format(username, password))
@@ -91,7 +91,7 @@ def register(request):
         user_form = UserForm()
         profile_form = UserProfileForm()
     #When template is ready uncomment this block    
-    """
+    
     return render(request,
                   'pawpal/register.html',
                   {'user_form': user_form,
@@ -99,8 +99,8 @@ def register(request):
                    'registered': registered
                   })
     """
-    return HttpResponse("""Register page
-    <a href="/pawpal/">home</a>""")
+    return HttpResponse("Register page<a href="/pawpal/">home</a>")
+    """
 @login_required 
 def user_logout(request):
     logout(request)
