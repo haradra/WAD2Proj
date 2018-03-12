@@ -87,7 +87,7 @@ def register(request):
     	
         user_form = UserForm()
         profile_form = UserProfileForm()
-    #When template is ready uncomment this block    
+       
     
     return render(request,
                   'pawpal/register.html',
