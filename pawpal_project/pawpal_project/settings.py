@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import keys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,15 +26,16 @@ MEDIA_URL = '/media/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
+#AUTH_ERRORS
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '3okpkvnip6mv6&7)e#77wr0)m0j^p$=if0o6fvd^9bs^6l*%^5'
-SOCIAL_AUTH_GITHUB_KEY = '0014ebdf0e0f84f0c6f1'
-SOCIAL_AUTH_GITHUB_SECRET = 'a9f39151742c3df58a43e9d5a0b09084196859b7'
-SOCIAL_AUTH_TWITTER_KEY = 'Pi3omJIXJmdT5WiUix0hxLd6X'
-SOCIAL_AUTH_TWITTER_SECRET = 'XGH4bkZs1Ggt9tnbgzX0InN7mTY5EZngTiDmiSjEUrtXj6LRCM'
-SOCIAL_AUTH_TWITTER_KEY = '1773956149293420'
-SOCIAL_AUTH_TWITTER_SECRET = 'ade192a02aa5a0a2be5a3de272d57aa9' 
+SOCIAL_AUTH_GITHUB_KEY = keys.SOCIAL_AUTH_GITHUB_KEY
+SOCIAL_AUTH_GITHUB_SECRET = keys.SOCIAL_AUTH_GITHUB_SECRET
+SOCIAL_AUTH_TWITTER_KEY = keys.SOCIAL_AUTH_TWITTER_KEY
+SOCIAL_AUTH_TWITTER_SECRET = keys.SOCIAL_AUTH_TWITTER_SECRET
+SOCIAL_AUTH_FACEBOOK_KEY = keys.SOCIAL_AUTH_FACEBOOK_KEY
+SOCIAL_AUTH_FACEBOOK_SECRET = keys.SOCIAL_AUTH_FACEBOOK_SECRET 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
