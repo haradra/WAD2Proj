@@ -13,4 +13,5 @@ body {
 #mainContainer {
   width: 100%;
   background-image: url("../images/background.jpg");
+  min-height: 700px;
 }

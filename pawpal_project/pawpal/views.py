@@ -29,8 +29,7 @@ def home(request):
     return render(request, 'pawpal/home.html', context=context_dict)
 
 def about(request):
-    return HttpResponse("""About page
-    <a href="/pawpal/">home</a>""")
+    return render(request, 'pawpal/about.html')
 def contact(request):
     return HttpResponse("""Contact page
     <a href="/pawpal/">home</a>""")

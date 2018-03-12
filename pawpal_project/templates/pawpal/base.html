@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+
+	<head>
+		<title>{% block title %}{% endblock %}</title>
+		<link rel="stylesheet" href= "{% static "css/stylesheet.css" %}" type="text/css" />
+	</head>
+
+  <body>
+		<div id="mainContainer">
+			<h1>{% block pageTitle %}{% endblock %}</h1>
+			{% block content %}{% endblock %}
+			<div>
+        {% block footer %}
+          <br/> <a href='/pawpal/about/'>About</a>
+          <br/> <a href='/pawpal/contact/'>Contact us</a>
+          <br/> <a href='/pawpal/editaccount/'>Edit account</a>
+          <br/> <a href='/pawpal/register/'>Register page</a>
+          <br/> <a href='/pawpal/login/'>Login page</a>
+          <br/> <a href='/pawpal/pets/'>Pets page</a>
+          <br/> <a href='/pawpal/messenger/'>Messenger page</a>
+          <br/> <a href='/pawpal/chosenpet/'>Chosen pet page</a>
+          <br/> <a href='/pawpal/myaccount/'>My account page</a>
+        {% endblock %}
+			</div>
+		</div>
+	</body>
+</html>
