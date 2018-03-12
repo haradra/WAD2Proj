@@ -14,6 +14,10 @@
 			<h1>Home page</h1>
 			<div>
 				This is PawPal <br />
+				{% if user.is_authenticated %}
+					hello again {{ user.username }}!
+				{% endif %}
+				Welcome 
 				<strong>{{ boldmessage }}</strong><br />
 			</div>
 
