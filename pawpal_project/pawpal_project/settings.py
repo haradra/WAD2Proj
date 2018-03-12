@@ -36,8 +36,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 LOGIN_URL = '/pawpal/login'
-LOGOUT_URL = '/pawpal/logout'
-LOGIN_REDIRECT_URL = '/pawpal/home'
+LOGIN_REDIRECT_URL = 'home'
 # Application definition
 
 INSTALLED_APPS = [

@@ -15,7 +15,8 @@
 			<div>
 				This is PawPal <br />
 				{% if user.is_authenticated %}
-					hello again {{ user.username }}!
+					hello again {{ user.username }}!<br />
+					<li><a href="{% url 'logout' %}">Logout</a></li><br />
 				{% endif %}
 				Welcome 
 				<strong>{{ boldmessage }}</strong><br />
