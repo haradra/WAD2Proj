@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^about/', views.about, name='about'),
     url(r'^contact/', views.contact, name='contact'),
     url(r'^login/', views.user_login, name='login'),
+    url(r'^logout/', views.logout, name='logout'),
     url(r'^register/', views.register, name='register'),
     url(r'^pets/', views.pets, name='pets'),
     url(r'^editaccount/', views.editaccount, name='editaccount'),

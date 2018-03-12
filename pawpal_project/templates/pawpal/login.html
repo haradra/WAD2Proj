@@ -1,0 +1,17 @@
+<html>
+
+	<h1>Login</h1>
+
+<h2>Login to PawPal</h2>
+<body>
+<form id="login_form" method="post" action="{% url 'login' %}">
+	{% csrf_token %}
+	Username: <input type="text" name="username" value="" size="50" />
+	<br />
+	Password: <input type="password" name="password" value="" size="50" />
+	<br />
+	<input type="submit" value="submit" />
+
+</form>
+</body>
+</html>
