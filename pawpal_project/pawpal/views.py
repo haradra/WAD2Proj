@@ -26,6 +26,11 @@ def home(request):
 #    <br/> <a href='/pawpal/messenger/'>Messenger page</a>
 #    <br/> <a href='/pawpal/chosenpet/'>Chosen pet page</a>
 #    <br/> <a href='/pawpal/myaccount/'>My account page</a>""")
+    context_dict = {}
+    
+    pets = Pet.objects.order_by('name')
+    
+    context_dict = {'records_pets':pets}
     return render(request, 'pawpal/home.html', context=context_dict)
 
 def about(request):

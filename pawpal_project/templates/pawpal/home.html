@@ -6,10 +6,16 @@
 {%block pageTitle %}Home page{% endblock %}
 {% block content %}
 	<div>
+		
 		This is PawPal <br />
 		{% if user.is_authenticated %}
 			hello again {{ user.username }}!<br />
-			<li><a href="{% url 'logout' %}">Logout</a></li><br />
+			<li><a href="{% url 'logout' %}">Logout</a></li><br /> 
+		{% else %}
+			You're not logged in! Look at all these pets wanting a pal <br />
+			{% for pet in records_pets %}
+			<li><b>Pet: </b>{{ pet.name }}</li>
+			{% endfor %}
 		{% endif %}
 	</div>
 	<div>
