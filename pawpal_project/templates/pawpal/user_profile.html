@@ -1,0 +1,9 @@
+<html>
+{% load staticfiles %}
+  <li>Username: {{ user.username }}</li>
+  <li>First Name: {{ user.first_name }}</li>
+  <li>Last Name: {{ user.last_name }}</li>
+  <li>Location: {{ user.UserProfile.location }}</li>
+  <li>Birth Date: {{ user.UserProfile.dateOfBirth }}</li>
+  <li>Experience: {{ user.UserProfile.experience }}</li>
+</html>
