@@ -31,8 +31,7 @@ def home(request):
 def about(request):
     return render(request, 'pawpal/about.html')
 def contact(request):
-    return HttpResponse("""Contact page
-    <a href="/pawpal/">home</a>""")
+    return render(request, 'pawpal/contact.html')
 def user_login(request):
 
     if request.method == 'POST':
@@ -63,7 +62,7 @@ def user_login(request):
     return HttpResponse("""Login page
     <a href="/pawpal/">home</a>""")
 def register(request):
-    
+
     registered = False
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
@@ -83,11 +82,11 @@ def register(request):
             else:
                 print(user_form.errors, profile_form.errors)
     else:
-    	
+
         user_form = UserForm()
         profile_form = UserProfileForm()
-       
-    
+
+
     return render(request,
                   'pawpal/register.html',
                   {'user_form': user_form,
@@ -97,7 +96,7 @@ def register(request):
     """
     return HttpResponse("Register page<a href="/pawpal/">home</a>")
     """
-@login_required 
+@login_required
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('home'))
@@ -166,4 +165,3 @@ def chosenpet(request):
 def myaccount(request):
     return HttpResponse("""My account page
     <a href="/pawpal/">home</a>""")
-
