@@ -1,4 +1,6 @@
 *.pyc
 db.sqlite3
+__pycache__
+*.pyo
 .idea/
 keys.py
