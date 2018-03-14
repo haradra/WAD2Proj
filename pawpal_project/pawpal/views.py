@@ -172,5 +172,5 @@ def chosenpet(request):
     <a href="/pawpal/">home</a>""")
 @login_required
 def myaccount(request):
-    return HttpResponse("""My account page
-    <a href="/pawpal/">home</a>""")
+    user = request.user
+    return render(request, 'pawpal/myaccount.html', {"user":user})
