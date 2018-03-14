@@ -9,8 +9,22 @@
 		This is PawPal <br />
 		{% if user.is_authenticated %}
 			hello again {{ user.username }}!<br />
-			<li><a href="{% url 'logout' %}">Logout</a></li><br />
+			<li><a href="{% url 'logout' %}">Logout</a></li><br /> 
+		{% else %}
+			You're not logged in! Look at all these pets wanting a pal <br />
+			{% for pet in records_pets %}
+			<li><b>Pet: </b>{{ pet.name }}</li>
+			{% endfor %}
 		{% endif %}
+		<br />
+		</div>
+		<div>
+		Checking if rating works <br /> 
+		{% for user in records_users %}
+		<li><b>Friendliness: </b>{{ user.avg_friendliness }}</li>
+                <li><b>Good with Pets: </b>{{ user.avg_good_w_pets }}</li>
+                <li><b>Trust: </b>{{ user.avg_trust }}</li>
+		{% endfor %}
 	</div>
 	<div>
 		<img src="{% static "images/image.jpg" %}"

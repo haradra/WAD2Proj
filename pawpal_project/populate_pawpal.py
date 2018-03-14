@@ -54,31 +54,31 @@ def populate():
 
 
     pets = [
-        {"owner": User.objects.get(username="LoveIguanas"),
+        {
         "name": "Cameleon",
          "description": "I'm a wee lizard, I like to eat fruit flies and creepy spiders. I don't like grasshoppers though, YAK!",
          "species": "Lizard",
          "location": "Glasgow",
          "petPicture": "pet_images/1.jpeg"},
-        {"owner": User.objects.get(username="LoveIguanas"),
+        {
          "name": "Gecko",
          "description": "A cute, small thing!",
          "species": "Lizard",
          "location": "Edinburgh",
          "petPicture": "pet_images/2.jpeg"},
-        {"owner": User.objects.get(username="Doggos"),
+        {
          "name": "Anika",
          "description": "3-year old dog.",
          "species": "Dog",
          "location": "London",
          "petPicture": "pet_images/3.jpeg"},
-        {"owner": User.objects.get(username="anilano"),
+        {
          "name": "Monte",
          "description": "An independent cat!",
          "species": "Cat",
          "location": "Glasgow",
          "petPicture": "pet_images/4.jpeg"},
-        {"owner": User.objects.get(username="anilano"),
+        {
          "name": "Carno",
          "description": "Energetic and loud dog. Loves cuddling and playin with a ball.",
          "species": "Dog",
@@ -86,27 +86,27 @@ def populate():
          "petPicture": "pet_images/5.jpeg"} ]
 
     for pet in pets:
-        add_pet(pet["owner"], pet["name"], pet["description"],
+        add_pet(pet["name"], pet["description"],
                 pet["species"], pet["location"], pet["petPicture"])
 
 
 
     ratings = [
-        {"madeBy": User.objects.get(username="LoveIguanas"),
-         "toWho": User.objects.get(username="Doggos"),
-         "rating": 3},
-        {"madeBy": User.objects.get(username="Doggos"),
-         "toWho": User.objects.get(username="LoveIguanas"),
-         "rating": 5},
-        {"madeBy": User.objects.get(username="LoveIguanas"),
-         "toWho": User.objects.get(username="anilano"),
-         "rating": 1},
-        {"madeBy": User.objects.get(username="Doggos"),
-         "toWho": User.objects.get(username="anilano"),
-         "rating": 2}   ]
+        {'friendliness':3,
+         'good_w_pets':2,
+         'trust':5,},
+        {'friendliness':3,
+         'good_w_pets':2,
+         'trust':5,},
+        {'friendliness':3,
+         'good_w_pets':2,
+         'trust':5,},
+        {'friendliness':3,
+         'good_w_pets':2,
+         'trust':5,}   ]
 
     for rating in ratings:
-        add_rating(rating["madeBy"], rating["toWho"], rating["rating"])
+        add_rating(rating["friendliness"], rating["good_w_pets"], rating["trust"])
 
 
 
@@ -149,8 +149,8 @@ def add_user(username, password, first_name, last_name,
     u.save()
     return u
 
-def add_pet(owner, name, description, species, location, petPicture):
-    p = Pet.objects.get_or_create(owner = owner, name = name)[0]
+def add_pet(name, description, species, location, petPicture):
+    p = Pet.objects.get_or_create(name = name)[0]
     p.description = description
     p.species = species
     p.location = location
@@ -158,9 +158,8 @@ def add_pet(owner, name, description, species, location, petPicture):
     p.save()
     return p
 
-def add_rating(madeBy, toWho, rating):
-    r = Rating.objects.get_or_create(madeBy = madeBy, toWho = toWho)[0]
-    r.rating = rating
+def add_rating(friendliness, good_w_pets, trust):
+    r = Rating.objects.get_or_create(friendliness = friendliness, good_w_pets = good_w_pets, trust=trust)[0]
     r.save()
     return r
 

@@ -9,13 +9,23 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from datetime import datetime
 from django.contrib import messages
-from pawpal.models import UserProfile, Pet, Rating, Messages
+from pawpal.models import UserProfile, Pet, Rating, Messages, User
 from pawpal.forms import PetForm, UserForm, UserProfileForm
 from social_django.models import UserSocialAuth
+from django.db.models import Avg
 
 # Create your views here.
 def home(request):
     context_dict = {}
+    rates = Rating.objects.order_by('pet')
+    pets = Pet.objects.order_by('name')
+    users = User.objects.order_by('user').annotate(
+        avg_friendliness=Avg('rating__friendliness'),
+        avg_good_w_pets=Avg('rating__good_w_pets'),
+        avg_trust=Avg('rating__trust'),
+        )
+    context_dict = {'records_user': users,'records_pets':pets, 'rates':rates}
+    
 #    return HttpResponse("""Home page. PawPal
 #    <br/> <a href='/pawpal/about/'>About</a>
 #    <br/> <a href='/pawpal/contact/'>Contact us</a>

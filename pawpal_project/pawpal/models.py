@@ -11,7 +11,7 @@ from django.utils.timezone import *
 
 
 class Pet(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    pet = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50, unique=True)
     description = models.CharField(max_length=200)
     species = models.CharField(max_length=30)
@@ -20,7 +20,8 @@ class Pet(models.Model):
     petPicture = models.ImageField(upload_to='pet_images', blank=True)
     #slug = models.SlugField(unique=True, blank=True)
     
-    
+    class Meta:
+        verbose_name_plural = 'Pets'
     def save(self, *args, **kwargs):
         #self.slug = slugify(self.name)
         super(Pet, self).save(*args, **kwargs)
@@ -30,22 +31,26 @@ class Pet(models.Model):
 
 
 class Rating(models.Model):
-    madeBy = models.ForeignKey(User, on_delete=models.CASCADE, related_name='madBy')
-    toWho = models.ForeignKey(User, on_delete=models.CASCADE, related_name='toWho')
-    rating = models.CharField(max_length=30)
-    #slug = models.SlugField(unique=True)
-
+    FIVE_REVIEWS = (('5','5'),('4','4'),('3','3'),('2','2'),('1','1'))
+    pet = models.ForeignKey(Pet, default=1)
+    user = models.ForeignKey(User, default=1)
+    #madeBy = models.ForeignKey(User, on_delete=models.CASCADE, related_name='madBy')
+    #toWho = models.ForeignKey(User, on_delete=models.CASCADE, related_name='toWho')
+    friendliness = models.PositiveIntegerField(choices=FIVE_REVIEWS, default="5")
+    good_w_pets = models.PositiveIntegerField(choices=FIVE_REVIEWS, default="5")
+    trust = models.PositiveIntegerField(choices= FIVE_REVIEWS, default= "5")
+    class Meta:
+        verbose_name_plural = 'Ratings'
+        
     def save(self, *args, **kwargs):
-        #Same question, what are we slugifying, is slug even necessary here?
-        #Need to think how will the URL look
-        #self.slug = slugify(self.)
         super(Rating, self).save(*args, **kwargs)
 
     def __str__(self):
-        return str(self.toWho) + ":  " + str(self.rating)
+        return str(self.user)
 
 
 class UserProfile(models.Model):
+    #pet = models.ForeignKey(Pet, default=1)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     location = models.CharField(max_length=128)
     dateOfBirth = models.DateField(default=now)
@@ -54,9 +59,12 @@ class UserProfile(models.Model):
     description = models.CharField(max_length=200)
     showPets = models.BooleanField(default=False)
     #slug = models.SlugField(unique=True, blank=True)
+    
 
     #website = models.URLField(blank=True)  #should we include this line too?
 
+    class Meta:
+        verbose_name_plural = 'Users'
     def save(self, *args, **kwargs):
         #What are we slugifying to here? user for now
         #self.slug = slugify(self.user)
