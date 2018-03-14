@@ -15,3 +15,8 @@ body {
   background-image: url("../images/background.jpg");
   min-height: 700px;
 }
+
+.small-image {
+  width: 32px;
+  height: 32px;
+}
