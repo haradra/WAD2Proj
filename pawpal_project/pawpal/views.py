@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from datetime import datetime
 from django.contrib import messages
-from pawpal.models import UserProfile, Pet, Rating, Messages
+from pawpal.models import UserProfile, Pet, Rating, Messages, User
 from pawpal.forms import PetForm, UserForm, UserProfileForm
 from social_django.models import UserSocialAuth
 
@@ -159,6 +159,10 @@ def pets(request):
 def editaccount(requst):
     return HttpResponse("""Edit account page
     <a href="/pawpal/">home</a>""")
+@login_required
+def get_user_profile(request, username):
+    user = User.objects.get(username=username)
+    return render(request, 'pawpal/user_profile.html', {"user":user})
 @login_required
 def messenger(request):
     return HttpResponse("""Messenger page
