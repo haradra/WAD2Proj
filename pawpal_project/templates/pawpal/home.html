@@ -1,24 +1,89 @@
-{% extends 'pawpal/base.html' %}
+<!DOCTYPE html>
 {% load staticfiles %}
-
-{% block title %}PawPal{% endblock %}
-
-{%block pageTitle %}Home page{% endblock %}
-{% block content %}
-	<div>
-		
-		This is PawPal <br />
-		{% if user.is_authenticated %}
-			hello again {{ user.username }}!<br />
-			<li><a href="{% url 'logout' %}">Logout</a></li><br /> 
-		{% else %}
-			You're not logged in! Look at all these pets wanting a pal <br />
-			{% for pet in records_pets %}
-			<li><b>Pet: </b>{{ pet.name }}</li>
-			{% endfor %}
-		{% endif %}
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PawPal</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+    body{
+    	padding-top: 70px;
+    }
+</style>
+</head>
+<body>
+<nav id="myNavbar" class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+	<!-- Brand and toggle get grouped for better mobile display -->
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">PawPal</a>
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href='/pawpal/home/' target="_blank">Home</a></li>
+				<li><a href='/pawpal/about/' target="_blank">About Us</a></li>
+				<li><a href='/pawpal/contact/' target="_blank">Contact Us</a></li>
+        <li><a href='/pawpal/myaccount/' target="_blank">My Account</a></li>
+			</ul>
+		</div>
 	</div>
-	<div>
-		<img src="{% static "images/image.jpg" %}"
+</nav>
+<div class="container">
+
+	<div class="jumbotron">
+
+		<h1>This is PawPal</h1>
+		<div>
+			{% if user.is_authenticated %}
+				Hello again {{ user.username }}!<br />
+				<li><a href="{% url 'logout' %}">Logout</a></li><br />
+				<div>
+					<h3>Here are some animals looking for a firend:</h3>
+					<img src="{% static "images/animal.jpg" %}"
+				</div>
+			{% else %}
+				<h2>Login to PawPal</h2>
+				<form id="login_form" method="post" action="{% url 'login' %}">
+					{% csrf_token %}
+					Username: <input type="text" name="username" value="" size="50" />
+					<br />
+					Password: <input type="password" name="password" value="" size="50" />
+					<br />
+					<input type="submit" value="submit" />
+
+				</form>
+					<br>
+					<p><strong>-- OR --</strong></p>
+					<a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
+					<a href="{% url 'social:begin' 'twitter' %}">Login with Twitter</a><br>
+					<a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a><br>
+					<div>
+						<h3>You're not logged in! Look at all these pets wanting a pal <br /></h3>
+						<img src="{% static "images/animal.jpg" %}"
+					</div>
+				{% endif %}
+		</div>
+
 	</div>
-{% endblock %}
+	<hr>
+	<div class="row">
+		<div class="col-xs-12">
+			<footer>
+				<p>&copy; This is a footer in case you wanna put something.</p>
+			</footer>
+		</div>
+	</div>
+</div>
+</body>
+</html>
