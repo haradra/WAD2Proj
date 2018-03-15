@@ -63,15 +63,10 @@
 			{% if user.is_authenticated %}
 				Hello again {{ user.username }}!<br />
 				<li><a href="{% url 'logout' %}">Logout</a></li><br />
-				<div>
-					<h3>Here are some animals looking for a friend:</h3>
-					<img src="{% static 'images/animal.jpg' %}" />
-				</div>
 			{% else %}
 				<h2>Login to PawPal</h2>
 				<form id="login_form" method="post" action="{% url 'login' %}">
 					{% csrf_token %}
-          <form>
             <table>
               <tr>
                 <td align="right">Username:</td>
@@ -82,7 +77,6 @@
                 <td align="left"><input type="text" name="password" size="30"/></td>
               </tr>
             </table>
-          </form>
 					<input type="submit" value="Login" />
 					<br />
 					<input type="checkbox" name="remember-me"> Remember me<br />
@@ -94,10 +88,6 @@
 					<a href="{% url 'social:begin' 'twitter' %}"><img class="small-image" src="{% static 'images/social_images/twitter.png' %}" class="visible" /></a>
 					<a href="{% url 'social:begin' 'facebook' %}"><img class="small-image" src="{% static 'images/social_images/facebook.png' %}" class="visible" /></a>
 		</div>
-					<div style="margin-top: 5px; float: left;">
-						<h3>You're not logged in!<br /></h3>
-						<img src="{% static "images/animal.jpg" %}">
-					</div>
 				{% endif %}
 
 	</div>

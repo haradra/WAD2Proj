@@ -34,3 +34,18 @@ body {
     height: 300px;
     margin-left: 15px;
 }
+
+#image-about {
+    width: 504px;
+    height: 532px;
+    margin: 0 auto;
+}
+
+.container-centre {
+    width: 100%;
+    text-align: center;
+}
+
+.jumbotron p {
+    font-size: 15px;
+}
