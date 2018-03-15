@@ -28,7 +28,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">PawPal</a>
+			<a class="navbar-brand" href="/pawpal/home/">PawPal</a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="navbarCollapse">
@@ -44,8 +44,13 @@
 <div class="container">
 
 	<div class="jumbotron">
-
-		<h1>Welcome to PawPal!</h1>
+        {% if user.is_authenticated %}
+        <div id="profile-right">
+            Hello, {{ user.username }}!<br />
+				<li><a href="{% url 'logout' %}">Logout</a></li><br />
+        </div>
+        {% endif %}
+		<h2>Welcome to PawPal!</h2>
 		<h4>Here are some of our animals looking for a friend. {% if not user.is_authenticated %}Join us today and become a PawPal!{% endif %}</h4>
 		<div id="images-left">
 			<img src="{% static 'images/scroll_images/lion.jpg' %}" />
@@ -60,10 +65,7 @@
 		</div>
 
 		<div id="login-right">
-			{% if user.is_authenticated %}
-				Hello again {{ user.username }}!<br />
-				<li><a href="{% url 'logout' %}">Logout</a></li><br />
-			{% else %}
+			{% if not user.is_authenticated %}
 				<h2>Login to PawPal</h2>
 				<form id="login_form" method="post" action="{% url 'login' %}">
 					{% csrf_token %}
@@ -74,7 +76,7 @@
               </tr>
               <tr>
                 <td align="right">Password:</td>
-                <td align="left"><input type="text" name="password" size="30"/></td>
+                <td align="left"><input type="password" name="password" size="30"/></td>
               </tr>
             </table>
 					<input type="submit" value="Login" />
@@ -84,14 +86,13 @@
 				</form>
 					<br>
 					Login with:
-					<a href="{% url 'social:begin' 'google' %}"><img class="small-image" src="{% static 'images/social_images/google.png' %}" class="visible" /></a>
+					<a href="{% url 'social:begin' 'github' %}"><img class="small-image" src="{% static 'images/social_images/google.png' %}" class="visible" /></a>
 					<a href="{% url 'social:begin' 'twitter' %}"><img class="small-image" src="{% static 'images/social_images/twitter.png' %}" class="visible" /></a>
 					<a href="{% url 'social:begin' 'facebook' %}"><img class="small-image" src="{% static 'images/social_images/facebook.png' %}" class="visible" /></a>
 		</div>
 				{% endif %}
 
 	</div>
-	<hr>
 	<div class="row">
 		<div class="col-xs-12">
 			<footer>

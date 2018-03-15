@@ -49,3 +49,8 @@ body {
 .jumbotron p {
     font-size: 15px;
 }
+
+#profile-right {
+    float: right;
+    width: 200px;
+}
