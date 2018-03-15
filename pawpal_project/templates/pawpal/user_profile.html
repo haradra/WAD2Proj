@@ -1,9 +1,21 @@
-<html>
+{% extends 'pawpal/base.html' %}
 {% load staticfiles %}
+
+{% block title_block %}User Profile{% endblock %}
+
+{% block menubutton1_active %}{% endblock %}
+
+{% block menubutton2_active %}{% endblock %}
+
+{% block menubutton3_active %}{% endblock %}
+
+{% block menubutton4_active %}{% endblock %}
+
+{% block body_block %}
   <li>Username: {{ user.username }}</li>
   <li>First Name: {{ user.first_name }}</li>
   <li>Last Name: {{ user.last_name }}</li>
   <li>Location: {{ user.UserProfile.location }}</li>
   <li>Birth Date: {{ user.UserProfile.dateOfBirth }}</li>
   <li>Experience: {{ user.UserProfile.experience }}</li>
-</html>
+{% endblock %}
