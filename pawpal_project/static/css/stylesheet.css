@@ -54,3 +54,20 @@ body {
     float: right;
     width: 200px;
 }
+
+#images-myaccount {
+    position: relative;
+    width: 1000px;
+    height: 210px;
+    float: inherit;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    white-space:nowrap
+}
+
+#images-myaccount img {
+    width: 190px;
+    height: 190px;
+    margin: 5px;
+    display:inline-block;
+}
