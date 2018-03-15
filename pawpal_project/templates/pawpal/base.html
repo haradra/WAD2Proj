@@ -38,6 +38,11 @@
 				<li {% block menubutton3_active %}{% endblock %}><a href="/pawpal/contact/">Contact Us</a></li>
                 <li {% block menubutton4_active %}{% endblock %}><a href="/pawpal/myaccount/">My Account</a></li>
 			</ul>
+			{% if user and user.is_authenticated %}
+			<ul class="nav navbar-nav pull-right">
+				<li><a href="{% url 'logout' %}">Logout</a></li>
+			</ul>
+			{% endif %}
 		</div>
 	</div>
 </nav>

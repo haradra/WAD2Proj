@@ -16,8 +16,7 @@ PawPal
 {% block body_block %}
         {% if user.is_authenticated %}
         <div id="profile-right">
-            Hello, {{ user.username }}!<br />
-				<li><a href="{% url 'logout' %}">Logout</a></li><br />
+            Hello, {{ user.username }}!
         </div>
         {% endif %}
 		<h2>Welcome to PawPal!</h2>
