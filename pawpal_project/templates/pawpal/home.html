@@ -44,7 +44,12 @@
 <div class="container">
 
 	<div class="jumbotron">
-
+        {% if user.is_authenticated %}
+        <div id="profile-right">
+            Hello, {{ user.username }}!<br />
+				<li><a href="{% url 'logout' %}">Logout</a></li><br />
+        </div>
+        {% endif %}
 		<h2>Welcome to PawPal!</h2>
 		<h4>Here are some of our animals looking for a friend. {% if not user.is_authenticated %}Join us today and become a PawPal!{% endif %}</h4>
 		<div id="images-left">
@@ -60,10 +65,7 @@
 		</div>
 
 		<div id="login-right">
-			{% if user.is_authenticated %}
-				Hello again {{ user.username }}!<br />
-				<li><a href="{% url 'logout' %}">Logout</a></li><br />
-			{% else %}
+			{% if not user.is_authenticated %}
 				<h2>Login to PawPal</h2>
 				<form id="login_form" method="post" action="{% url 'login' %}">
 					{% csrf_token %}
@@ -91,7 +93,6 @@
 				{% endif %}
 
 	</div>
-	<hr>
 	<div class="row">
 		<div class="col-xs-12">
 			<footer>
