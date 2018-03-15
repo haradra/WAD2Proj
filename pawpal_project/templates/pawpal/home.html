@@ -45,8 +45,21 @@
 
 	<div class="jumbotron">
 
-		<h1>This is PawPal</h1>
-		<div>
+		<h1>Welcome to PawPal!</h1>
+		<h4>Here are some of our animals looking for a friend. {% if not user.is_authenticated %}Join us today and become a PawPal!{% endif %}</h4>
+		<div id="images-left">
+			<img src="{% static 'images/scroll_images/lion.jpg' %}" />
+			<img src="{% static 'images/scroll_images/bunny.jpeg' %}" />
+			<img src="{% static 'images/scroll_images/squirrel.jpg' %}" />
+			<img src="{% static 'images/scroll_images/lion.jpg' %}" />
+			<img src="{% static 'images/scroll_images/bunny.jpeg' %}" />
+			<img src="{% static 'images/scroll_images/squirrel.jpg' %}" />
+			<img src="{% static 'images/scroll_images/lion.jpg' %}" />
+			<img src="{% static 'images/scroll_images/bunny.jpeg' %}" />
+			<img src="{% static 'images/scroll_images/squirrel.jpg' %}" />
+		</div>
+
+		<div id="login-right">
 			{% if user.is_authenticated %}
 				Hello again {{ user.username }}!<br />
 				<li><a href="{% url 'logout' %}">Logout</a></li><br />
@@ -79,12 +92,12 @@
 					<a href="{% url 'social:begin' 'google' %}"><img class="small-image" src="{% static 'images/social_images/google.png' %}" class="visible" /></a>
 					<a href="{% url 'social:begin' 'twitter' %}"><img class="small-image" src="{% static 'images/social_images/twitter.png' %}" class="visible" /></a>
 					<a href="{% url 'social:begin' 'facebook' %}"><img class="small-image" src="{% static 'images/social_images/facebook.png' %}" class="visible" /></a>
-					<div>
-						<h3>You're not logged in! Look at all these pets wanting a pal! <br /></h3>
+		</div>
+					<div style="margin-top: 5px; float: left;">
+						<h3>You're not logged in!<br /></h3>
 						<img src="{% static "images/animal.jpg" %}">
 					</div>
 				{% endif %}
-		</div>
 
 	</div>
 	<hr>

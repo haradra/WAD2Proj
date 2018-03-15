@@ -1,14 +1,7 @@
 body {
-  width: 98%;
-  /* Setting min and max to adjust resolution for everyone */
-  min-width: 900px;
-  max-width: 1050px;
   /* Setting own fonts */
   font-family: Verdana, Times New Roman, Sans-Serif;
   font-size: 16px;
-  /*0px for top and bottom, auto for right and left */
-  margin: 0px auto;
-  border:1px solid black;
 }
 #mainContainer {
   width: 100%;
@@ -19,4 +12,25 @@ body {
 .small-image {
   width: 32px;
   height: 32px;
+}
+
+#images-left {
+    position: relative;
+    width: 640px;
+    height: 300px;
+    float: left;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#images-left img {
+    width: 190px;
+    height: 190px;
+    margin: 5px;
+}
+
+#login-right {
+    float: left;
+    height: 300px;
+    margin-left: 15px;
 }
