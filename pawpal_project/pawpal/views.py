@@ -10,7 +10,7 @@ from django.contrib.auth import logout
 from datetime import datetime
 from django.contrib import messages
 from pawpal.models import UserProfile, Pet, Rating, Messages, User
-from pawpal.forms import PetForm, UserForm, UserProfileForm
+from pawpal.forms import PetForm, UserForm, UserProfileForm, UpdateProfile
 from social_django.models import UserSocialAuth
 
 # Create your views here.
@@ -156,9 +156,19 @@ def pets(request):
     return HttpResponse("""Pets page
     <a href="/pawpal/">home</a>""")
 @login_required
-def editaccount(requst):
-    return HttpResponse("""Edit account page
-    <a href="/pawpal/">home</a>""")
+def editaccount(request):
+    context_dict = {}
+    user = request.user
+    if request.method == 'POST':
+        form = UpdateProfile(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('myaccount'))
+    else:
+        form = UpdateProfile()
+
+    context_dict = {'form':form}
+    return render(request, 'pawpal/editaccount.html', context=context_dict)
 @login_required
 def get_user_profile(request, username):
     user = User.objects.get(username=username)
