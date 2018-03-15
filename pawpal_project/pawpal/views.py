@@ -156,9 +156,8 @@ def pets(request):
     return HttpResponse("""Pets page
     <a href="/pawpal/">home</a>""")
 @login_required
-def editaccount(requst):
-    return HttpResponse("""Edit account page
-    <a href="/pawpal/">home</a>""")
+def editaccount(request):
+    return render(request, 'pawpal/editaccount.html', {})
 @login_required
 def get_user_profile(request, username):
     user = User.objects.get(username=username)
