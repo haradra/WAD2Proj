@@ -15,6 +15,7 @@
     	padding-top: 70px;
     }
 </style>
+	<link rel="stylesheet" href="{% static 'css/stylesheet.css' %}" />
 </head>
 <body>
 <nav id="myNavbar" class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
@@ -44,14 +45,27 @@
 
 	<div class="jumbotron">
 
-		<h1>This is PawPal</h1>
-		<div>
+		<h1>Welcome to PawPal!</h1>
+		<h4>Here are some of our animals looking for a friend. {% if not user.is_authenticated %}Join us today and become a PawPal!{% endif %}</h4>
+		<div id="images-left">
+			<img src="{% static 'images/scroll_images/lion.jpg' %}" />
+			<img src="{% static 'images/scroll_images/bunny.jpeg' %}" />
+			<img src="{% static 'images/scroll_images/squirrel.jpg' %}" />
+			<img src="{% static 'images/scroll_images/lion.jpg' %}" />
+			<img src="{% static 'images/scroll_images/bunny.jpeg' %}" />
+			<img src="{% static 'images/scroll_images/squirrel.jpg' %}" />
+			<img src="{% static 'images/scroll_images/lion.jpg' %}" />
+			<img src="{% static 'images/scroll_images/bunny.jpeg' %}" />
+			<img src="{% static 'images/scroll_images/squirrel.jpg' %}" />
+		</div>
+
+		<div id="login-right">
 			{% if user.is_authenticated %}
 				Hello again {{ user.username }}!<br />
 				<li><a href="{% url 'logout' %}">Logout</a></li><br />
 				<div>
-					<h3>Here are some animals looking for a firend:</h3>
-					<img src="{% static "images/animal.jpg" %}"
+					<h3>Here are some animals looking for a friend:</h3>
+					<img src="{% static 'images/animal.jpg' %}" />
 				</div>
 			{% else %}
 				<h2>Login to PawPal</h2>
@@ -74,15 +88,16 @@
 				</form>
 					<br>
 					<p><strong>-- OR --</strong></p>
-					<a href="{% url 'social:begin' 'github' %}">Login with GitHub </a><br>
-					<a href="{% url 'social:begin' 'twitter' %}">Login with Twitter </a><br>
-					<a href="{% url 'social:begin' 'facebook' %}">Login with Facebook <i class="fa fa-facebook"></i></a><br>
-					<div>
-						<h3>You're not logged in! Look at all these pets wanting a pal! <br /></h3>
+					Login with:
+					<a href="{% url 'social:begin' 'google' %}"><img class="small-image" src="{% static 'images/social_images/google.png' %}" class="visible" /></a>
+					<a href="{% url 'social:begin' 'twitter' %}"><img class="small-image" src="{% static 'images/social_images/twitter.png' %}" class="visible" /></a>
+					<a href="{% url 'social:begin' 'facebook' %}"><img class="small-image" src="{% static 'images/social_images/facebook.png' %}" class="visible" /></a>
+		</div>
+					<div style="margin-top: 5px; float: left;">
+						<h3>You're not logged in!<br /></h3>
 						<img src="{% static "images/animal.jpg" %}">
 					</div>
 				{% endif %}
-		</div>
 
 	</div>
 	<hr>
