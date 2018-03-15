@@ -83,13 +83,12 @@
               </tr>
             </table>
           </form>
-					<input type="submit" value="submit" />
+					<input type="submit" value="Login" />
 					<br />
 					<input type="checkbox" name="remember-me"> Remember me<br />
 
 				</form>
 					<br>
-					<p><strong>-- OR --</strong></p>
 					Login with:
 					<a href="{% url 'social:begin' 'google' %}"><img class="small-image" src="{% static 'images/social_images/google.png' %}" class="visible" /></a>
 					<a href="{% url 'social:begin' 'twitter' %}"><img class="small-image" src="{% static 'images/social_images/twitter.png' %}" class="visible" /></a>
