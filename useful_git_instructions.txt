@@ -1,7 +1,15 @@
-rm db.sqlite3; rm -R pawpal/migrations; python manage.py makemigrations pawpal; python manage.py migrate; python populate_pawpal.py
+rm db.sqlite3; rm -R pawpal/migrations; python3 manage.py makemigrations pawpal; python3 manage.py migrate; python3 populate_pawpal.py
+echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'qweasdzxc')" | python3 manage.py shell
 
-python manage.py createsuperuser
 
+Creating superuser - quick way:
+
+echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'qweasdzxc')" | python3 manage.py shell
 
 Also:
 http://127.0.0.1:8000/
+
+
+
+Changing default to python3:
+alias python='python3'
