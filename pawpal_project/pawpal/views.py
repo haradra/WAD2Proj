@@ -169,6 +169,7 @@ def editaccount(request):
 
     context_dict = {'form':form}
     return render(request, 'pawpal/editaccount.html', context=context_dict)
+
 @login_required
 def get_user_profile(request, username):
     user = User.objects.get(username=username)

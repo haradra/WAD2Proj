@@ -1,10 +1,11 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PawPal</title>
+<title>Login</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -13,6 +14,7 @@
     	padding-top: 70px;
     }
 </style>
+	<link rel="stylesheet" href="{% static 'css/stylesheet.css' %}" />
 </head>
 <body>
 <nav id="myNavbar" class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
@@ -25,15 +27,15 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">PawPal</a>
+			<a class="navbar-brand" href="/pawpal/home/">PawPal</a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<ul class="nav navbar-nav">
-				<li><a href='/pawpal/home/' target="_blank">Home</a></li>
-				<li><a href='/pawpal/about/' target="_blank">About Us</a></li>
-				<li><a href='/pawpal/contact/' target="_blank">Contact Us</a></li>
-        <li class="active"><a href='/pawpal/myaccount/' target="_blank">My Account</a></li>
+				<li><a href="/pawpal/home/">Home</a></li>
+				<li><a href="/pawpal/about/">About Us</a></li>
+				<li><a href="/pawpal/contact/">Contact Us</a></li>
+        		<li class="active"><a href="/pawpal/myaccount/">My Account</a></li>
 			</ul>
 		</div>
 	</div>
@@ -42,12 +44,10 @@
 
 	<div class="jumbotron">
 
-		<h1>Login</h1>
-
 	<h2>Login to PawPal</h2>
+		<br />
 	<form id="login_form" method="post" action="{% url 'login' %}">
 		{% csrf_token %}
-    <form>
       <table>
         <tr>
           <td align="right">Username:</td>
@@ -55,18 +55,18 @@
         </tr>
         <tr>
           <td align="right">Password:</td>
-          <td align="left"><input type="text" name="password" size="30"/></td>
+          <td align="left"><input type="password" name="password" size="30"/></td>
         </tr>
       </table>
-    </form>
-		<input type="submit" value="submit" />
-
+		<input type="submit" value="Login" />
+		<br />
+		<input type="checkbox" name="remember-me"> Remember me<br />
 	</form>
 		<br>
-		<p><strong>-- OR --</strong></p>
-		<a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
-		<a href="{% url 'social:begin' 'twitter' %}">Login with Twitter</a><br>
-		<a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a><br>
+		Login with:
+			<a href="{% url 'social:begin' 'github' %}"><img class="small-image" src="{% static 'images/social_images/github.png' %}" class="visible" /></a>
+			<a href="{% url 'social:begin' 'twitter' %}"><img class="small-image" src="{% static 'images/social_images/twitter.png' %}" class="visible" /></a>
+			<a href="{% url 'social:begin' 'facebook' %}"><img class="small-image" src="{% static 'images/social_images/facebook.png' %}" class="visible" /></a>
 	</div>
 	<hr>
 	<div class="row">

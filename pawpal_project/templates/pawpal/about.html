@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 {% load staticfiles %}
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -14,6 +14,7 @@
     	padding-top: 70px;
     }
 </style>
+	<link rel="stylesheet" href="{% static 'css/stylesheet.css' %}" />
 </head>
 <body>
 <nav id="myNavbar" class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
@@ -26,7 +27,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">PawPal</a>
+			<a class="navbar-brand" href="/pawpal/home/">PawPal</a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="navbarCollapse">
@@ -41,7 +42,7 @@
 </nav>
 <div class="container">
 	<div class="jumbotron">
-		<h1>About us</h1>
+		<h2>About us</h2>
 		<p>Have you ever had a bad day and wanted to find a furry creature that is always
 happy to cuddle? Do you find yourself lonely and need a bit of warmth? Or do you
 just want to spend some time actively with an energetic companion?</p>
@@ -57,8 +58,10 @@ animal as well as the user, the application will make it easy to find a match, t
 would suit their skills and needs, even for the inexperienced animal lovers.</p>
 <p>The users will be able to contact each other once they’ve expressed the interest in
 the pet.</p>
+		<div class="container-centre">
 		<h2>How it works?</h2>
-		<img src="{% static "images/about.jpg" %}">
+		<img src="{% static 'images/about.jpg' %}" id="image-about">
+		</div>
 	</div>
 	<hr>
 	<div class="row">
