@@ -22,15 +22,9 @@ PawPal
 		<h2>Welcome to PawPal!</h2>
 		<h4>Here are some of our animals looking for a friend. {% if not user.is_authenticated %}Join us today and become a PawPal!{% endif %}</h4>
 		<div id="images-left">
-			<img src="{% static 'images/scroll_images/lion.jpg' %}" />
-			<img src="{% static 'images/scroll_images/bunny.jpeg' %}" />
-			<img src="{% static 'images/scroll_images/squirrel.jpg' %}" />
-			<img src="{% static 'images/scroll_images/lion.jpg' %}" />
-			<img src="{% static 'images/scroll_images/bunny.jpeg' %}" />
-			<img src="{% static 'images/scroll_images/squirrel.jpg' %}" />
-			<img src="{% static 'images/scroll_images/lion.jpg' %}" />
-			<img src="{% static 'images/scroll_images/bunny.jpeg' %}" />
-			<img src="{% static 'images/scroll_images/squirrel.jpg' %}" />
+			{% for pet in records_pets %}
+			<img src="{{ pet.petPicture.url }}" />
+			{% endfor %}
 		</div>
 
 		<div id="login-right">
