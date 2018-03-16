@@ -14,13 +14,15 @@ PawPal
 {% block menubutton4_active %}{% endblock %}
 
 {% block body_block %}
-        {% if user.is_authenticated %}
-        <div id="profile-right">
-            Hello, {{ user.username }}!
-        </div>
-        {% endif %}
-		<h2>Welcome to PawPal!</h2>
-		<h4>Here are some of our animals looking for a friend. {% if not user.is_authenticated %}Join us today and become a PawPal!{% endif %}</h4>
+		<h2>Welcome to PawPal!</h2><br />
+		<h4> {% if user.is_authenticated %}Hello {{ user.username }}, look at all these pets needing a pal!{% else %}Here are some of our animals looking for a friend. Join us today and become a PawPal!{% endif %}</h4>
+		<div class="btn-group" role="group" aria-label="Basic example" style="width: 100%;">
+			<button type="button" class="btn btn-secondary" onclick="selectButton(this);">Dogs</button>
+			<button type="button" class="btn btn-secondary" onclick="selectButton(this);">Cats</button>
+			<button type="button" class="btn btn-secondary" onclick="selectButton(this);">Hamsters</button>
+			<button type="button" class="btn btn-secondary" onclick="selectButton(this);">Reptiles</button>
+			<button type="button" class="btn btn-secondary" onclick="selectButton(this);">Birds</button>
+		</div>
 		<div id="images-left">
 			{% for pet in records_pets %}
 			<img src="{{ pet.petPicture.url }}" />
