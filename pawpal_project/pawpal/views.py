@@ -182,5 +182,5 @@ def chosenpet(request):
     return render(request, 'pawpal/chosenpet.html',{})
 @login_required
 def myaccount(request):
-    user = request.user
+    user = User.objects.get(username=request.user)
     return render(request, 'pawpal/myaccount.html', {"user":user})

@@ -71,3 +71,15 @@ body {
     margin: 5px;
     display:inline-block;
 }
+
+.jumbotron {
+    overflow: hidden;
+}
+
+.col-md-2 .btn {
+    margin: 5px;
+}
+
+.btn-group button{
+    background-color:lightblue;
+}

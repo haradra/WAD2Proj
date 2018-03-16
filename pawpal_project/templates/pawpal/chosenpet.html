@@ -1,63 +1,17 @@
+{% extends 'pawpal/base.html' %}
 {% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pet</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<style type="text/css">
-    body{
-    	padding-top: 70px;
-    }
-</style>
-	<link rel="stylesheet" href="{% static 'css/stylesheet.css' %}" />
-</head>
-<body>
-<nav id="myNavbar" class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
-	<!-- Brand and toggle get grouped for better mobile display -->
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="/pawpal/home/">PawPal</a>
-		</div>
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="navbarCollapse">
-			<ul class="nav navbar-nav">
-				<li><a href="/pawpal/home/">Home</a></li>
-				<li><a href="/pawpal/about/">About Us</a></li>
-				<li><a href="/pawpal/contact/">Contact Us</a></li>
-             	<li><a href="/pawpal/myaccount/">My Account</a></li>
-			</ul>
-		</div>
-	</div>
-</nav>
-<div class="container">
-	<div class="jumbotron">
+
+{% block title_block %}Pet{% endblock %}
+
+{% block menubutton1_active %}{% endblock %}
+
+{% block menubutton2_active %}{% endblock %}
+
+{% block menubutton3_active %}{% endblock %}
+
+{% block menubutton4_active %}{% endblock %}
+
+{% block body_block %}
 		<h2>Pet</h2>
-
-
-	</div>
-	<hr>
-	<div class="row">
-		<div class="col-xs-12">
-			<footer>
-				<p>&copy; This is a footer in case you wanna put something.</p>
-			</footer>
-		</div>
-	</div>
-</div>
-</body>
-</html>
-
-
-
+{% endblock %}
 
