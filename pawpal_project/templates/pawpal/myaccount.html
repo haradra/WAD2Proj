@@ -13,13 +13,20 @@
 
 {% block body_block %}
 		<h2>My Account</h2>
-		<div>
+		<div class="row">
+			<div class="col-md-10">
 			<li>Username: {{ user.username }}</li>
 			<li>First Name: {{ user.first_name }}</li>
 			<li>Last Name: {{ user.last_name }}</li>
 			<li>Location: {{ user.UserProfile.location }}</li>
 			<li>Birth Date: {{ user.UserProfile.dateOfBirth }}</li>
 			<li>Experience: {{ user.UserProfile.experience }}</li>
+		</div>
+			<div class="col-md-2">
+				<button type="button" class="btn btn-default" onclick="location.href = '{% url 'editaccount' %}';">Edit Account</button><br />
+				<button type="button" class="btn btn-default" onclick="location.href = '{% url 'password' %}';">Change Password</button><br />
+				<button type="button" class="btn btn-default" onclick="location.href = '{% url 'settings' %}';">Settings</button><br />
+			</div>
 		</div>
 		<br />
 		<h4>Your Pals:</h4>

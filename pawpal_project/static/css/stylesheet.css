@@ -75,3 +75,7 @@ body {
 .jumbotron {
     overflow: hidden;
 }
+
+.col-md-2 .btn {
+    margin: 5px;
+}
