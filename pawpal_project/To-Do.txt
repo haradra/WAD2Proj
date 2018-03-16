@@ -1,0 +1,19 @@
+Things to do:
+
+Ratings
+
+Google Maps Location
+
+Fix field getting from User/UserProfile
+
+Messenger
+
+Matching (both backend link fields and front end)
+
+Think about what to add to home page.
+
+Profile image display
+
+Connect pop script fields like description etc to user profile
+
+Fix Github
