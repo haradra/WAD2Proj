@@ -28,15 +28,15 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="/pawpal/home/">PawPal</a>
+			<a class="navbar-brand" href="{% url 'home' %}">PawPal</a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<ul class="nav navbar-nav">
-				<li {% block menubutton1_active %}{% endblock %}><a href="/pawpal/home/">Home</a></li>
-				<li {% block menubutton2_active %}{% endblock %}><a href="/pawpal/about/">About Us</a></li>
-				<li {% block menubutton3_active %}{% endblock %}><a href="/pawpal/contact/">Contact Us</a></li>
-                <li {% block menubutton4_active %}{% endblock %}><a href="/pawpal/myaccount/">My Account</a></li>
+				<li {% block menubutton1_active %}{% endblock %}><a href="{% url 'home' %}">Home</a></li>
+				<li {% block menubutton2_active %}{% endblock %}><a href="{% url 'about' %}">About Us</a></li>
+				<li {% block menubutton3_active %}{% endblock %}><a href="{% url 'contact' %}">Contact Us</a></li>
+                <li {% block menubutton4_active %}{% endblock %}><a href="{% url 'myaccount' %}">My Account</a></li>
 			</ul>
 			{% if user and user.is_authenticated %}
 			<ul class="nav navbar-nav pull-right">

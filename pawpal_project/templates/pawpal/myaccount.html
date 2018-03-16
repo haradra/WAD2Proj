@@ -12,14 +12,26 @@
 {% block menubutton4_active %}class="active"{% endblock %}
 
 {% block body_block %}
-		<h2>My Account</h2>
-		<div>
-			<li>Username: {{ user.username }}</li>
+		<div class="row">
+			<div class="col-md-4">
+				<h2>{{ user.username }}</h2>
+				<img src="{{ user.UserProfile.profilePicture.url }}" />
+			</div>
+			<div class="col-md-6">
+				<h3>About you:</h3>
+			<li>Email: {{ user.email }}</li>
 			<li>First Name: {{ user.first_name }}</li>
 			<li>Last Name: {{ user.last_name }}</li>
 			<li>Location: {{ user.UserProfile.location }}</li>
 			<li>Birth Date: {{ user.UserProfile.dateOfBirth }}</li>
 			<li>Experience: {{ user.UserProfile.experience }}</li>
+		</div>
+			<div class="col-md-2">
+				<br /><br />
+				<button type="button" class="btn btn-default" onclick="location.href = '{% url 'editaccount' %}';">Edit Account</button><br />
+				<button type="button" class="btn btn-default" onclick="location.href = '{% url 'password' %}';">Change Password</button><br />
+				<button type="button" class="btn btn-default" onclick="location.href = '{% url 'settings' %}';">Settings</button><br />
+			</div>
 		</div>
 		<br />
 		<h4>Your Pals:</h4>
