@@ -20,7 +20,7 @@ class UserForm(forms.ModelForm):
     class Meta:
         
         model = User
-        fields = ('username', 'password', "first_name", "last_name", "is_active")
+        fields = ('username', 'password', "first_name", "last_name", "email", "is_active")
 
 
 

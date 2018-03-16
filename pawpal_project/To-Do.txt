@@ -6,8 +6,6 @@ Think about Pet owner field, is there an association?
 
 Google Maps Location
 
-Fix field getting from User/UserProfile
-
 Messenger
 
 Matching (both backend link fields and front end)
@@ -26,3 +24,7 @@ Make website responsive (I guess we can't set the certain width in the css. [I'm
 
 Missing "favicon.ico"?
     Not Found: /favicon.ico
+
+Logout on the MyAccount page
+
+When editing userProfile from MyAccount page, user must be able to edit only one field

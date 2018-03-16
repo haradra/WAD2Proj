@@ -22,6 +22,7 @@ def populate():
          "experience": int(4),
          "description": "I love Iguanas, like really. Iguanas <3",
          "showPets": False,
+         "email": "sample_email@sample.com",
          },
         {"username": "Doggos",
          "password": "IreallyLoveDoggos123456789",
@@ -33,6 +34,7 @@ def populate():
          "experience": int(8),
          "description": "Doggos, doggos, I have one, let's spend with him all our time!",
          "showPets": True,
+         "email": "sample_ema2il@sample.com",
          },
         {"username": "anilano",
          "password": "Irsdawnilano123456789",
@@ -44,12 +46,13 @@ def populate():
          "experience": int(0),
          "description": "I'm looking for a Cat or a Dog I could take for a walk.",
          "showPets": False,
+         "email": "3sample_email@sample.com",
          }  ]
 
     for user in users:
         add_user(user["username"], user["password"], user["first_name"],
                  user["last_name"], user["location"], user["dateOfBirth"],
-                 user["profilePicture"], user["experience"], user["description"], user["showPets"])
+                 user["profilePicture"], user["experience"], user["description"], user["showPets"], user["email"])
 
 
 
@@ -133,11 +136,12 @@ def populate():
 
 def add_user(username, password, first_name, last_name,
              location, dateOfBirth, profilePicture,
-             experience, description, showPets):
+             experience, description, showPets, email):
     u = User.objects.get_or_create(username = username)[0]
     u.set_password(password)
     u.first_name = first_name
     u.last_name = last_name
+    u.email = email
     u.save()
     u = UserProfile.objects.get_or_create(user = u)[0]
     u.location = location
