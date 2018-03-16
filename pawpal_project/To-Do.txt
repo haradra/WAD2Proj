@@ -14,8 +14,6 @@ Matching (both backend link fields and front end)
 
 Think about what to add to home page.
 
-Profile image display
-
 Connect pop script fields like description etc to user profile
 
 Fix Github
@@ -23,3 +21,8 @@ Fix Github
 Add footer content
 
 Unit Testing
+
+Make website responsive (I guess we can't set the certain width in the css. [I'm not 100% sure though])
+
+Missing "favicon.ico"?
+    Not Found: /favicon.ico
