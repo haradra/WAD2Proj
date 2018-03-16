@@ -1,10 +1,8 @@
-rm db.sqlite3; rm -R pawpal/migrations; python3 manage.py makemigrations pawpal; python3 manage.py migrate; python3 populate_pawpal.py
-echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'qweasdzxc')" | python3 manage.py shell
+Removing database, making and applying migrations, creating and admin account: admin, qweasdzxc
 
+    rm db.sqlite3; rm -R pawpal/migrations; python3 manage.py makemigrations pawpal; python3 manage.py migrate; python3 populate_pawpal.py
+    echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'qweasdzxc')" | python3 manage.py shell
 
-Creating superuser - quick way:
-
-echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'qweasdzxc')" | python3 manage.py shell
 
 Also:
 http://127.0.0.1:8000/
@@ -13,3 +11,20 @@ http://127.0.0.1:8000/
 
 Changing default to python3:
 alias python='python3'
+
+
+Creating new branch:
+    git checkout -b "Branch_Name"
+
+Changing working branch:
+    git checkout "Branch_Name"
+
+Pushing the branch:
+    git push origin "Branch_Name"
+
+git checkout master; git pull origin master;
+git push origin my-new-feature-brach
+
+https://gist.github.com/blackfalcon/8428401
+https://confluence.atlassian.com/bitbucketserver/basic-git-commands-776639767.html
+https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf
