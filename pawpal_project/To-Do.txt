@@ -1,0 +1,27 @@
+Things to do:
+
+Ratings
+
+Think about Pet owner field, is there an association?
+
+Google Maps Location
+
+Fix field getting from User/UserProfile
+
+Messenger
+
+Matching (both backend link fields and front end)
+
+Think about what to add to home page.
+
+Profile image display
+
+Fix register page, make sure it adds to UserProfile as well as User, and redirects to the home page
+
+Connect pop script fields like description etc to user profile
+
+Fix Github
+
+Add footer content
+
+Unit Testing
