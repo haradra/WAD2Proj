@@ -2,6 +2,8 @@ Things to do:
 
 Ratings
 
+Think about Pet owner field, is there an association?
+
 Google Maps Location
 
 Fix field getting from User/UserProfile
