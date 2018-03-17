@@ -93,20 +93,7 @@ li.active .white-link {
 }
 
 .btn-group button{
-    background-color:lightblue;
-}
-
-#login_form table{
-  border-spacing: 2px;
-  border-collapse: inherit;
-}
-
-#login_form td{
-  padding-bottom: 5px;
-}
-
-#login_form .login-button{
-  margin-bottom: 4px;
+    background-color: lightblue;
 }
 
 .login-form {
