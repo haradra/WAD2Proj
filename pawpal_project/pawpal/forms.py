@@ -16,6 +16,7 @@ class PetForm(forms.ModelForm):
       
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
+    email = forms.CharField(widget=forms.EmailInput())
 
     class Meta:
         
@@ -23,9 +24,6 @@ class UserForm(forms.ModelForm):
         fields = ('username', 'password', "first_name", "last_name", "email", "is_active")
 
 
-
-#This form was importing model input fields, why? Changed to form, if mistake
-#for some reason let me know        
 class UserProfileForm(forms.ModelForm):
     location = forms.CharField(max_length=128)
     dateOfBirth = forms.DateField(initial=datetime.date.today)

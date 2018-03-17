@@ -80,9 +80,14 @@ def register(request):
 
             profile = profile_form.save(commit=False)
             profile.user = user
-            if 'picture' in request.FILES:
-                profile.picture = request.FILES['picture']
+            print(request.FILES['profilePicture'])
+            if 'profilePicture' in request.FILES:
+                print("doing job")
+                print(profile.profilePicture)
+                profile.profilePicture = request.FILES['profilePicture']
+                print(profile.profilePicture)
             profile.save()
+            print(profile)
             registered = True
         else:
             print(user_form.errors, profile_form.errors)
@@ -172,7 +177,7 @@ def editaccount(request):
 
 @login_required
 def get_user_profile(request, username):
-    user = User.objects.get(username=username)
+    user = UserProfile.objects.get(user=request.user)
     return render(request, 'pawpal/user_profile.html', {"user":user})
 @login_required
 def messenger(request):
