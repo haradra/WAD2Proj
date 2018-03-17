@@ -5,5 +5,4 @@ pawpal_project/keys.py
 __pycache__
 *.pyo
 keys.py
-/migrations/
-/pawpal_project/keys.py
+pawpal/migrations/
