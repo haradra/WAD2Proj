@@ -6,6 +6,7 @@ from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 import datetime
 from django.utils.timezone import *
+from pawpal_project import settings
 
 # Create your models here.
 
@@ -49,7 +50,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     location = models.CharField(max_length=128)
     dateOfBirth = models.DateField(default=now)
-    profilePicture = models.ImageField(upload_to='profile_images', blank=True)
+    profilePicture = models.ImageField(upload_to='profile_images', blank=True, default="profile_images/user.jpeg")
     experience = models.IntegerField(default=0)
     description = models.CharField(max_length=200)
     showPets = models.BooleanField(default=False)

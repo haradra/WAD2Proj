@@ -39,12 +39,12 @@
 				<li {% block menubutton3_active %}{% endblock %}><a href="{% url 'contact' %}" class="white-link">Contact Us</a></li>
                 <li {% block menubutton4_active %}{% endblock %}><a href="{% url 'myaccount' %}" class="white-link">My Account</a></li>
 			</ul>
-			{% if user and user.is_authenticated %}
+			{% if user.user and user.user.is_authenticated or user and user.is_authenticated%}
 			<ul class="nav navbar-nav pull-right">
 				<li><a href="{% url 'logout' %}" class="white-link">Logout</a></li>
 			</ul>
 			{% endif %}
-			{% if not user.is_authenticated %}
+			{% if not user.user.is_authenticated and not user.is_authenticated%}
 			<ul class="nav navbar-nav pull-right">
 				<li><a href="{% url 'register' %}" class="white-link">Register</a></li>
 			</ul>

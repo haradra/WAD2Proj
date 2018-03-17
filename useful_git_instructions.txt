@@ -11,7 +11,7 @@ http://127.0.0.1:8000/
 
 Changing default to python3:
 alias python='python3'
-
+alias populate='rm db.sqlite3; rm -R pawpal/migrations; python3 manage.py makemigrations pawpal; python3 manage.py migrate; python3 populate_pawpal.py;'
 
 Creating new branch:
     git checkout -b "Branch_Name"
