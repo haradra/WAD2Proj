@@ -1,5 +1,7 @@
 Things to do:
 
+The register form is not working. It says something about a profile picture.
+
 Ratings
 
 Think about Pet owner field, is there an association?
