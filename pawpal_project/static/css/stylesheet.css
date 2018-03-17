@@ -108,3 +108,7 @@ li.active .white-link {
 #login_form .login-button{
   margin-bottom: 4px;
 }
+
+.login-form {
+    width: 30%;
+}

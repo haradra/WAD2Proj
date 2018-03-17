@@ -12,25 +12,25 @@
 {% block menubutton4_active %}class="active"{% endblock %}
 
 {% block body_block %}
-	<h2>Login to PawPal</h2>
+	<h3>Login to PawPal</h3>
 		<br />
 	<form id="login_form" method="post" action="{% url 'login' %}">
 		{% csrf_token %}
-      <table class="login-table">
-        <tr>
-          <td align="right">Username:</td>
-          <td align="left"><input type="text" name="username" value="" size="30"/></td>
-        </tr>
-        <tr>
-          <td align="right">Password:</td>
-          <td align="left"><input type="password" name="password" size="30"/></td>
-        </tr>
-      </table>
-		<input class="login-button" type="submit" value="Login" />
-		<br />
-		<input type="checkbox" name="remember-me"> Remember me<br />
+        <div class="form-group">
+            <label for="username-input">Username:</label>
+            <input type="text" name="username" id="username-input" class="form-control login-form" placeholder="Username" />
+        </div>
+        <div class="form-group">
+            <label for="password-input">Password:</label>
+            <input type="password" name="password" id="password-input" class="form-control login-form" placeholder="Password" />
+        </div>
+        <input type="submit" value="Login" class="btn btn-default" />
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="remember-me" />Remember me
+            </label>
+        </div>
 	</form>
-		<br>
 		Login with:
 			<a href="{% url 'social:begin' 'github' %}"><img class="small-image" src="{% static 'images/social_images/github.png' %}" class="visible" /></a>
 			<a href="{% url 'social:begin' 'twitter' %}"><img class="small-image" src="{% static 'images/social_images/twitter.png' %}" class="visible" /></a>
