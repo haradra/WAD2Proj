@@ -9,6 +9,23 @@ body {
   min-height: 700px;
 }
 
+.navbar-custom {
+    background: #99cfe0;
+    border-bottom: solid 2px #72bcd4;
+}
+
+.white-link {
+    color: white !important;
+}
+
+.white-link:hover {
+    color: #ffff9d !important;
+}
+
+li.active .white-link {
+    background: #72bcd4 !important;
+}
+
 .small-image {
   width: 32px;
   height: 32px;
