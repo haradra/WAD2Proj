@@ -68,6 +68,8 @@ def user_login(request):
     <a href="/pawpal/">home</a>""")
 def register(request):
 
+    if request.user and request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('home'))
     registered = False
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
@@ -172,6 +174,8 @@ def editaccount(request):
 
 @login_required
 def get_user_profile(request, username):
+    if request.user and request.user.username == username:
+        return HttpResponseRedirect(reverse('myaccount'))
     user = UserProfile.objects.get(user=request.user)
     return render(request, 'pawpal/user_profile.html', {"user":user,"rating":2,"ratings":range(1,6)})
 @login_required

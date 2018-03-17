@@ -4,8 +4,6 @@ Rating - backend only
 
 Think about Pet owner field, is there an association?
 
-When you are trying to access your profile from User Profile page, it should redirect to My Account page.
-
 Google Maps Location
 
 Messenger
