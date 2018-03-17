@@ -15,7 +15,7 @@
 		<div class="row">
             <div class="col-md-4">
 				<h2>{{ user.user.username }}</h2>
-				<img src="{{ user.profilePicture.url }}" id="images-myaccount"/>
+				<img src="{{ user.profilePicture.url }}" class="images-myaccount"/>
 			</div>
 			<div class="col-md-6">
 				<h3>About you:</h3>
@@ -23,6 +23,19 @@
 			<li>First Name: {{ user.user.first_name }}</li>
 			<li>Last Name: {{ user.user.last_name }}</li>
 			<li>Location: {{ user.location }}</li>
+			<div id="div-rating">
+				{% for i in ratings %}
+				{% if rating >= i %}
+				<a href="/pawpal/rating/{{ user.user.username }}/{{ i }}">
+					<img src="{% static 'images/paw-filled.png' %}" class="images-rating images-rating-filled" onmouseover="selectPaws({{ i }});" onmouseout="unselectPaws();" />
+				</a>
+				{% else %}
+				<a href="/pawpal/rating/{{ user.user.username }}/{{ i }}">
+					<img src="{% static 'images/paw-empty.png' %}" class="images-rating images-rating-empty" onmouseover="selectPaws({{ i }});" onmouseout="unselectPaws();" />
+				</a>
+				{% endif %}
+				{% endfor %}
+			</div>
 		</div>
 			<div class="col-md-2">
 				<br /><br />

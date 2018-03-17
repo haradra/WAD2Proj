@@ -173,7 +173,7 @@ def editaccount(request):
 @login_required
 def get_user_profile(request, username):
     user = UserProfile.objects.get(user=request.user)
-    return render(request, 'pawpal/user_profile.html', {"user":user})
+    return render(request, 'pawpal/user_profile.html', {"user":user,"rating":2,"ratings":range(1,6)})
 @login_required
 def messenger(request):
     return HttpResponse("""Messenger page

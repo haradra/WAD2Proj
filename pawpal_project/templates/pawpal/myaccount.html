@@ -28,13 +28,9 @@
 				<div id="div-rating">
 					{% for i in ratings %}
 					{% if rating >= i %}
-					<a href="/pawpal/rating/{{ user.user.username }}/{{ i }}">
-						<img src="{% static 'images/paw-filled.png' %}" class="images-rating images-rating-filled" onmouseover="selectPaws({{ i }});" onmouseout="unselectPaws();" />
-					</a>
+					<img src="{% static 'images/paw-filled.png' %}" class="images-rating" />
 					{% else %}
-					<a href="/pawpal/rating/{{ user.user.username }}/{{ i }}">
-						<img src="{% static 'images/paw-empty.png' %}" class="images-rating images-rating-empty" onmouseover="selectPaws({{ i }});" onmouseout="unselectPaws();" />
-					</a>
+					<img src="{% static 'images/paw-empty.png' %}" class="images-rating" />
 					{% endif %}
 					{% endfor %}
 				</div>
