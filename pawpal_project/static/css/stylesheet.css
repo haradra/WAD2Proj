@@ -1,6 +1,6 @@
 body {
   /* Setting own fonts */
-  font-family: Verdana, Times New Roman, Sans-Serif;
+  font-family: Verdana, Helvetica, Sans-Serif;
   font-size: 16px;
 }
 #mainContainer {
@@ -73,6 +73,7 @@ body {
 
 .jumbotron {
     overflow: hidden;
+    text-align: justify;
 }
 
 .col-md-2 .btn {
@@ -81,4 +82,17 @@ body {
 
 .btn-group button{
     background-color:lightblue;
+}
+
+#login_form table{
+  border-spacing: 2px;
+  border-collapse: inherit;
+}
+
+#login_form td{
+  padding-bottom: 5px;
+}
+
+#login_form .login-button{
+  margin-bottom: 4px;
 }

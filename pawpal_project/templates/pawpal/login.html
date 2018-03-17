@@ -16,7 +16,7 @@
 		<br />
 	<form id="login_form" method="post" action="{% url 'login' %}">
 		{% csrf_token %}
-      <table>
+      <table class="login-table">
         <tr>
           <td align="right">Username:</td>
           <td align="left"><input type="text" name="username" value="" size="30"/></td>
@@ -26,7 +26,7 @@
           <td align="left"><input type="password" name="password" size="30"/></td>
         </tr>
       </table>
-		<input type="submit" value="Login" />
+		<input class="login-button" type="submit" value="Login" />
 		<br />
 		<input type="checkbox" name="remember-me"> Remember me<br />
 	</form>
