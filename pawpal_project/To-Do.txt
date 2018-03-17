@@ -25,6 +25,14 @@ Make website responsive (I guess we can't set the certain width in the css. [I'm
 Missing "favicon.ico"?
     Not Found: /favicon.ico
 
-Logout on the MyAccount page
 
-When editing userProfile from MyAccount page, user must be able to edit only one field
+EditAccount: edit profile picture, location, address etc.
+
+Registration: showpets checkbox - currently user has to tick it, but it shouldn't be needed for him to be able to register
+After registration, user should be logged in
+
+When changing either first name or last name and leaving the other field blank, it changes that name to blank
+
+Experience - we can currently select also negative value. Needs to be corrected
+
+When incorrect login details are typed we need to be redirected somewhere, instead of seeing new page etc.
