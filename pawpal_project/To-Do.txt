@@ -1,8 +1,6 @@
 Things to do:
 
-The register form is not working. It says something about a profile picture.
-
-Ratings
+Rating - backend only
 
 Think about Pet owner field, is there an association?
 
@@ -17,6 +15,10 @@ Think about what to add to home page.
 Connect pop script fields like description etc to user profile
 
 Fix Github
+
+There is an error when trying to go to My Account using social media
+
+When registering the user should be logged in and redirected to the Home page
 
 Add footer content
 
@@ -38,3 +40,4 @@ When changing either first name or last name and leaving the other field blank, 
 Experience - we can currently select also negative value. Needs to be corrected
 
 When incorrect login details are typed we need to be redirected somewhere, instead of seeing new page etc.
+

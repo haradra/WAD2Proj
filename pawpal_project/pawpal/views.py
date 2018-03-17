@@ -183,4 +183,4 @@ def chosenpet(request):
 @login_required
 def myaccount(request):
     user = UserProfile.objects.get(user=request.user)
-    return render(request, 'pawpal/myaccount.html', {"user":user})
+    return render(request, 'pawpal/myaccount.html', {"user":user,"rating":2,"ratings":range(1,6)})

@@ -67,7 +67,7 @@ li.active .white-link {
     width: 200px;
 }
 
-#images-myaccount {
+.images-myaccount {
     position: relative;
     height: 210px;
     float: inherit;
@@ -76,11 +76,16 @@ li.active .white-link {
     white-space:nowrap
 }
 
-#images-myaccount img {
+.images-myaccount img {
     width: 190px;
     height: 190px;
     margin: 5px;
     display:inline-block;
+}
+
+.images-rating {
+    width: 32px;
+    height: 32px;
 }
 
 .jumbotron {
