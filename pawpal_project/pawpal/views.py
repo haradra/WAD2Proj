@@ -185,5 +185,9 @@ def messenger(request):
     <a href="/pawpal/">home</a>""")
 @login_required
 def myaccount(request):
-    user = UserProfile.objects.get(user=request.user)
+    try:
+        user = UserProfile.objects.get(user=request.user)
+    except Exception:
+        user = UserProfile.objects.get_or_create(user=instance)
+        user.save()
     return render(request, 'pawpal/myaccount.html', {"user":user,"rating":2,"ratings":range(1,6)})
