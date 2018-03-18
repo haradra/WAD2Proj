@@ -33,5 +33,4 @@ urlpatterns = [
     url(r'^profile/(?P<username>[a-zA-Z0-9]+)$', views.get_user_profile, name='user_profile'),
     url(r'^myaccount/$', views.myaccount, name='myaccount'),
     url(r'^messenger/$', views.messenger, name='messenger'),
-    url(r'^chosenpet/$', views.chosenpet, name='chosenpet'),
 ]

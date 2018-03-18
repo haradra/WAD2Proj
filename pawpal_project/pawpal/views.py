@@ -182,8 +182,6 @@ def get_user_profile(request, username):
 def messenger(request):
     return HttpResponse("""Messenger page
     <a href="/pawpal/">home</a>""")
-def chosenpet(request):
-    return render(request, 'pawpal/chosenpet.html',{})
 @login_required
 def myaccount(request):
     user = UserProfile.objects.get(user=request.user)
