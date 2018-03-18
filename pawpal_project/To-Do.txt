@@ -20,15 +20,9 @@ There is an error when trying to go to My Account using social media
 
 When registering the user should be logged in and redirected to the Home page
 
-Add footer content
-
 Unit Testing
 
 Make website responsive (I guess we can't set the certain width in the css. [I'm not 100% sure though])
-
-Missing "favicon.ico"?
-    Not Found: /favicon.ico
-
 
 EditAccount: edit profile picture, location, address etc.
 
