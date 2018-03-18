@@ -25,6 +25,7 @@
 				<li>Location: {{ user.location }}</li>
 				<li>Birth Date: {{ user.dateOfBirth }}</li>
 				<li>Experience: {{ user.experience }}</li>
+				<br />
 				<div id="div-rating">
 					{% for i in ratings %}
 					{% if rating >= i %}
@@ -34,6 +35,7 @@
 					{% endif %}
 					{% endfor %}
 				</div>
+				<h4>Rating: {{ rating }}/5 Paws</h4>
 			</div>
 			<div class="col-md-2">
 				<br /><br />

@@ -176,7 +176,8 @@ def editaccount(request):
 def get_user_profile(request, username):
     if request.user and request.user.username == username:
         return HttpResponseRedirect(reverse('myaccount'))
-    user = UserProfile.objects.get(user=request.user)
+    user = User.objects.get(username=username)
+    user = UserProfile.objects.get(user=user)
     return render(request, 'pawpal/user_profile.html', {"user":user,"rating":2,"ratings":range(1,6)})
 @login_required
 def messenger(request):
