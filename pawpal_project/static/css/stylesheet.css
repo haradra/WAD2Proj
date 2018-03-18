@@ -93,6 +93,14 @@ li.active .white-link {
     text-align: justify;
 }
 
+#footer-company {
+    font-size: 20px;
+}
+
+.footer-text-size {
+    font-size: 15px;
+}
+
 .col-md-2 .btn {
     margin: 5px;
 }

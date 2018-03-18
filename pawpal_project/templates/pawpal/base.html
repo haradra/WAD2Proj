@@ -60,10 +60,30 @@
         {% block body_block %}
         {% endblock %}
 	</div>
-	<div class="row">
+	<div class="row footer-text-size">
 		<div class="col-xs-12">
 			<footer>
-				<p>&copy; This is a footer in case you wanna put something.</p>
+				<div class="row">
+					<div class="col-md-4">
+						<a href="{% url 'home' %}"><img src="{% static 'images/paw-filled.png' %}" alt="PawPal" /></a>
+						<a href="{% url 'home' %}" id="footer-company">PawPal</a>
+					</div>
+					<div class="col-md-4">
+						<h4>General</h4>
+						<a href="{% url 'home' %}">Home</a><br />
+						<a href="{% url 'about' %}">About</a><br />
+						<a href="{% url 'contact' %}">Contact Us</a><br />
+					</div>
+					<div class="col-md-4">
+						<h4>Profile</h4>
+						<a href="{% url 'register' %}">Register</a><br />
+						<a href="{% url 'myaccount' %}">My Account</a><br />
+						<a href="{% url 'editaccount' %}">Edit Account</a><br />
+						<a href="{% url 'password' %}">Change Password</a><br />
+						<a href="{% url 'settings' %}">Settings</a><br />
+					</div>
+				</div>
+				<p>&copy; 2018 PawPal</p>
 			</footer>
 		</div>
 	</div>
