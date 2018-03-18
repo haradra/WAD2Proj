@@ -104,3 +104,8 @@ li.active .white-link {
 .login-form {
     width: 30%;
 }
+
+.logo-icon {
+    width: 20px;
+    height: 20px;
+}
