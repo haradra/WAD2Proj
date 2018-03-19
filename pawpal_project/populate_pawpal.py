@@ -57,31 +57,36 @@ def populate():
 
 
     pets = [
-        {"owner": User.objects.get(username="LoveIguanas"),
+        {"username": "doggo123",
+         "password":"qwerty12345",
         "name": "Cameleon",
          "description": "I'm a wee lizard, I like to eat fruit flies and creepy spiders. I don't like grasshoppers though, YAK!",
          "species": "Lizard",
          "location": "Glasgow",
          "petPicture": "pet_images/1.jpeg"},
-        {"owner": User.objects.get(username="LoveIguanas"),
+        {"username": "doggo123",
+         "password":"qwerty12345",
          "name": "Gecko",
          "description": "A cute, small thing!",
          "species": "Lizard",
          "location": "Edinburgh",
          "petPicture": "pet_images/2.jpeg"},
-        {"owner": User.objects.get(username="Doggos"),
+        {"username": "birdo123",
+         "password":"qwerty12345",
          "name": "Anika",
          "description": "3-year old dog.",
          "species": "Dog",
          "location": "London",
          "petPicture": "pet_images/3.jpeg"},
-        {"owner": User.objects.get(username="anilano"),
+        {"username": "catto123",
+         "password":"qwerty12345",
          "name": "Monte",
          "description": "An independent cat!",
          "species": "Cat",
          "location": "Glasgow",
          "petPicture": "pet_images/4.jpeg"},
-        {"owner": User.objects.get(username="anilano"),
+        {"username": "lizardo123",
+         "password":"qwerty12345",
          "name": "Carno",
          "description": "Energetic and loud dog. Loves cuddling and playin with a ball.",
          "species": "Dog",
@@ -89,7 +94,7 @@ def populate():
          "petPicture": "pet_images/5.jpeg"} ]
 
     for pet in pets:
-        add_pet(pet["owner"], pet["name"], pet["description"],
+        add_pet(pet["username"], pet["password"], pet["name"], pet["description"],
                 pet["species"], pet["location"], pet["petPicture"])
 
 
@@ -154,7 +159,10 @@ def add_user(username, password, first_name, last_name,
     return u
 
 def add_pet(owner, name, description, species, location, petPicture):
-    p = Pet.objects.get_or_create(owner = owner, name = name)[0]
+    
+    p = Pet.objects.get_or_create(username = username)[0]
+    p.set_password(password)
+    p.name = name
     p.description = description
     p.species = species
     p.location = location

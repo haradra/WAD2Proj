@@ -5,7 +5,7 @@ from pawpal.models import UserProfile, Pet, Rating, Messages
 
 
 class PetAdmin(admin.ModelAdmin):
-    list_display = ('name', "owner",'description')
+    list_display = ('name','description')
     #prepopulated_fields = {'slug':('name',)}
 class RatingAdmin(admin.ModelAdmin):
     list_display = ('toWho', 'madeBy', 'rating')
