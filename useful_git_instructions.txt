@@ -28,3 +28,15 @@ git push origin my-new-feature-brach
 https://gist.github.com/blackfalcon/8428401
 https://confluence.atlassian.com/bitbucketserver/basic-git-commands-776639767.html
 https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf
+
+Messaging functionality:
+
+    make migrations for chat server:
+        python manage.py migrate django_private_chat
+
+    run app and message server:
+        python manage.py runserver & python manage.py run_chat_server
+
+    You can talk to two different users (or to yourself) on the same machine by accessing:
+        http://127.0.0.1:8000/pawpal/dialogs/user_name1
+        http://localhost:8000/pawpal/dialogs/user_name2

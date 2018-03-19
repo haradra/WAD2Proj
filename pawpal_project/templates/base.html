@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  	<link rel="stylesheet" href="{% static 'css/stylesheet.css' %}" />
+    <title>{% block title_block %}{% endblock %}</title>
+  </head>
+
+  <body>
+    
+    <nav id="myNavbar" class="navbar navbar-default navbar-fixed-top navbar-custom" role="navigation">
+    	<!-- Brand and toggle get grouped for better mobile display -->
+    	<div class="container">
+    		<div class="navbar-header">
+    			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
+    				<span class="sr-only">Toggle navigation</span>
+    				<span class="icon-bar"></span>
+    				<span class="icon-bar"></span>
+    				<span class="icon-bar"></span>
+    			</button>
+    			<a class="navbar-brand white-link" href="{% url 'home' %}"><img src="{% static 'images/paw-filled.png' %}" class="logo-icon" alt="PawPal" /></a>
+    			<a class="navbar-brand white-link" href="{% url 'home' %}">PawPal</a>
+    		</div>
+    		<!-- Collect the nav links, forms, and other content for toggling -->
+    		<div class="collapse navbar-collapse" id="navbarCollapse">
+    			<ul class="nav navbar-nav">
+    				<li {% block menubutton1_active %}{% endblock %}><a href="{% url 'home' %}" class="white-link">Home</a></li>
+    				<li {% block menubutton2_active %}{% endblock %}><a href="{% url 'about' %}" class="white-link">About Us</a></li>
+    				<li {% block menubutton3_active %}{% endblock %}><a href="{% url 'contact' %}" class="white-link">Contact Us</a></li>
+                    <li {% block menubutton4_active %}{% endblock %}><a href="{% url 'myaccount' %}" class="white-link">My Account</a></li>
+    			</ul>
+    			{% if user.user and user.user.is_authenticated or user and user.is_authenticated%}
+    			<ul class="nav navbar-nav pull-right">
+    				<li><a href="{% url 'logout' %}" class="white-link">Logout</a></li>
+    			</ul>
+    			{% endif %}
+    			{% if not user.user.is_authenticated and not user.is_authenticated%}
+    			<ul class="nav navbar-nav pull-right">
+    				<li><a href="{% url 'register' %}" class="white-link">Register</a></li>
+    			</ul>
+    			{% endif %}
+    		</div>
+    	</div>
+    </nav>
+
+    <div class="container">
+
+    	<div class="jumbotron">
+            {% block content %}
+            {% endblock %}
+  	  </div>
+
+    	<div class="row footer-text-size">
+    		<div class="col-xs-12">
+    			<footer>
+    				<div class="row">
+    					<div class="col-md-4">
+    						<a href="{% url 'home' %}"><img src="{% static 'images/paw-filled.png' %}" alt="PawPal" /></a>
+    						<a href="{% url 'home' %}" id="footer-company">PawPal</a>
+    					</div>
+    					<div class="col-md-4">
+    						<h4>General</h4>
+    						<a href="{% url 'home' %}">Home</a><br />
+    						<a href="{% url 'about' %}">About</a><br />
+    						<a href="{% url 'contact' %}">Contact Us</a><br />
+    					</div>
+    					<div class="col-md-4">
+    						<h4>Profile</h4>
+    						<a href="{% url 'register' %}">Register</a><br />
+    						<a href="{% url 'myaccount' %}">My Account</a><br />
+    						<a href="{% url 'editaccount' %}">Edit Account</a><br />
+    						<a href="{% url 'password' %}">Change Password</a><br />
+    						<a href="{% url 'settings' %}">Settings</a><br />
+    					</div>
+    				</div>
+    				<p>&copy; 2018 PawPal</p>
+    			</footer>
+    		</div>
+    	</div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+    {% block extra_js %}{% endblock extra_js %}
+  </body>
+</html>
