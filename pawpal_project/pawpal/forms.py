@@ -7,6 +7,7 @@ import datetime
 #It's only a scheleton for a forms.py file. Need to be edited, funcionalities added etc.
 
 class PetForm(forms.ModelForm):
+    username = forms.CharField(required=True)
     name = forms.CharField(max_length=50, help_text="Please enter your pet's name.")
     location = forms.CharField(max_length=50, help_text="Please enter your location.")
     class Meta:
@@ -27,7 +28,6 @@ class UserForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     location = forms.CharField(max_length=128)
     dateOfBirth = forms.DateField(initial=datetime.date.today)
-    #Think this overrides the model image i.e not needed
     profilePicture = forms.ImageField(required=False)
     experience = forms.IntegerField(initial=0)
     description = forms.CharField(max_length=200, required=False)

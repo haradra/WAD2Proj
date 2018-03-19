@@ -12,7 +12,7 @@ from pawpal_project import settings
 
 
 class Pet(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50, unique=True)
     description = models.CharField(max_length=200)
     species = models.CharField(max_length=30)
