@@ -27,9 +27,9 @@ def home(request):
 #    <br/> <a href='/pawpal/chosenpet/'>Chosen pet page</a>
 #    <br/> <a href='/pawpal/myaccount/'>My account page</a>""")
     context_dict = {}
-    
+
     pets = Pet.objects.order_by('name')
-    
+
     context_dict = {'records_pets':pets}
     return render(request, 'pawpal/home.html', context=context_dict)
 
@@ -179,10 +179,7 @@ def get_user_profile(request, username):
     user = User.objects.get(username=username)
     user = UserProfile.objects.get(user=user)
     return render(request, 'pawpal/user_profile.html', {"user":user,"rating":2,"ratings":range(1,6)})
-@login_required
-def messenger(request):
-    return HttpResponse("""Messenger page
-    <a href="/pawpal/">home</a>""")
+
 @login_required
 def myaccount(request):
     try:
@@ -194,4 +191,3 @@ def myaccount(request):
         except Exception:
             pass
     return render(request, 'pawpal/myaccount.html', {"user":user,"rating":2,"ratings":range(1,6)})
-
