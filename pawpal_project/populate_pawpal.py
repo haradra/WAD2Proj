@@ -117,24 +117,24 @@ def populate():
         add_rating(rating["madeBy"], rating["toWho"], rating["rating"])
 
 
-
+    """
     messages = [
-        {"petId": Pet.objects.get(name="Cameleon"),
+        {"petId": User.objects.get(username="doggo123"),
          "seekerUsername": User.objects.get(username="Doggos"),
          "date": datetime.date(1999, 6, 1),
          "messages":"Can I steal your lizard for the weekend, please?"},
-        {"petId": Pet.objects.get(name="Monte"),
+        {"petId": User.objects.get(username="catto123"),
          "seekerUsername": User.objects.get(username="Doggos"),
          "date": datetime.date(1999, 6, 1),
          "messages": "That's a nice cat! Can I cuddle it?"},
-        {"petId": Pet.objects.get(name="Carno"),
+        {"petId": User.objects.get(username="lizardo123"),
          "seekerUsername": User.objects.get(username="anilano"),
          "date": datetime.date(1999, 6, 1),
          "messages": "I love dogs! What would you say for a walk together?"},   ]
 
     for message in messages:
         add_message(message["petId"], message["seekerUsername"], message["date"], message["messages"])
-
+    """
 
 
 
@@ -158,9 +158,9 @@ def add_user(username, password, first_name, last_name,
     u.save()
     return u
 
-def add_pet(owner, name, description, species, location, petPicture):
+def add_pet(username, password, name, description, species, location, petPicture):
     
-    p = Pet.objects.get_or_create(username = username)[0]
+    p = User.objects.get_or_create(username = username)[0]
     p.set_password(password)
     p.name = name
     p.description = description

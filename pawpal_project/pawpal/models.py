@@ -27,7 +27,7 @@ class Pet(models.Model):
         super(Pet, self).save(*args, **kwargs)
     
     def __str__(self):
-        return self.name
+        return self.user.username
 
 
 class Rating(models.Model):
