@@ -1,4 +1,4 @@
-{% extends 'pawpal/base.html' %}
+{% extends 'base.html' %}
 {% load staticfiles %}
 
 {% block title_block %}My Account{% endblock %}
@@ -11,7 +11,7 @@
 
 {% block menubutton4_active %}class="active"{% endblock %}
 
-{% block body_block %}
+{% block content %}
 		<div class="row">
 			<div class="col-md-4">
 				<h2>{{ user.user.username }}</h2>

@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from pawpal import views
+from django_private_chat import urls as django_private_chat_urls
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
@@ -33,4 +34,5 @@ urlpatterns = [
     url(r'^profile/(?P<username>[a-zA-Z0-9]+)$', views.get_user_profile, name='user_profile'),
     url(r'^myaccount/$', views.myaccount, name='myaccount'),
     url(r'^messenger/$', views.messenger, name='messenger'),
+    url(r'^', include('django_private_chat.urls')),
 ]
