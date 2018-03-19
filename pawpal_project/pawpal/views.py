@@ -74,7 +74,7 @@ def register(request):
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
         profile_form = UserProfileForm(data=request.POST)
-
+        pet_form = PetForm(data=request.POST)
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             user.set_password(user.password)
@@ -188,6 +188,10 @@ def myaccount(request):
     try:
         user = UserProfile.objects.get(user=request.user)
     except Exception:
-        user = UserProfile.objects.get_or_create(user=instance)
-        user.save()
+        user = UserProfile.objects.get_or_create(user=request.user)
+        try:
+            user.save()
+        except Exception:
+            pass
     return render(request, 'pawpal/myaccount.html', {"user":user,"rating":2,"ratings":range(1,6)})
+
