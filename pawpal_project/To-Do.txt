@@ -27,3 +27,19 @@ Experience - we can currently select also negative value. Needs to be corrected
 When incorrect login details are typed we need to be redirected somewhere, instead of seeing new page etc.
 
 Upload to python anywhere
+
+--------------------------------------------------------------------------------------------------------------------------
+
+PRIORITY
+
+--------------------------------------------------------------------------------------------------------------------------
+
+Upload to Pythonanywhere
+
+Put animals in categories - Backend database?
+
+Display animals accordingly from the database
+
+Link to messenger on each profile - Gosia
+
+Presentation
