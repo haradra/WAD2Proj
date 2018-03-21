@@ -40,6 +40,8 @@ Put animals in categories - Backend database?
 
 Display animals accordingly from the database
 
+Redirection from the profile picture to the profile
+
 Link to messenger on each profile - Gosia
 
 Presentation
