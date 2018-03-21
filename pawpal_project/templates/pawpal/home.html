@@ -13,7 +13,7 @@ PawPal
 
 {% block menubutton4_active %}{% endblock %}
 
-{% block content %}
+{% block body_block %}
 		<h2>Welcome to PawPal!</h2><br />
 		<h4> {% if user.is_authenticated %}Hello {{ user.username }}, look at all these pets needing a pal!{% else %}Here are some of our animals looking for a friend. Join us today and become a PawPal!{% endif %}</h4>
 		<div class="btn-group" role="group" aria-label="Basic example" style="width: 100%;">
