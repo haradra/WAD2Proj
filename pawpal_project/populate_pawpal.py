@@ -57,7 +57,7 @@ def populate():
 
 
     pets = [
-        {"username": "doggo123",
+        {"username": "cameleon123",
          "password":"qwerty12345",
         "name": "Cameleon",
          "description": "I'm a wee lizard, I like to eat fruit flies and creepy spiders. I don't like grasshoppers though, YAK!",
@@ -160,15 +160,17 @@ def add_user(username, password, first_name, last_name,
 
 def add_pet(username, password, name, description, species, location, petPicture):
     
-    p = User.objects.get_or_create(username = username)[0]
-    p.set_password(password)
+    u = User.objects.get_or_create(username = username)[0]
+    u.set_password(password)
+    u.save()
+    p = Pet.objects.get_or_create(user=u)[0]
     p.name = name
     p.description = description
     p.species = species
     p.location = location
     p.petPicture = petPicture
     p.save()
-    return p
+    return u
 
 def add_rating(madeBy, toWho, rating):
     r = Rating.objects.get_or_create(madeBy = madeBy, toWho = toWho)[0]
