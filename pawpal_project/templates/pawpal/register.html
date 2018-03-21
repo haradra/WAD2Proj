@@ -27,6 +27,8 @@
     </style>
 			<div id="map"></div>
 			<script>
+      var latitude_variable;
+      var longitude_variable;
       var geocoder;
       var infowindow;
       var marker;
@@ -47,6 +49,15 @@
    		showAddressFromLatLng(geocoder, map, infowindow, event.latLng);
    		var latlng = new google.maps.LatLng(event.latLng.lat(), event.latLng.lng());
     		marker.setPosition(latlng);
+		//$('#id_latitude').val(event.latLng.lat());
+		//$('#id_longitude').val(event.latLng.lng());
+		$('input[name=latitude]').val(event.latLng.lat());
+		$('input[name=longitude]').val(event.latLng.lng());
+		console.log("Latitude:" + document.getElementById("id_latitude").value);
+		latitude_variable = event.latLng.lat();
+		longitude_variable = event.latLng.lng();
+		//document.getElementById("id_latitude").value = event.latLng.lat();
+		//document.getElementById("id_longitude").value = event.latLng.lng();
 		});
 }
     		
@@ -68,6 +79,8 @@ function showAddressFromLatLng(geocoder, map, infowindow, latLng){
         }
     });
 }	
+
+
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBH49BaYo6GJDl_3bR6WRWsBkaBz04tFE4&callback=initMap">
@@ -83,13 +96,7 @@ function showAddressFromLatLng(geocoder, map, infowindow, latLng){
 			{{ profile_form.as_p }}
 			<input type="submit" name="submit" value="Register" />
 			</form>
-			<form id="user_form" method="post" action="{% url 'register' %}"
-				enctype="multipart/form-data">
 
-			{% csrf_token %}
-			{{ user_form.as_p }}
-			{{ pet_form.as_p }}
-			<input type="submit" name="submit" value="Register" />
-		</form>
+			
 		{% endif %}
 {% endblock %}
