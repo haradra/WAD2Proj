@@ -10,6 +10,8 @@ class PetForm(forms.ModelForm):
     """name = forms.CharField(max_length=50, help_text="Please enter your pet's name.")
     location = forms.CharField(max_length=50, help_text="Please enter your location.")
 """
+    latitude = forms.FloatField(widget=forms.HiddenInput())
+    longitude = forms.FloatField(widget=forms.HiddenInput())
     class Meta:
         model = Pet
         exclude = ('first_name', 'last_name')
@@ -19,7 +21,7 @@ class PetForm(forms.ModelForm):
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
     email = forms.CharField(widget=forms.EmailInput())
-
+    
     class Meta:
         
         model = User
@@ -34,6 +36,8 @@ class UserProfileForm(forms.ModelForm):
     experience = forms.IntegerField(initial=0)
     showPets = forms.BooleanField(initial=False)
 """
+    latitude = forms.FloatField(widget=forms.HiddenInput())
+    longitude = forms.FloatField(widget=forms.HiddenInput())
 
     class Meta:
         model = UserProfile
