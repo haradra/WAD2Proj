@@ -22,28 +22,52 @@
 			<style>
        #map {
         height: 400px;
-        width: 100%;
+        width: 50%;
        }
     </style>
 			<div id="map"></div>
 			<script>
+      var geocoder;
+      var infowindow;
+      var marker;
+      var map;
       function initMap() {
-        var uluru = {lat: -25.363, lng: 131.044};
-        var map = new google.maps.Map(document.getElementById('map'), {
+	geocoder = new google.maps.Geocoder();
+    	infowindow = new google.maps.InfoWindow;
+        var uluru = {lat: 55.8642, lng: 4.2518};
+        map = new google.maps.Map(document.getElementById('map'), {
           zoom: 8,
           center: uluru
         });
-        var marker = new google.maps.Marker({
+        marker = new google.maps.Marker({
           position: uluru,
           map: map
         });
-google.maps.event.addListener(map, 'click', function(event) {
-   alert( 'Lat: ' + event.latLng.lat() + ' and Longitude is: ' + event.latLng.lng() );
-   var latlng = new google.maps.LatLng(event.latLng.lat(), event.latLng.lng());
-    marker.setPosition(latlng);
-});
-      }
-	
+	google.maps.event.addListener(map, 'click', function(event) {
+   		showAddressFromLatLng(geocoder, map, infowindow, event.latLng);
+   		var latlng = new google.maps.LatLng(event.latLng.lat(), event.latLng.lng());
+    		marker.setPosition(latlng);
+		});
+}
+    		
+
+function showAddressFromLatLng(geocoder, map, infowindow, latLng){
+		geocoder.geocode({'location': latLng}, function(results, status){
+        	if (status === 'OK'){
+            		if (results[0]) {
+			
+                	marker.setPosition(latLng);
+                	infowindow.setContent(results[0].formatted_address);
+                	city = results[0].address_components[2].long_name;
+                	infowindow.open(map, marker);
+            	} else{
+                	console.log("no results found");
+            	}
+        } else{
+            console.log("geocoder failed: " + status);
+        }
+    });
+}	
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBH49BaYo6GJDl_3bR6WRWsBkaBz04tFE4&callback=initMap">
