@@ -2,30 +2,23 @@ Things to do:
 
 Rating - backend only
 
-Think about Pet owner field, is there an association?
+Google Maps Location - Milo (in process)
 
-Google Maps Location
-
-Matching (both backend link fields and front end)
+Matching (both backend link fields and front end) - not required
 
 Think about what to add to home page.
 
 Connect pop script fields like description etc to user profile
 
-Fix Github
-
-There is an error when trying to go to My Account using social media
-
-When registering the user should be logged in and redirected to the Home page
+Fix Github - will be fixed when deployed on pythonanywhere
 
 Unit Testing
 
 Make website responsive (I guess we can't set the certain width in the css. [I'm not 100% sure though])
 
-EditAccount: edit profile picture, location, address etc.
-
 Registration: showpets checkbox - currently user has to tick it, but it shouldn't be needed for him to be able to register
-After registration, user should be logged in
+
+After registration, user should be logged in - are you sure? Is this a required? -milo
 
 When changing either first name or last name and leaving the other field blank, it changes that name to blank
 
@@ -34,3 +27,21 @@ Experience - we can currently select also negative value. Needs to be corrected
 When incorrect login details are typed we need to be redirected somewhere, instead of seeing new page etc.
 
 Upload to python anywhere
+
+--------------------------------------------------------------------------------------------------------------------------
+
+PRIORITY
+
+--------------------------------------------------------------------------------------------------------------------------
+
+Upload to Pythonanywhere
+
+Put animals in categories - Backend database?
+
+Display animals accordingly from the database
+
+Redirection from the profile picture to the profile
+
+Link to messenger on each profile - Gosia
+
+Presentation
