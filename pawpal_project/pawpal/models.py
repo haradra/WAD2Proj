@@ -13,7 +13,7 @@ from pawpal_project import settings
 
 class Pet(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=50, unique=False)
     description = models.CharField(max_length=200)
     species = models.CharField(max_length=30)
     #Temporary default value for location
