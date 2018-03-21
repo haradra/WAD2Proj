@@ -43,6 +43,17 @@
 			</ul>
 			{% if user.user and user.user.is_authenticated or user and user.is_authenticated%}
 			<ul class="nav navbar-nav pull-right">
+				<li class="dropdown">
+					<a href="{% url 'myaccount' %}" class="dropdown-toggle white-link" data-toggle="dropdown">
+					<img src="{{ userProfile.profilePicture.url }}" class="profile-image navibar-profile-image">{{ userProfile.user.username }}<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="{% url 'editaccount' %}">Edit Account</a></li>
+						<li class="divider"></li>
+						<li><a href="{% url 'password' %}">Change Password</a></li>
+						<li class="divider"></li>
+						<li><a href="{% url 'settings' %}">Settings</a></li>
+					</ul>
+				</li>
 				<li><a href="{% url 'logout' %}" class="white-link">Logout</a></li>
 			</ul>
 			{% endif %}
