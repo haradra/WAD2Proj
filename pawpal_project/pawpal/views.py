@@ -93,7 +93,9 @@ def register(request):
             if 'profilePicture' in request.FILES:
                 profile.profilePicture = request.FILES['profilePicture']
             profile.save()
+            login(request,user,backend='django.contrib.auth.backends.ModelBackend')
             registered = True
+            return HttpResponseRedirect(reverse('home'))
         else:
             print(user_form.errors, profile_form.errors)
     else:
