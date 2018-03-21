@@ -15,7 +15,7 @@ class PetForm(forms.ModelForm):
     class Meta:
         model = Pet
         exclude = ('first_name', 'last_name')
-        fields = ('location', 'name', 'species', 'description', 'petPicture')
+        fields = ('location', 'name', 'species', 'description', 'profilePicture')
 
       
 class UserForm(forms.ModelForm):

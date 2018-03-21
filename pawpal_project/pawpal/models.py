@@ -25,7 +25,7 @@ class Pet(models.Model):
     location = models.CharField(max_length=50)
     latitude = models.FloatField(default=55.8642)
     longitude = models.FloatField(default=4.2518)
-    petPicture = models.ImageField(upload_to='pet_images', blank=True)
+    profilePicture = models.ImageField(upload_to='pet_images', blank=True)
     #slug = models.SlugField(unique=True, blank=True)
     
     
