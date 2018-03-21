@@ -12,10 +12,15 @@ from pawpal_project import settings
 
 
 class Pet(models.Model):
+    SPECIES_CHOICES = (
+        ('DOG', 'Dog'),
+        ('CAT', 'Cat'),
+        ('LIZARD', 'Lizard'),
+    )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50, unique=False)
     description = models.CharField(max_length=200)
-    species = models.CharField(max_length=30)
+    species = models.CharField(max_length=10, choices=SPECIES_CHOICES)
     #Temporary default value for location
     location = models.CharField(max_length=30, default="Glasgow")
     petPicture = models.ImageField(upload_to='pet_images', blank=True)
