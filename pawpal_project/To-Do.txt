@@ -26,6 +26,8 @@ Make website responsive - it's done; only check for new additions
 
 Think about what to add to home page.
 
+Clean up register.html, display one of two forms depending on which button is clicked, clean up JS code
+
 ---------------------------------------------------------------------------
 
 Backend
