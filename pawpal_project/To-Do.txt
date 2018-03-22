@@ -34,6 +34,4 @@ Connect pop script fields like description etc to user profile
 
 Fix Github - will be fixed when deployed on pythonanywhere
 
-Rating - front end too - when user gives rating, how should we handle it? number of ratings received; rating assigned,
-
-Ratings - deleting a rating, adding a new rating, etc. - how do we handle it?
+Ratings - deleting a rating
