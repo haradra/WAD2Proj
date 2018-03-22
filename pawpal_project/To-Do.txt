@@ -18,9 +18,7 @@ PRIORITY
 
 6. Clean up register.html and editaccount.html, display one of two forms depending on which button is clicked, clean up JS code, then I'll add the map functionality to edit account
 
-7. Display appropriate users in home page, Seekers for a logged in Pet, viceversa for logged in Seeker
-
-8. Categorise animals on home page
+7. Categorise animals on home page
 
 ---------------------------------------------------------------------------
 
