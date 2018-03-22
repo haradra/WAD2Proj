@@ -69,7 +69,7 @@ def contact(request):
                 userProfile = UserProfile.objects.get_or_create(user=request.user)[0]
     return render(request, 'pawpal/contact.html',{'userProfile':userProfile})
 def user_login(request):
-
+    login_error = False
     if request.method == 'POST':
 
         username = request.POST.get('username')
@@ -81,7 +81,7 @@ def user_login(request):
             login(request, user)
             return HttpResponseRedirect(reverse('home'))
         else:
-            print("Invalid login details: {0}, {1}".format(username, password))
+            messages.error(request,'Username or password not correct')
             return HttpResponseRedirect(reverse('home'))
 
     else:
