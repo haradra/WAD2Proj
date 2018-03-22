@@ -12,11 +12,9 @@ PRIORITY
 
 3. Display animals accordingly from the database
 
-4. Redirection from the profile picture to the profile
+4. Link to messenger on each profile - Gosia
 
-5. Link to messenger on each profile - Gosia
-
-6. Presentation
+5. Presentation
 
 ---------------------------------------------------------------------------
 
