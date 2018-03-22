@@ -26,9 +26,8 @@
        }
     </style>
 			<div id="map"></div>
+			
 			<script>
-      var latitude_variable;
-      var longitude_variable;
       var geocoder;
       var infowindow;
       var marker;
@@ -51,8 +50,9 @@
     		marker.setPosition(latlng);
 		latitude_variable = event.latLng.lat();
 		longitude_variable = event.latLng.lng();
-		$("input[name='longtitude']").val(longitude_variable);
-		$("input[name='latitude']").val(latitude_variable);
+		$("input[name='longtitude']").val(event.latLng.lat());
+		$("input[name='latitude']").val(event.latLng.lng());
+		getReverseGeocodingData(event.latLng.lat(), event.latLng.lng());
 		});
 }
     		
@@ -74,6 +74,20 @@ function showAddressFromLatLng(geocoder, map, infowindow, latLng){
         }
     });
 }	
+function getReverseGeocodingData(lat, lng) {
+    var latlng = new google.maps.LatLng(lat, lng);
+    // This is making the Geocode request
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+        // This is checking to see if the Geoeode Status is OK before proceeding
+        if (status == google.maps.GeocoderStatus.OK) {
+            console.log(results);
+            var address = (results[0].formatted_address);
+	    //$("input[name='location']").val(address);
+	    $("input[name='location']").val(address);
+        }
+    });
+}
 
 
     </script>
@@ -92,13 +106,7 @@ function showAddressFromLatLng(geocoder, map, infowindow, latLng){
 			<input type="submit" name="submit" value="Register" />
 			</form>
 
-			<form id="pet_form" method="post" action="{% url 'register' %}" enctype="multipart/form-data" style="display: none;">
-
-				{% csrf_token %}
-				{{ user_form.as_p }}
-				{{ pet_form.as_p }}
-
-			</form>
+		
 
 		{% endif %}
 {% endblock %}

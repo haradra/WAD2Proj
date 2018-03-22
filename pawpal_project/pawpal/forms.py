@@ -4,12 +4,12 @@ from pawpal.models import UserProfile, Pet, Rating, Messages
 import datetime
 
 
-#It's only a scheleton for a forms.py file. Need to be edited, funcionalities added etc.
 
 class PetForm(forms.ModelForm):
-    """name = forms.CharField(max_length=50, help_text="Please enter your pet's name.")
-    location = forms.CharField(max_length=50, help_text="Please enter your location.")
 """
+    name = forms.CharField(max_length=50, help_text="Please enter your pet's name.")
+"""
+    location = forms.CharField(max_length=50, help_text="Please enter your location.")
     latitude = forms.FloatField(widget=forms.HiddenInput(), initial=55.8642)
     longitude = forms.FloatField(widget=forms.HiddenInput(), initial=4.2518)
     class Meta:
@@ -29,8 +29,9 @@ class UserForm(forms.ModelForm):
 
 
 class UserProfileForm(forms.ModelForm):
+    
+    location = forms.CharField(max_length=128, required=True)
     """
-    location = forms.CharField(max_length=128)
     dateOfBirth = forms.DateField(initial=datetime.date.today)
     profilePicture = forms.ImageField(required=False)
     experience = forms.IntegerField(initial=0)
