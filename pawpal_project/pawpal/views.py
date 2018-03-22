@@ -12,6 +12,8 @@ from django.contrib import messages
 from pawpal.models import UserProfile, Pet, Rating, Messages, User
 from pawpal.forms import PetForm, UserForm, UserProfileForm, UpdateUserProfile, UpdatePetProfile
 from social_django.models import UserSocialAuth
+from django_private_chat.models import Dialog
+from django.db.models import Q
 
 # Create your views here.
 def home(request):
@@ -296,4 +298,21 @@ def myaccount(request):
         rating = sum([int(i.rating) for i in ratings]) / len(ratings)
     else:
         rating = 0
-    return render(request, 'pawpal/myaccount.html', {"user":userProfile,"rating":rating,"ratings":range(1,6),"userProfile":userProfile})
+    chats=Dialog.objects.filter(Q(owner=request.user)|Q(opponent=request.user))
+    new_chats=[]
+    for chat in chats:
+        user = None
+        if chat.owner == request.user:
+            user = chat.opponent
+        else:
+            user = chat.owner
+        profile = None
+        try:
+            profile = UserProfile.objects.get(user=user)
+        except:
+            try:
+                profile = Pet.objects.get(user=user)
+            except:
+                profile = UserProfile.objects.get_or_create(user=user)[0]
+        new_chats.append(profile)
+    return render(request, 'pawpal/myaccount.html', {"chats":new_chats,"user":userProfile,"rating":rating,"ratings":range(1,6),"userProfile":userProfile})
