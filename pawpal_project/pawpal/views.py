@@ -31,19 +31,37 @@ def home(request):
     pets = Pet.objects.order_by('name')
     userProfile = {}
     if request.user and request.user.is_authenticated:
-        userProfile = UserProfile.objects.get_or_create(user=request.user)
+        try:
+            userProfile = UserProfile.objects.get(user=request.user)
+        except:
+            try:
+                userProfile = Pet.objects.get(user=request.user)
+            except:
+                userProfile = UserProfile.objects.get_or_create(user=request.user)[0]
     context_dict = {'records_pets':pets,'userProfile':userProfile}
     return render(request, 'pawpal/home.html', context=context_dict)
 
 def about(request):
     userProfile = {}
     if request.user and request.user.is_authenticated:
-        userProfile = UserProfile.objects.get(user=request.user)
+        try:
+            userProfile = UserProfile.objects.get(user=request.user)
+        except:
+            try:
+                userProfile = Pet.objects.get(user=request.user)
+            except:
+                userProfile = UserProfile.objects.get_or_create(user=request.user)[0]
     return render(request, 'pawpal/about.html',{'userProfile':userProfile})
 def contact(request):
     userProfile={}
     if request.user and request.user.is_authenticated:
-        userProfile = UserProfile.objects.get(user=request.user)
+        try:
+            userProfile = UserProfile.objects.get(user=request.user)
+        except:
+            try:
+                userProfile = Pet.objects.get(user=request.user)
+            except:
+                userProfile = UserProfile.objects.get_or_create(user=request.user)[0]
     return render(request, 'pawpal/contact.html',{'userProfile':userProfile})
 def user_login(request):
 
@@ -143,7 +161,13 @@ def settings(request):
 
     can_disconnect = (user.social_auth.count() > 1 or user.has_usable_password())
 
-    userProfile = UserProfile.objects.get(user=request.user)
+    try:
+        userProfile = UserProfile.objects.get(user=request.user)
+    except:
+        try:
+            userProfile = Pet.objects.get(user=request.user)
+        except:
+            userProfile = UserProfile.objects.get_or_create(user=request.user)[0]
     return render(request, 'pawpal/settings.html', {
         'github_login': github_login,
         'twitter_login': twitter_login,
@@ -170,7 +194,13 @@ def password(request):
             messages.error(request, 'Please correct the error below.')
     else:
         form = PasswordForm(request.user)
-    userProfile = UserProfile.objects.get(user=request.user)
+    try:
+        userProfile = UserProfile.objects.get(user=request.user)
+    except:
+        try:
+            userProfile = Pet.objects.get(user=request.user)
+        except:
+            userProfile = UserProfile.objects.get_or_create(user=request.user)[0]
     return render(request, 'pawpal/password.html', {'form': form,'userProfile':userProfile})
 @login_required
 def editaccount(request):
