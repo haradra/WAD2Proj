@@ -1,8 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
 from pawpal.models import UserProfile, Pet, Rating, Messages
-import datetime
-
 
 
 class PetForm(forms.ModelForm):
@@ -61,6 +59,7 @@ class UpdatePetProfile(forms.ModelForm):
         if email and User.objects.filter(email=email).exclude(username=username).count():
             raise forms.ValidationError('This email address is already in use. Please supply a different email address.')
         return email
+
 class UpdateUserProfile(forms.ModelForm):
     
     username = forms.CharField(required=True)
@@ -81,3 +80,13 @@ class UpdateUserProfile(forms.ModelForm):
             raise forms.ValidationError('This email address is already in use. Please supply a different email address.')
         return email
 
+
+
+class RatingForm(forms.ModelForm):
+    toWho =
+    madeBy =
+    rating =
+
+    class Meta:
+        model = Rating
+        fields = ('toWho', 'madeBy','rating')

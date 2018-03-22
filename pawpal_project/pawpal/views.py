@@ -7,7 +7,6 @@ from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeFor
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from datetime import datetime
 from django.contrib import messages
 from pawpal.models import UserProfile, Pet, Rating, Messages, User
 from pawpal.forms import PetForm, UserForm, UserProfileForm, UpdateUserProfile, UpdatePetProfile
@@ -40,11 +39,13 @@ def about(request):
     if request.user and request.user.is_authenticated:
         userProfile = UserProfile.objects.get(user=request.user)
     return render(request, 'pawpal/about.html',{'userProfile':userProfile})
+
 def contact(request):
     userProfile={}
     if request.user and request.user.is_authenticated:
         userProfile = UserProfile.objects.get(user=request.user)
     return render(request, 'pawpal/contact.html',{'userProfile':userProfile})
+
 def user_login(request):
 
     if request.method == 'POST':
@@ -118,10 +119,12 @@ def register(request):
     """
     return HttpResponse("Register page<a href="/pawpal/">home</a>")
     """
+
 @login_required
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('home'))
+
 @login_required
 def settings(request):
     user = request.user
@@ -172,6 +175,7 @@ def password(request):
         form = PasswordForm(request.user)
     userProfile = UserProfile.objects.get(user=request.user)
     return render(request, 'pawpal/password.html', {'form': form,'userProfile':userProfile})
+
 @login_required
 def editaccount(request):
     context_dict = {}
@@ -241,6 +245,7 @@ def get_user_profile(request, username):
     else:
         rating = 0
     return render(request, page_to_render, {"user":user,"rating":rating,"ratings":range(1,6),"userProfile":userProfile})
+
 @login_required
 def myaccount(request):
     try:
@@ -258,3 +263,7 @@ def myaccount(request):
     else:
         rating = 0
     return render(request, 'pawpal/myaccount.html', {"user":user,"rating":rating,"ratings":range(1,6),"userProfile":userProfile})
+"""
+@login_required
+def rating(request):
+"""
