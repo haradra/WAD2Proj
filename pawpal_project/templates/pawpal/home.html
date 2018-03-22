@@ -24,8 +24,8 @@ PawPal
 			<button type="button" class="btn btn-secondary" onclick="selectButton(this);">Birds</button>
 		</div>
 		<div id="images-left">
-			{% for pet in records_pets %}
-			<a href="{% url 'user_profile' pet.user.username %}"><img src="{{ pet.profilePicture.url }}" /></a>
+			{% for profile in listed_profiles %}
+			<a href="{% url 'user_profile' profile.user.username %}"><img src="{{ profile.profilePicture.url }}" /></a>
 			{% endfor %}
 		</div>
 
