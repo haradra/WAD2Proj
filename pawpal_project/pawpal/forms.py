@@ -80,7 +80,7 @@ class UpdateUserProfile(forms.ModelForm):
                 'This email address is already in use. Please supply a different email address.')
         return email
 
-
+"""
 class RatingForm(forms.ModelForm):
     toWho = forms.CharField(required=True)
     madeBy = forms.CharField(required=True)
@@ -89,3 +89,4 @@ class RatingForm(forms.ModelForm):
     class Meta:
         model = Rating
         fields = ('toWho', 'madeBy', 'rating')
+"""
