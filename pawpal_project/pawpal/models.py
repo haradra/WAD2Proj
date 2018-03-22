@@ -58,7 +58,7 @@ class UserProfile(models.Model):
     location = models.CharField(max_length=128)
     dateOfBirth = models.DateField(default=now)
     profilePicture = models.ImageField(upload_to='profile_images', blank=True, default="profile_images/user.jpeg")
-    experience = models.IntegerField(default=0)
+    experience = models.PositiveIntegerField(default=0)
     description = models.CharField(max_length=200)
     latitude = models.FloatField(default=55.8642)
     longitude = models.FloatField(default=4.2518)
