@@ -28,7 +28,7 @@
 			<div id="div-rating">
 				{% for i in ratings %}
 				{% if rating >= i %}
-				<a href="{% url 'rating' user.user.username i %}">
+				<a href="{% url 'rating' user.user.username  i %}">
 					<img src="{% static 'images/paw-filled.png' %}" class="images-rating images-rating-filled" onmouseover="selectPaws({{ i }});" onmouseout="unselectPaws();" />
 				</a>
 				{% else %}
