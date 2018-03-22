@@ -12,13 +12,20 @@ from pawpal_project import settings
 
 
 class Pet(models.Model):
+    SPECIES_CHOICES = (
+        ('DOG', 'Dog'),
+        ('CAT', 'Cat'),
+        ('LIZARD', 'Lizard'),
+    )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=50, unique=False)
     description = models.CharField(max_length=200)
-    species = models.CharField(max_length=30)
+    species = models.CharField(max_length=10, choices=SPECIES_CHOICES)
     #Temporary default value for location
-    location = models.CharField(max_length=30, default="Glasgow")
-    petPicture = models.ImageField(upload_to='pet_images', blank=True)
+    location = models.CharField(max_length=50)
+    latitude = models.FloatField(default=55.8642)
+    longitude = models.FloatField(default=4.2518)
+    profilePicture = models.ImageField(upload_to='pet_images', blank=True)
     #slug = models.SlugField(unique=True, blank=True)
     
     
@@ -53,7 +60,9 @@ class UserProfile(models.Model):
     profilePicture = models.ImageField(upload_to='profile_images', blank=True, default="profile_images/user.jpeg")
     experience = models.IntegerField(default=0)
     description = models.CharField(max_length=200)
-    showPets = models.BooleanField(default=False)
+    latitude = models.FloatField(default=55.8642)
+    longitude = models.FloatField(default=4.2518)
+    showPets = models.BooleanField(default=True)
     #slug = models.SlugField(unique=True, blank=True)
 
     #website = models.URLField(blank=True)  #should we include this line too?

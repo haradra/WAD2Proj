@@ -29,7 +29,6 @@ urlpatterns = [
     url(r'^password/$', views.password, name='password'),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
     url(r'^register/$', views.register, name='register'),
-    url(r'^pets/$', views.pets, name='pets'),
     url(r'^editaccount/$', views.editaccount, name='editaccount'),
     url(r'^profile/(?P<username>[a-zA-Z0-9]+)$', views.get_user_profile, name='user_profile'),
     url(r'^myaccount/$', views.myaccount, name='myaccount'),

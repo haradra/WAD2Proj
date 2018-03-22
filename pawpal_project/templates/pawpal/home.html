@@ -13,7 +13,7 @@ PawPal
 
 {% block menubutton4_active %}{% endblock %}
 
-{% block content %}
+{% block body_block %}
 		<h2>Welcome to PawPal!</h2><br />
 		<h4> {% if user.is_authenticated %}Hello {{ user.username }}, look at all these pets needing a pal!{% else %}Here are some of our animals looking for a friend. Join us today and become a PawPal!{% endif %}</h4>
 		<div class="btn-group" role="group" aria-label="Basic example" style="width: 100%;">
@@ -25,7 +25,7 @@ PawPal
 		</div>
 		<div id="images-left">
 			{% for pet in records_pets %}
-			<img src="{{ pet.petPicture.url }}" />
+			<a href="{% url 'user_profile' pet.user.username %}"><img src="{{ pet.profilePicture.url }}" /></a>
 			{% endfor %}
 		</div>
 
