@@ -56,6 +56,8 @@
 		console.log("Latitude:" + document.getElementById("id_latitude").value);
 		latitude_variable = event.latLng.lat();
 		longitude_variable = event.latLng.lng();
+		$("input[name='longtitude']").val(longitude_variable);
+		$("input[name='latitude']").val(latitude_variable);
 		//document.getElementById("id_latitude").value = event.latLng.lat();
 		//document.getElementById("id_longitude").value = event.latLng.lng();
 		});
@@ -97,6 +99,13 @@ function showAddressFromLatLng(geocoder, map, infowindow, latLng){
 			<input type="submit" name="submit" value="Register" />
 			</form>
 
-			
+			<form id="pet_form" method="post" action="{% url 'register' %}" enctype="multipart/form-data" style="display: none;">
+
+				{% csrf_token %}
+				{{ user_form.as_p }}
+				{{ pet_form.as_p }}
+
+			</form>
+
 		{% endif %}
 {% endblock %}

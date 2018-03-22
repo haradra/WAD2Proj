@@ -94,7 +94,9 @@ def register(request):
             if 'profilePicture' in request.FILES:
                 profile.profilePicture = request.FILES['profilePicture']
             profile.save()
+            login(request,user,backend='django.contrib.auth.backends.ModelBackend')
             registered = True
+            return HttpResponseRedirect(reverse('home'))
         elif user_form.is_valid() and pet_form.is_valid():
             user = user_form.save()
             user.set_password(user.password)
@@ -104,7 +106,9 @@ def register(request):
             if 'petPicture' in request.FILES:
                 pet.petPicture = request.FILES['petPicture']
             pet.save()
+            login(request,user,backend='django.contrib.auth.backends.ModelBackend')
             registered = True
+            return HttpResponseRedirect(reverse('home'))
         else:
             print(user_form.errors, profile_form.errors)
     else:
