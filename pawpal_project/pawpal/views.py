@@ -276,7 +276,7 @@ def get_user_profile(request, username):
         rating = sum([int(i.rating) for i in ratings])/len(ratings)
     else:
         rating = 0
-    return render(request, page_to_render, {"user":userProfile,"rating":rating,"ratings":range(1,6),"userProfile":userProfile})
+    return render(request, page_to_render, {"user":user,"rating":rating,"ratings":range(1,6),"userProfile":userProfile})
 @login_required
 def myaccount(request):
     try:
