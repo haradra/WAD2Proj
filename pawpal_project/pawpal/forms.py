@@ -45,10 +45,12 @@ class UserProfileForm(forms.ModelForm):
 class UpdatePetProfile(forms.ModelForm):
     username = forms.CharField(required=True)
     email = forms.EmailField(required=True)
+    location = forms.CharField(max_length=128, required=True)
+
 
     class Meta:
         model = Pet
-        fields = ('username', "email", 'species', 'description', 'profilePicture')
+        fields = ('username', "email", 'species', 'description', 'profilePicture', 'location')
 
     def clean_email(self):
         username = self.cleaned_data.get('username')
@@ -66,10 +68,12 @@ class UpdateUserProfile(forms.ModelForm):
     first_name = forms.CharField(required=False)
     last_name = forms.CharField(required=False)
     dateOfBirth = forms.DateField(required=False)
+    location = forms.CharField(max_length=128, required=True)
+
 
     class Meta:
         model = UserProfile
-        fields = ('username', 'email', 'first_name', 'last_name', 'experience', 'profilePicture', 'dateOfBirth')
+        fields = ('username', 'email', 'first_name', 'last_name', 'experience', 'profilePicture', 'dateOfBirth', 'location')
 
     def clean_email(self):
         username = self.cleaned_data.get('username')

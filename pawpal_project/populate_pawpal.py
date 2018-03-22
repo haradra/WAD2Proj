@@ -217,10 +217,10 @@ def add_user(username, password, first_name, last_name,
 
 def add_pet(username, password, name, description, species, location, latitude, longitude, petPicture, is_active):
     
-    u = User.objects.get_or_create(username = username)[0]
-    u.set_password(password)
-    u.save()
-    p = Pet.objects.get_or_create(user=u)[0]
+    p = User.objects.get_or_create(username = username)[0]
+    p.set_password(password)
+    p.save()
+    p = Pet.objects.get_or_create(user=p)[0]
     p.name = name
     p.description = description
     p.species = species
@@ -230,7 +230,7 @@ def add_pet(username, password, name, description, species, location, latitude, 
     p.profilePicture = petPicture
     p.is_active = is_active
     p.save()
-    return u
+    return p
 
 def add_rating(madeBy, toWho, rating):
     r = Rating.objects.get_or_create(madeBy = madeBy, toWho = toWho)[0]

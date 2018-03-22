@@ -14,6 +14,15 @@
 {% block body_block %}
 	<h3>Login to PawPal</h3>
 		<br />
+	   {% for message in messages %}
+
+                    <div class="alert alert-success">
+                        <a class="close" href="#" data-dismiss="alert">×</a>
+
+                        {{ message }}
+
+                    </div>
+            {% endfor %}
 	<form id="login_form" method="post" action="{% url 'login' %}">
 		{% csrf_token %}
         <div class="form-group">
@@ -31,6 +40,7 @@
             </label>
         </div>
 	</form>
+
 		Login with:
 			<a href="{% url 'social:begin' 'github' %}"><img class="small-image" src="{% static 'images/social_images/github.png' %}" class="visible" /></a>
 			<a href="{% url 'social:begin' 'twitter' %}"><img class="small-image" src="{% static 'images/social_images/twitter.png' %}" class="visible" /></a>

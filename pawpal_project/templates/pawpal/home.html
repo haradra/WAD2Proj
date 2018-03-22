@@ -24,13 +24,22 @@ PawPal
 			<button type="button" class="btn btn-secondary" onclick="selectButton(this);">Birds</button>
 		</div>
 		<div id="images-left">
-			{% for pet in records_pets %}
-			<a href="{% url 'user_profile' pet.user.username %}"><img src="{{ pet.profilePicture.url }}" /></a>
+			{% for profile in listed_profiles %}
+			<a href="{% url 'user_profile' profile.user.username %}"><img src="{{ profile.profilePicture.url }}" /></a>
 			{% endfor %}
 		</div>
 
 		<div id="login-right">
 			{% if not user.is_authenticated %}
+			   {% for message in messages %}
+
+                    <div class="alert alert-success">
+                        <a class="close" href="#" data-dismiss="alert">×</a>
+
+                        {{ message }}
+
+                    </div>
+            {% endfor %}
 			<h4>Login to PawPal</h4>
 			<form id="login_form" method="post" action="{% url 'login' %}">
 				{% csrf_token %}

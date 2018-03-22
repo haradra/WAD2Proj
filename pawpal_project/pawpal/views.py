@@ -11,6 +11,8 @@ from django.contrib import messages
 from pawpal.models import UserProfile, Pet, Rating, Messages, User
 from pawpal.forms import PetForm, UserForm, UserProfileForm, UpdateUserProfile, UpdatePetProfile
 from social_django.models import UserSocialAuth
+from django_private_chat.models import Dialog
+from django.db.models import Q
 
 # Create your views here.
 def home(request):
@@ -27,27 +29,50 @@ def home(request):
 #    <br/> <a href='/pawpal/myaccount/'>My account page</a>""")
     context_dict = {}
 
-    pets = Pet.objects.order_by('name')
     userProfile = {}
+    listedProfiles = {}
     if request.user and request.user.is_authenticated:
-        userProfile = UserProfile.objects.get_or_create(user=request.user)
-    context_dict = {'records_pets':pets,'userProfile':userProfile}
+        try:
+            userProfile = UserProfile.objects.get(user=request.user)
+            listedProfiles = Pet.objects.order_by('name')
+        except:
+            try:
+                userProfile = Pet.objects.get(user=request.user)
+                listedProfiles = UserProfile.objects.order_by('description')
+            except:
+                userProfile = UserProfile.objects.get_or_create(user=request.user)[0]
+                listedProfiles = Pet.objects.order_by('name')
+    else:
+        listedProfiles = Pet.objects.order_by('name')
+    context_dict = {'listed_profiles':listedProfiles,'userProfile':userProfile}
     return render(request, 'pawpal/home.html', context=context_dict)
 
 def about(request):
     userProfile = {}
     if request.user and request.user.is_authenticated:
-        userProfile = UserProfile.objects.get(user=request.user)
+        try:
+            userProfile = UserProfile.objects.get(user=request.user)
+        except:
+            try:
+                userProfile = Pet.objects.get(user=request.user)
+            except:
+                userProfile = UserProfile.objects.get_or_create(user=request.user)[0]
     return render(request, 'pawpal/about.html',{'userProfile':userProfile})
 
 def contact(request):
     userProfile={}
     if request.user and request.user.is_authenticated:
-        userProfile = UserProfile.objects.get(user=request.user)
+        try:
+            userProfile = UserProfile.objects.get(user=request.user)
+        except:
+            try:
+                userProfile = Pet.objects.get(user=request.user)
+            except:
+                userProfile = UserProfile.objects.get_or_create(user=request.user)[0]
     return render(request, 'pawpal/contact.html',{'userProfile':userProfile})
 
 def user_login(request):
-
+    login_error = False
     if request.method == 'POST':
 
         username = request.POST.get('username')
@@ -59,8 +84,8 @@ def user_login(request):
             login(request, user)
             return HttpResponseRedirect(reverse('home'))
         else:
-            print("Invalid login details: {0}, {1}".format(username, password))
-            return HttpResponse("Invalid login details supplied.")
+            messages.error(request,'Username or password not correct')
+            return HttpResponseRedirect(reverse('home'))
 
     else:
 
@@ -146,7 +171,13 @@ def settings(request):
 
     can_disconnect = (user.social_auth.count() > 1 or user.has_usable_password())
 
-    userProfile = UserProfile.objects.get(user=request.user)
+    try:
+        userProfile = UserProfile.objects.get(user=request.user)
+    except:
+        try:
+            userProfile = Pet.objects.get(user=request.user)
+        except:
+            userProfile = UserProfile.objects.get_or_create(user=request.user)[0]
     return render(request, 'pawpal/settings.html', {
         'github_login': github_login,
         'twitter_login': twitter_login,
@@ -173,7 +204,13 @@ def password(request):
             messages.error(request, 'Please correct the error below.')
     else:
         form = PasswordForm(request.user)
-    userProfile = UserProfile.objects.get(user=request.user)
+    try:
+        userProfile = UserProfile.objects.get(user=request.user)
+    except:
+        try:
+            userProfile = Pet.objects.get(user=request.user)
+        except:
+            userProfile = UserProfile.objects.get_or_create(user=request.user)[0]
     return render(request, 'pawpal/password.html', {'form': form,'userProfile':userProfile})
 
 @login_required
@@ -238,7 +275,13 @@ def get_user_profile(request, username):
     except:
         user = Pet.objects.get(user=find_user)
         page_to_render = "pawpal/pet_profile.html"
-    userProfile = UserProfile.objects.get(user=request.user)
+    try:
+        userProfile = UserProfile.objects.get(user=request.user)
+    except:
+        try:
+            userProfile = Pet.objects.get(user=request.user)
+        except:
+            userProfile = UserProfile.objects.get_or_create(user=request.user)[0]
     ratings = Rating.objects.filter(toWho=find_user)
     if len(ratings) > 0:
         rating = float(format(sum([int(i.rating) for i in ratings]) / len(ratings), '.2f'))
@@ -249,20 +292,35 @@ def get_user_profile(request, username):
 @login_required
 def myaccount(request):
     try:
-        user = UserProfile.objects.get(user=request.user)
-    except Exception:
-        user = UserProfile.objects.get_or_create(user=request.user)
+        userProfile = UserProfile.objects.get(user=request.user)
+    except:
         try:
-            user.save()
-        except Exception:
-            pass
-    userProfile = UserProfile.objects.get(user=request.user)
+            userProfile = Pet.objects.get(user=request.user)
+        except:
+            userProfile = UserProfile.objects.get_or_create(user=request.user)[0]
     ratings = Rating.objects.filter(toWho=request.user)
     if len(ratings) > 0:
         rating = float(format(sum([int(i.rating) for i in ratings]) / len(ratings), '.2f'))
     else:
         rating = 0
-    return render(request, 'pawpal/myaccount.html', {"user":user,"rating":rating,"ratings":range(1,6),"userProfile":userProfile})
+    chats=Dialog.objects.filter(Q(owner=request.user)|Q(opponent=request.user))
+    new_chats=[]
+    for chat in chats:
+        user = None
+        if chat.owner == request.user:
+            user = chat.opponent
+        else:
+            user = chat.owner
+        profile = None
+        try:
+            profile = UserProfile.objects.get(user=user)
+        except:
+            try:
+                profile = Pet.objects.get(user=user)
+            except:
+                profile = UserProfile.objects.get_or_create(user=user)[0]
+        new_chats.append(profile)
+    return render(request, 'pawpal/myaccount.html', {"chats":new_chats,"user":userProfile,"rating":rating,"ratings":range(1,6),"userProfile":userProfile})
 
 
 @login_required

@@ -16,29 +16,15 @@ PRIORITY
 
 5. Presentation
 
----------------------------------------------------------------------------
+6. Clean up register.html and editaccount.html, display one of two forms depending on which button is clicked, clean up JS code, then I'll add the map functionality to edit account
 
-Frontend
-
----------------------------------------------------------------------------
-
-Make website responsive - it's done; only check for new additions
-
-Think about what to add to home page.
-
-Clean up register.html, display one of two forms depending on which button is clicked, clean up JS code, then I'll add the map functionality to edit account
-
-My account display could be cleaned up, for example the description field takes up to 300 characters, will this be displayed nicely?
-
-My account needs to display appropriate fields depending if the user is a Pet or Seeker, for example "species" field etc
+7. Categorise animals on home page
 
 ---------------------------------------------------------------------------
 
 Backend
 
 ---------------------------------------------------------------------------
-
-When incorrect login details are typed we need to be redirected somewhere, instead of seeing new page etc.
 
 When changing either first name or last name and leaving the other field blank, it changes that name to blank
 
