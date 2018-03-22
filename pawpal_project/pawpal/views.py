@@ -179,24 +179,24 @@ def editaccount(request):
     #This is really bad code, but it works for now
     if request.method == 'POST':
         try:
-            species = user.species
+            Pet.objects.get(user=request.user)
             form = UpdatePetProfile(request.POST, instance=user)
-        except Exception:
+        except Pet.DoesNotExist:
             form = UpdateUserProfile(request.POST, instance=user)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('myaccount'))
     else:
         try:
-            species = user.species
+            Pet.objects.get(user=request.user)
             form = UpdatePetProfile(request.POST, instance=user)
-        except Exception:
+        except Pet.DoesNotExist:
             form = UpdateUserProfile(request.POST, instance=user)
         
     try:
-        species = user.species
+        Pet.objects.get(user=request.user)
         userProfile = Pet.objects.get(user=request.user)
-    except Exception:
+    except Pet.DoesNotExist:
         userProfile = UserProfile.objects.get(user=request.user)
         
         """

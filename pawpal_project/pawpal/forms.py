@@ -54,7 +54,7 @@ class UpdatePetProfile(forms.ModelForm):
 
     class Meta:
         model = Pet
-        fields = ('username', "first_name", "last_name", "email",'species', 'description', 'profilePicture')
+        fields = ('username', "email",'species', 'description', 'profilePicture')
 
     def clean_email(self):
         username = self.cleaned_data.get('username')
