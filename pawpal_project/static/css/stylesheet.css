@@ -30,6 +30,10 @@ li.active .white-link {
     background: #72bcd4 !important;
 }
 
+.navbar-nav .open a.dropdown-toggle {
+    background: #72bcd4 !important;
+}
+
 .navibar-profile-image {
     position: relative;
     top: -5px;
