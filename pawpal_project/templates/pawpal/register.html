@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-
+	
 {% block title_block %}Register{% endblock %}
 
 {% block menubutton1_active %}{% endblock %}
@@ -11,6 +11,7 @@
 
 {% block menubutton4_active %}{% endblock %}
 
+
 {% block body_block %}
 		<h2> Register for PawPal</h2>
 		<br />
@@ -18,14 +19,84 @@
 			<Strong>Thank you for registering!</strong>
 			<a href="{% url 'home' %}">Return to the homepage.</a><br />
 		{% else %}
+			<style>
+       #map {
+        height: 400px;
+        width: 50%;
+       }
+    </style>
+			<div id="map"></div>
+			<script>
+      var latitude_variable;
+      var longitude_variable;
+      var geocoder;
+      var infowindow;
+      var marker;
+      var map;
+      function initMap() {
+	geocoder = new google.maps.Geocoder();
+    	infowindow = new google.maps.InfoWindow;
+        var uluru = {lat: 55.8642, lng: 4.2518};
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 8,
+          center: uluru
+        });
+        marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+	google.maps.event.addListener(map, 'click', function(event) {
+   		showAddressFromLatLng(geocoder, map, infowindow, event.latLng);
+   		var latlng = new google.maps.LatLng(event.latLng.lat(), event.latLng.lng());
+    		marker.setPosition(latlng);
+		//$('#id_latitude').val(event.latLng.lat());
+		//$('#id_longitude').val(event.latLng.lng());
+		$('input[name=latitude]').val(event.latLng.lat());
+		$('input[name=longitude]').val(event.latLng.lng());
+		console.log("Latitude:" + document.getElementById("id_latitude").value);
+		latitude_variable = event.latLng.lat();
+		longitude_variable = event.latLng.lng();
+		//document.getElementById("id_latitude").value = event.latLng.lat();
+		//document.getElementById("id_longitude").value = event.latLng.lng();
+		});
+}
+    		
+
+function showAddressFromLatLng(geocoder, map, infowindow, latLng){
+		geocoder.geocode({'location': latLng}, function(results, status){
+        	if (status === 'OK'){
+            		if (results[0]) {
+			
+                	marker.setPosition(latLng);
+                	infowindow.setContent(results[0].formatted_address);
+                	city = results[0].address_components[2].long_name;
+                	infowindow.open(map, marker);
+            	} else{
+                	console.log("no results found");
+            	}
+        } else{
+            console.log("geocoder failed: " + status);
+        }
+    });
+}	
+
+
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBH49BaYo6GJDl_3bR6WRWsBkaBz04tFE4&callback=initMap">
+    </script>
+			<button type="button" name="petbtn" value="Pet" onclick="petFunction();">I am a pet!</button><br />
+			<button type="button" name="userbtn" value="User" onclick="userFunction();">I am a seeker!</button><br />
+			
 			<form id="user_form" method="post" action="{% url 'register' %}"
 				enctype="multipart/form-data">
 
 			{% csrf_token %}
 			{{ user_form.as_p }}
 			{{ profile_form.as_p }}
-
 			<input type="submit" name="submit" value="Register" />
-		</form>
+			</form>
+
+			
 		{% endif %}
 {% endblock %}

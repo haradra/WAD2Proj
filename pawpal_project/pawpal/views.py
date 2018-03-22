@@ -79,6 +79,7 @@ def register(request):
     if request.user and request.user.is_authenticated:
         return HttpResponseRedirect(reverse('home'))
     registered = False
+    
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
         profile_form = UserProfileForm(data=request.POST)
@@ -96,17 +97,31 @@ def register(request):
             login(request,user,backend='django.contrib.auth.backends.ModelBackend')
             registered = True
             return HttpResponseRedirect(reverse('home'))
+        elif user_form.is_valid() and pet_form.is_valid():
+            user = user_form.save()
+            user.set_password(user.password)
+            user.save()
+            pet = pet_form.save(commit=False)
+            pet.user = user
+            if 'petPicture' in request.FILES:
+                pet.petPicture = request.FILES['petPicture']
+            pet.save()
+            login(request,user,backend='django.contrib.auth.backends.ModelBackend')
+            registered = True
+            return HttpResponseRedirect(reverse('home'))
         else:
             print(user_form.errors, profile_form.errors)
     else:
 
         user_form = UserForm()
         profile_form = UserProfileForm()
+        pet_form = PetForm()
 
     return render(request,
                   'pawpal/register.html',
                   {'user_form': user_form,
                    'profile_form': profile_form,
+                   'pet_form': pet_form,
                    'registered': registered
                   })
     """
