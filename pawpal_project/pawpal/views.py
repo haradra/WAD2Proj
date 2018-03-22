@@ -77,7 +77,7 @@ def user_login(request):
             return HttpResponseRedirect(reverse('home'))
         else:
             print("Invalid login details: {0}, {1}".format(username, password))
-            return HttpResponse("Invalid login details supplied.")
+            return HttpResponseRedirect(reverse('home'))
 
     else:
 
@@ -264,13 +264,19 @@ def get_user_profile(request, username):
     except:
         user = Pet.objects.get(user=find_user)
         page_to_render = "pawpal/pet_profile.html"
-    userProfile = UserProfile.objects.get(user=request.user)
+    try:
+        userProfile = UserProfile.objects.get(user=request.user)
+    except:
+        try:
+            userProfile = Pet.objects.get(user=request.user)
+        except:
+            userProfile = UserProfile.objects.get_or_create(user=request.user)[0]
     ratings = Rating.objects.filter(toWho=find_user)
     if len(ratings) > 0:
         rating = sum([int(i.rating) for i in ratings])/len(ratings)
     else:
         rating = 0
-    return render(request, page_to_render, {"user":user,"rating":rating,"ratings":range(1,6),"userProfile":userProfile})
+    return render(request, page_to_render, {"user":userProfile,"rating":rating,"ratings":range(1,6),"userProfile":userProfile})
 @login_required
 def myaccount(request):
     try:
