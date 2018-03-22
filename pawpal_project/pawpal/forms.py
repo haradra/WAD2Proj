@@ -6,9 +6,9 @@ import datetime
 
 
 class PetForm(forms.ModelForm):
-"""
+    """
     name = forms.CharField(max_length=50, help_text="Please enter your pet's name.")
-"""
+    """
     location = forms.CharField(max_length=50, help_text="Please enter your location.")
     latitude = forms.FloatField(widget=forms.HiddenInput(), initial=55.8642)
     longitude = forms.FloatField(widget=forms.HiddenInput(), initial=4.2518)
