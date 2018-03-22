@@ -30,6 +30,8 @@ Clean up register.html, display one of two forms depending on which button is cl
 
 My account display could be cleaned up, for example the description field takes up to 300 characters, will this be displayed nicely?
 
+My account needs to display appropriate fields depending if the user is a Pet or Seeker, for example "species" field etc
+
 ---------------------------------------------------------------------------
 
 Backend

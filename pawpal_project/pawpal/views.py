@@ -10,7 +10,7 @@ from django.contrib.auth import logout
 from datetime import datetime
 from django.contrib import messages
 from pawpal.models import UserProfile, Pet, Rating, Messages, User
-from pawpal.forms import PetForm, UserForm, UserProfileForm, UpdateProfile
+from pawpal.forms import PetForm, UserForm, UserProfileForm, UpdateUserProfile, UpdatePetProfile
 from social_django.models import UserSocialAuth
 
 # Create your views here.
@@ -31,7 +31,7 @@ def home(request):
     pets = Pet.objects.order_by('name')
     userProfile = {}
     if request.user and request.user.is_authenticated:
-        userProfile = UserProfile.objects.get(user=request.user)
+        userProfile = UserProfile.objects.get_or_create(user=request.user)
     context_dict = {'records_pets':pets,'userProfile':userProfile}
     return render(request, 'pawpal/home.html', context=context_dict)
 
@@ -55,16 +55,9 @@ def user_login(request):
         user = authenticate(username=username, password=password)
 
         if user:
-
-            if user.is_active:
-
-                login(request, user)
-                return HttpResponseRedirect(reverse('home'))
-            else:
-
-                return HttpResponse("Your PawPal account is not active.")
+            login(request, user)
+            return HttpResponseRedirect(reverse('home'))
         else:
-
             print("Invalid login details: {0}, {1}".format(username, password))
             return HttpResponse("Invalid login details supplied.")
 
@@ -72,8 +65,6 @@ def user_login(request):
 
         return render(request, 'pawpal/login.html', {})
 
-    return HttpResponse("""Login page
-    <a href="/pawpal/">home</a>""")
 def register(request):
 
     if request.user and request.user.is_authenticated:
@@ -185,14 +176,49 @@ def password(request):
 def editaccount(request):
     context_dict = {}
     user = request.user
+    #This is really bad code, but it works for now
     if request.method == 'POST':
-        form = UpdateProfile(request.POST, instance=user)
+        try:
+            Pet.objects.get(user=request.user)
+            form = UpdatePetProfile(request.POST, instance=user)
+        except Pet.DoesNotExist:
+            form = UpdateUserProfile(request.POST, instance=user)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('myaccount'))
     else:
-        form = UpdateProfile()
-    userProfile = UserProfile.objects.get(user=request.user)
+        try:
+            Pet.objects.get(user=request.user)
+            form = UpdatePetProfile(request.POST, instance=user)
+        except Pet.DoesNotExist:
+            form = UpdateUserProfile(request.POST, instance=user)
+        
+    try:
+        Pet.objects.get(user=request.user)
+        userProfile = Pet.objects.get(user=request.user)
+    except Pet.DoesNotExist:
+        userProfile = UserProfile.objects.get(user=request.user)
+        
+        """
+        if hasattr(user, 'Pet'):
+            form = UpdateUserProfile(request.POST, instance=user)
+        elif hasattr(user, 'UserProfile'):
+            form = UpdatePetProfile(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('myaccount'))
+    else:
+        if hasattr(user, 'Pet'):
+            form = UpdateUserProfile(request.POST, instance=user)
+        elif hasattr(user, 'UserProfile'):
+            form = UpdatePetProfile(request.POST, instance=user)
+            
+    if hasattr(user, 'Pet'):
+        userProfile = UserProfile.objects.get(user=request.user)
+    elif hasattr(user, 'UserProfile'):
+        userProfile = Pet.objects.get(user=request.user)
+    """
+        
     context_dict = {'form':form,'userProfile':userProfile}
     return render(request, 'pawpal/editaccount.html', context=context_dict)
 
@@ -217,7 +243,14 @@ def get_user_profile(request, username):
     return render(request, page_to_render, {"user":user,"rating":rating,"ratings":range(1,6),"userProfile":userProfile})
 @login_required
 def myaccount(request):
-    user = UserProfile.objects.get(user=request.user)
+    try:
+        user = UserProfile.objects.get(user=request.user)
+    except Exception:
+        user = UserProfile.objects.get_or_create(user=request.user)
+        try:
+            user.save()
+        except Exception:
+            pass
     userProfile = UserProfile.objects.get(user=request.user)
     ratings = Rating.objects.filter(toWho=request.user)
     if len(ratings) > 0:
