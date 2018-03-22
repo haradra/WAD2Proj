@@ -51,7 +51,7 @@ class Rating(models.Model):
         super(Rating, self).save(*args, **kwargs)
 
     def __str__(self):
-        return str(self.toWho) + ":  " + str(self.rating)
+        return "By " + str(self.madeBy) + " to " + str(self.toWho) + ":  " + str(self.rating)
 
 
 class UserProfile(models.Model):

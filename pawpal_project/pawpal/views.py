@@ -235,7 +235,12 @@ def get_user_profile(request, username):
         user = Pet.objects.get(user=find_user)
         page_to_render = "pawpal/pet_profile.html"
     userProfile = UserProfile.objects.get(user=request.user)
-    return render(request, page_to_render, {"user":user,"rating":2,"ratings":range(1,6),"userProfile":userProfile})
+    ratings = Rating.objects.filter(toWho=find_user)
+    if len(ratings) > 0:
+        rating = sum([int(i.rating) for i in ratings])/len(ratings)
+    else:
+        rating = 0
+    return render(request, page_to_render, {"user":user,"rating":rating,"ratings":range(1,6),"userProfile":userProfile})
 @login_required
 def myaccount(request):
     try:
@@ -246,4 +251,10 @@ def myaccount(request):
             user.save()
         except Exception:
             pass
-    return render(request, 'pawpal/myaccount.html', {"user":user,"rating":2,"ratings":range(1,6)})
+    userProfile = UserProfile.objects.get(user=request.user)
+    ratings = Rating.objects.filter(toWho=request.user)
+    if len(ratings) > 0:
+        rating = sum([int(i.rating) for i in ratings]) / len(ratings)
+    else:
+        rating = 0
+    return render(request, 'pawpal/myaccount.html', {"user":user,"rating":rating,"ratings":range(1,6),"userProfile":userProfile})
