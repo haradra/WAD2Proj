@@ -31,6 +31,15 @@ PawPal
 
 		<div id="login-right">
 			{% if not user.is_authenticated %}
+			   {% for message in messages %}
+
+                    <div class="alert alert-success">
+                        <a class="close" href="#" data-dismiss="alert">×</a>
+
+                        {{ message }}
+
+                    </div>
+            {% endfor %}
 			<h4>Login to PawPal</h4>
 			<form id="login_form" method="post" action="{% url 'login' %}">
 				{% csrf_token %}
