@@ -16,17 +16,18 @@ class Pet(models.Model):
         ('DOG', 'Dog'),
         ('CAT', 'Cat'),
         ('LIZARD', 'Lizard'),
+        ('REPTILE', 'Reptile'),
+        ('BIRD', 'Bird'),
+        ('HAMSTER', 'Hamster')
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50, unique=False)
     description = models.CharField(max_length=200)
     species = models.CharField(max_length=10, choices=SPECIES_CHOICES)
-    #Temporary default value for location
-    location = models.CharField(max_length=50)
+    location = models.CharField(max_length=128)
     latitude = models.FloatField(default=55.8642)
     longitude = models.FloatField(default=4.2518)
     profilePicture = models.ImageField(upload_to='pet_images', blank=True)
-    #slug = models.SlugField(unique=True, blank=True)
     
     
     def save(self, *args, **kwargs):
