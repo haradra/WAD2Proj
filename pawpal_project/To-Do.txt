@@ -8,7 +8,7 @@ PRIORITY
 
 1. Upload to Pythonanywhere
 
-2. Put animals in categories - Backend database? - Pets are identified by their "Species" field, in which the choice is (DOG, CAT, LIZARD) for now
+2. Put animals in categories - Backend database? - Pets are identified by their "Species" field, in which the choice is (DOG, CAT, LIZARD, HAMSTER, REPTILE, BIRD) 
 
 3. Display animals accordingly from the database
 
@@ -26,7 +26,9 @@ Make website responsive - it's done; only check for new additions
 
 Think about what to add to home page.
 
-Clean up register.html, display one of two forms depending on which button is clicked, clean up JS code
+Clean up register.html, display one of two forms depending on which button is clicked, clean up JS code, then I'll add the map functionality to edit account
+
+My account display could be cleaned up, for example the description field takes up to 300 characters, will this be displayed nicely?
 
 ---------------------------------------------------------------------------
 
