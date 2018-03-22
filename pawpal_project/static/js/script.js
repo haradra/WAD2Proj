@@ -26,3 +26,13 @@ function unselectPaws() {
         }
     }
 }
+
+function userFunction() {
+    $("#user_form").show();
+    $("#pet_form").hide();
+}
+
+function petFunction() {
+    $("#user_form").hide();
+    $("#pet_form").show();
+}
