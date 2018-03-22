@@ -8,17 +8,11 @@ PRIORITY
 
 1. Upload to Pythonanywhere
 
-2. Put animals in categories - Backend database? - Pets are identified by their "Species" field, in which the choice is (DOG, CAT, LIZARD, HAMSTER, REPTILE, BIRD) 
+2. Put animals in categories - Backend database? - Pets are identified by their "Species" field, in which the choice is (DOG, CAT, LIZARD, HAMSTER, REPTILE, BIRD)
 
-3. Display animals accordingly from the database
+3. Presentation
 
-4. Link to messenger on each profile - Gosia
-
-5. Presentation
-
-6. Clean up register.html and editaccount.html, display one of two forms depending on which button is clicked, clean up JS code, then I'll add the map functionality to edit account
-
-7. Categorise animals on home page
+4. Clean up register.html and editaccount.html, display one of two forms depending on which button is clicked, clean up JS code, then I'll add the map functionality to edit account
 
 ---------------------------------------------------------------------------
 
