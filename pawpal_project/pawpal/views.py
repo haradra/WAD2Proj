@@ -181,9 +181,6 @@ def password(request):
         form = PasswordForm(request.user)
     userProfile = UserProfile.objects.get(user=request.user)
     return render(request, 'pawpal/password.html', {'form': form,'userProfile':userProfile})
-def pets(request):
-    return HttpResponse("""Pets page
-    <a href="/pawpal/">home</a>""")
 @login_required
 def editaccount(request):
     context_dict = {}
