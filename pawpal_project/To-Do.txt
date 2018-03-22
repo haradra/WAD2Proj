@@ -16,6 +16,12 @@ PRIORITY
 
 5. Presentation
 
+6. Clean up register.html and editaccount.html, display one of two forms depending on which button is clicked, clean up JS code, then I'll add the map functionality to edit account
+
+7. Display appropriate users in home page, Seekers for a logged in Pet, viceversa for logged in Seeker
+
+8. Categorise animals on home page
+
 ---------------------------------------------------------------------------
 
 Frontend
@@ -25,8 +31,6 @@ Frontend
 Make website responsive - it's done; only check for new additions
 
 Think about what to add to home page.
-
-Clean up register.html and editaccount.html, display one of two forms depending on which button is clicked, clean up JS code, then I'll add the map functionality to edit account
 
 My account display could be cleaned up, for example the description field takes up to 300 characters, will this be displayed nicely?
 

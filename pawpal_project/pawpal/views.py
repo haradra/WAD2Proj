@@ -274,17 +274,15 @@ def get_user_profile(request, username):
 @login_required
 def myaccount(request):
     try:
-        user = UserProfile.objects.get(user=request.user)
-    except Exception:
-        user = UserProfile.objects.get_or_create(user=request.user)
+        userProfile = UserProfile.objects.get(user=request.user)
+    except:
         try:
-            user.save()
-        except Exception:
-            pass
-    userProfile = UserProfile.objects.get(user=request.user)
+            userProfile = Pet.objects.get(user=request.user)
+        except:
+            userProfile = UserProfile.objects.get_or_create(user=request.user)[0]
     ratings = Rating.objects.filter(toWho=request.user)
     if len(ratings) > 0:
         rating = sum([int(i.rating) for i in ratings]) / len(ratings)
     else:
         rating = 0
-    return render(request, 'pawpal/myaccount.html', {"user":user,"rating":rating,"ratings":range(1,6),"userProfile":userProfile})
+    return render(request, 'pawpal/myaccount.html', {"user":userProfile,"rating":rating,"ratings":range(1,6),"userProfile":userProfile})
