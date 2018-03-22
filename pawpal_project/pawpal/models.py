@@ -62,7 +62,6 @@ class UserProfile(models.Model):
     description = models.CharField(max_length=200)
     latitude = models.FloatField(default=55.8642)
     longitude = models.FloatField(default=4.2518)
-    showPets = models.BooleanField(default=True)
     #slug = models.SlugField(unique=True, blank=True)
 
     #website = models.URLField(blank=True)  #should we include this line too?
