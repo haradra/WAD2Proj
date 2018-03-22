@@ -7,7 +7,6 @@ from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeFor
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from datetime import datetime
 from django.contrib import messages
 from pawpal.models import UserProfile, Pet, Rating, Messages, User
 from pawpal.forms import PetForm, UserForm, UserProfileForm, UpdateUserProfile, UpdatePetProfile
@@ -59,6 +58,7 @@ def about(request):
             except:
                 userProfile = UserProfile.objects.get_or_create(user=request.user)[0]
     return render(request, 'pawpal/about.html',{'userProfile':userProfile})
+
 def contact(request):
     userProfile={}
     if request.user and request.user.is_authenticated:
@@ -70,6 +70,7 @@ def contact(request):
             except:
                 userProfile = UserProfile.objects.get_or_create(user=request.user)[0]
     return render(request, 'pawpal/contact.html',{'userProfile':userProfile})
+
 def user_login(request):
     login_error = False
     if request.method == 'POST':
@@ -143,10 +144,12 @@ def register(request):
     """
     return HttpResponse("Register page<a href="/pawpal/">home</a>")
     """
+
 @login_required
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('home'))
+
 @login_required
 def settings(request):
     user = request.user
@@ -209,6 +212,7 @@ def password(request):
         except:
             userProfile = UserProfile.objects.get_or_create(user=request.user)[0]
     return render(request, 'pawpal/password.html', {'form': form,'userProfile':userProfile})
+
 @login_required
 def editaccount(request):
     context_dict = {}
@@ -280,10 +284,11 @@ def get_user_profile(request, username):
             userProfile = UserProfile.objects.get_or_create(user=request.user)[0]
     ratings = Rating.objects.filter(toWho=find_user)
     if len(ratings) > 0:
-        rating = sum([int(i.rating) for i in ratings])/len(ratings)
+        rating = float(format(sum([int(i.rating) for i in ratings]) / len(ratings), '.2f'))
     else:
         rating = 0
     return render(request, page_to_render, {"user":user,"rating":rating,"ratings":range(1,6),"userProfile":userProfile})
+
 @login_required
 def myaccount(request):
     try:
@@ -295,7 +300,7 @@ def myaccount(request):
             userProfile = UserProfile.objects.get_or_create(user=request.user)[0]
     ratings = Rating.objects.filter(toWho=request.user)
     if len(ratings) > 0:
-        rating = sum([int(i.rating) for i in ratings]) / len(ratings)
+        rating = float(format(sum([int(i.rating) for i in ratings]) / len(ratings), '.2f'))
     else:
         rating = 0
     chats=Dialog.objects.filter(Q(owner=request.user)|Q(opponent=request.user))
@@ -316,3 +321,16 @@ def myaccount(request):
                 profile = UserProfile.objects.get_or_create(user=user)[0]
         new_chats.append(profile)
     return render(request, 'pawpal/myaccount.html', {"chats":new_chats,"user":userProfile,"rating":rating,"ratings":range(1,6),"userProfile":userProfile})
+
+
+@login_required
+def create_rating(request, username, rating):
+    if not (username and rating):
+        return HttpResponseRedirect(reverse('home'))
+    find_user = User.objects.get(username=username)
+
+    rating_object = Rating.objects.get_or_create(madeBy=request.user, toWho=find_user)[0]
+    rating_object.rating = int(rating)
+    rating_object.save()
+
+    return get_user_profile(request, username)
