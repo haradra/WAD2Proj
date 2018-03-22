@@ -49,17 +49,10 @@
    		showAddressFromLatLng(geocoder, map, infowindow, event.latLng);
    		var latlng = new google.maps.LatLng(event.latLng.lat(), event.latLng.lng());
     		marker.setPosition(latlng);
-		//$('#id_latitude').val(event.latLng.lat());
-		//$('#id_longitude').val(event.latLng.lng());
-		$('input[name=latitude]').val(event.latLng.lat());
-		$('input[name=longitude]').val(event.latLng.lng());
-		console.log("Latitude:" + document.getElementById("id_latitude").value);
 		latitude_variable = event.latLng.lat();
 		longitude_variable = event.latLng.lng();
 		$("input[name='longtitude']").val(longitude_variable);
 		$("input[name='latitude']").val(latitude_variable);
-		//document.getElementById("id_latitude").value = event.latLng.lat();
-		//document.getElementById("id_longitude").value = event.latLng.lng();
 		});
 }
     		
