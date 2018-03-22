@@ -30,7 +30,8 @@ urlpatterns = [
     url(r'^oauth/', include('social_django.urls', namespace='social')),
     url(r'^register/$', views.register, name='register'),
     url(r'^editaccount/$', views.editaccount, name='editaccount'),
-    url(r'^profile/(?P<username>[a-zA-Z0-9]+)$', views.get_user_profile, name='user_profile'),
+    url(r'^profile/(?P<username>[a-zA-Z0-9]+)/$', views.get_user_profile, name='user_profile'),
     url(r'^myaccount/$', views.myaccount, name='myaccount'),
+    url(r'^rating/$', views.create_rating, name='rating'),
     url(r'^', include('django_private_chat.urls')),
 ]

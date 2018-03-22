@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib import messages
 from pawpal.models import UserProfile, Pet, Rating, Messages, User
-from pawpal.forms import PetForm, UserForm, UserProfileForm, UpdateUserProfile, UpdatePetProfile
+from pawpal.forms import PetForm, UserForm, UserProfileForm, UpdateUserProfile, UpdatePetProfile, RatingForm
 from social_django.models import UserSocialAuth
 
 # Create your views here.
@@ -263,7 +263,16 @@ def myaccount(request):
     else:
         rating = 0
     return render(request, 'pawpal/myaccount.html', {"user":user,"rating":rating,"ratings":range(1,6),"userProfile":userProfile})
-"""
+
+
 @login_required
-def rating(request):
-"""
+def create_rating(request, username, rating):
+    if not (username or rating):
+        return HttpResponseRedirect(reverse('home'))
+    if request.user and request.user.username == username:
+        return HttpResponseRedirect(reverse('myaccount'))
+    find_user = User.objects.get(username=username)
+
+    if request.user and request.user.is_authenticated:
+        #todo
+        return HttpResponseRedirect(reverse('home'))
