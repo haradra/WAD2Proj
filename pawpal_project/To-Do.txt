@@ -1,47 +1,51 @@
 Things to do:
 
-Rating - backend only
+---------------------------------------------------------------------------
 
-Google Maps Location - Milo (in process)
+PRIORITY
 
-Matching (both backend link fields and front end) - not required
+---------------------------------------------------------------------------
+
+1. Upload to Pythonanywhere
+
+2. Put animals in categories - Backend database?
+
+3. Display animals accordingly from the database
+
+4. Redirection from the profile picture to the profile
+
+5. Link to messenger on each profile - Gosia
+
+6. Presentation
+
+---------------------------------------------------------------------------
+
+Frontend
+
+---------------------------------------------------------------------------
+
+Make website responsive
 
 Think about what to add to home page.
 
-Connect pop script fields like description etc to user profile
+---------------------------------------------------------------------------
 
-Fix Github - will be fixed when deployed on pythonanywhere
+Backend
 
-Unit Testing
-
-Make website responsive (I guess we can't set the certain width in the css. [I'm not 100% sure though])
-
-Registration: showpets checkbox - currently user has to tick it, but it shouldn't be needed for him to be able to register
-
-After registration, user should be logged in - are you sure? Is this a required? -milo
-
-When changing either first name or last name and leaving the other field blank, it changes that name to blank
+---------------------------------------------------------------------------
 
 Experience - we can currently select also negative value. Needs to be corrected
 
 When incorrect login details are typed we need to be redirected somewhere, instead of seeing new page etc.
 
-Upload to python anywhere
+When changing either first name or last name and leaving the other field blank, it changes that name to blank
 
---------------------------------------------------------------------------------------------------------------------------
+Registration: showpets checkbox - currently user has to tick it, but it shouldn't be needed for him to be able to register
 
-PRIORITY
+Unit Testing
 
---------------------------------------------------------------------------------------------------------------------------
+Connect pop script fields like description etc to user profile
 
-Upload to Pythonanywhere
+Fix Github - will be fixed when deployed on pythonanywhere
 
-Put animals in categories - Backend database?
-
-Display animals accordingly from the database
-
-Redirection from the profile picture to the profile
-
-Link to messenger on each profile - Gosia
-
-Presentation
+Rating - backend only
