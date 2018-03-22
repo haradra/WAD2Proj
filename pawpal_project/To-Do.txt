@@ -24,7 +24,7 @@ Frontend
 
 ---------------------------------------------------------------------------
 
-Make website responsive
+Make website responsive - it's done; only check for new additions
 
 Think about what to add to home page.
 
