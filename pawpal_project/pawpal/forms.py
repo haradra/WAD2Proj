@@ -36,13 +36,13 @@ class UserProfileForm(forms.ModelForm):
     profilePicture = forms.ImageField(required=False)
     experience = forms.IntegerField(initial=0)
     showPets = forms.BooleanField(initial=False)
-"""
+    """
     latitude = forms.FloatField(widget=forms.HiddenInput(), initial=55.8642)
     longitude = forms.FloatField(widget=forms.HiddenInput(), initial=4.2518)
 
     class Meta:
         model = UserProfile
-        fields = ('location', 'dateOfBirth','profilePicture', 'description','experience','showPets', 'latitude','longitude')
+        fields = ('location', 'dateOfBirth','profilePicture', 'description','experience','latitude','longitude')
 
 class UpdateProfile(forms.ModelForm):
     username = forms.CharField(required=True)

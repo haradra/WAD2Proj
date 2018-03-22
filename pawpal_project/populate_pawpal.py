@@ -22,8 +22,8 @@ def populate():
          "dateOfBirth": datetime.date(1995, 2, 1),
          "profilePicture": "profile_images/1.jpeg",
          "experience": int(4),
+         "is_active":True,
          "description": "I love Iguanas, like really. Iguanas <3",
-         "showPets": False,
          "email": "sample_email@sample.com",
          },
         {"username": "Doggos",
@@ -36,8 +36,8 @@ def populate():
          "dateOfBirth": datetime.date(1995, 2, 1),
          "profilePicture": "profile_images/2.jpeg",
          "experience": int(8),
+         "is_active":True,
          "description": "Doggos, doggos, I have one, let's spend with him all our time!",
-         "showPets": True,
          "email": "sample_ema2il@sample.com",
          },
         {"username": "anilano",
@@ -50,15 +50,15 @@ def populate():
          "dateOfBirth": datetime.date(1995, 2, 1),
          "profilePicture": "profile_images/3.jpeg",
          "experience": int(0),
+         "is_active":False,
          "description": "I'm looking for a Cat or a Dog I could take for a walk.",
-         "showPets": False,
          "email": "3sample_email@sample.com",
          }  ]
 
     for user in users:
         add_user(user["username"], user["password"], user["first_name"],
                  user["last_name"], user["location"], user["latitude"], user["longitude"], user["dateOfBirth"],
-                 user["profilePicture"], user["experience"], user["description"], user["showPets"], user["email"])
+                 user["profilePicture"], user["experience"], user["is_active"], user["description"], user["email"])
 
 
 
@@ -71,6 +71,7 @@ def populate():
          "location": "Glasgow",
          "latitude": float(25.0),
          "longitude": float(25.0),
+         "is_active":True,
          "profilePicture": "pet_images/1.jpeg"},
         {"username": "doggo123",
          "password":"qwerty12345",
@@ -80,6 +81,7 @@ def populate():
          "location": "Edinburgh",
          "latitude": float(25.0),
          "longitude": float(25.0),
+         "is_active":True,
          "profilePicture": "pet_images/2.jpeg"},
         {"username": "birdo123",
          "password":"qwerty12345",
@@ -89,6 +91,7 @@ def populate():
          "location": "London",
          "latitude": float(25.0),
          "longitude": float(25.0),
+         "is_active":True,
          "profilePicture": "pet_images/3.jpeg"},
         {"username": "catto123",
          "password":"qwerty12345",
@@ -98,6 +101,7 @@ def populate():
          "location": "Glasgow",
          "latitude": float(25.0),
          "longitude": float(25.0),
+         "is_active":False,
          "profilePicture": "pet_images/4.jpeg"},
         {"username": "lizardo123",
          "password":"qwerty12345",
@@ -107,11 +111,13 @@ def populate():
          "location": "Glasgow",
          "latitude": float(25.0),
          "longitude": float(25.0),
+         "is_active":False,
          "profilePicture": "pet_images/5.jpeg"} ]
 
     for pet in pets:
         add_pet(pet["username"], pet["password"], pet["name"], pet["description"],
-                pet["species"], pet["location"], pet["latitude"], pet["longitude"], pet["profilePicture"])
+                pet["species"], pet["location"], pet["latitude"], pet["longitude"], pet["profilePicture"],
+                pet["is_active"])
 
 
 
@@ -193,7 +199,7 @@ def populate():
 
 def add_user(username, password, first_name, last_name,
              location, latitude, longitude, dateOfBirth, profilePicture,
-             experience, description, showPets, email):
+             experience, description, email, is_active ):
     u = User.objects.get_or_create(username = username)[0]
     u.set_password(password)
     u.first_name = first_name
@@ -208,11 +214,11 @@ def add_user(username, password, first_name, last_name,
     u.profilePicture = profilePicture
     u.experience = experience
     u.description = description
-    u.showPets = showPets
+    u.is_active = is_active
     u.save()
     return u
 
-def add_pet(username, password, name, description, species, location, latitude, longitude, petPicture):
+def add_pet(username, password, name, description, species, location, latitude, longitude, petPicture, is_active):
     
     u = User.objects.get_or_create(username = username)[0]
     u.set_password(password)
@@ -225,6 +231,7 @@ def add_pet(username, password, name, description, species, location, latitude, 
     p.latitude = latitude
     p.longitude = longitude
     p.profilePicture = petPicture
+    p.is_active = is_active
     p.save()
     return u
 

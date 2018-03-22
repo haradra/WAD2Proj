@@ -16,17 +16,18 @@ class Pet(models.Model):
         ('DOG', 'Dog'),
         ('CAT', 'Cat'),
         ('LIZARD', 'Lizard'),
+        ('REPTILE', 'Reptile'),
+        ('BIRD', 'Bird'),
+        ('HAMSTER', 'Hamster')
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50, unique=False)
-    description = models.CharField(max_length=200)
+    description = models.CharField(max_length=300)
     species = models.CharField(max_length=10, choices=SPECIES_CHOICES)
-    #Temporary default value for location
-    location = models.CharField(max_length=50)
+    location = models.CharField(max_length=128)
     latitude = models.FloatField(default=55.8642)
     longitude = models.FloatField(default=4.2518)
     profilePicture = models.ImageField(upload_to='pet_images', blank=True)
-    #slug = models.SlugField(unique=True, blank=True)
     
     
     def save(self, *args, **kwargs):
@@ -58,11 +59,10 @@ class UserProfile(models.Model):
     location = models.CharField(max_length=128)
     dateOfBirth = models.DateField(default=now)
     profilePicture = models.ImageField(upload_to='profile_images', blank=True, default="profile_images/user.jpeg")
-    experience = models.IntegerField(default=0)
-    description = models.CharField(max_length=200)
+    experience = models.PositiveIntegerField(default=0)
+    description = models.CharField(max_length=300)
     latitude = models.FloatField(default=55.8642)
     longitude = models.FloatField(default=4.2518)
-    showPets = models.BooleanField(default=True)
     #slug = models.SlugField(unique=True, blank=True)
 
     #website = models.URLField(blank=True)  #should we include this line too?
