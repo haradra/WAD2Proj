@@ -15,7 +15,7 @@
 		<div class="row">
             <div class="col-md-4">
 				<h2>{{ user.user.username }}</h2>
-				<img src="{{ user.profilePicture.url }}" class="images-myaccount"/>
+				<img src="{{ user.profilePicture.url }}" class="profile-image-myaccount"/>
 			</div>
 			<div class="col-md-6">
                 <br /><br />
@@ -42,7 +42,7 @@
 		</div>
 			<div class="col-md-2">
 				<br /><br />
-				<button type="button" class="btn btn-info" onclick="location.href = '{% url 'messenger' %}';">Messenger</button><br />
+				<button type="button" class="btn btn-info" onclick="location.href = '';">Messenger</button><br />
 			</div>
 		</div>
 {% endblock %}

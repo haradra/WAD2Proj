@@ -50,6 +50,7 @@ li.active .white-link {
 
 #images-left {
     position: relative;
+    max-width: 100%;
     width: 640px;
     height: 340px;
     float: left;
@@ -71,8 +72,8 @@ li.active .white-link {
 
 #image-about {
     width: 504px;
-    height: 532px;
     margin: 0 auto;
+    max-width: 100%;
 }
 
 .container-centre {
@@ -87,6 +88,11 @@ li.active .white-link {
 #profile-right {
     float: right;
     width: 200px;
+}
+
+.profile-image-myaccount {
+    width: 310px;
+    max-width: 100%;
 }
 
 .images-myaccount {

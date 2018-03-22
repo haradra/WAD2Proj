@@ -207,10 +207,7 @@ def get_user_profile(request, username):
     user = UserProfile.objects.get(user=user)
     userProfile = UserProfile.objects.get(user=request.user)
     return render(request, 'pawpal/user_profile.html', {"user":user,"rating":2,"ratings":range(1,6),"userProfile":userProfile})
-@login_required
-def messenger(request):
-    return HttpResponse("""Messenger page
-    <a href="/pawpal/">home</a>""")
+
 @login_required
 def myaccount(request):
     user = UserProfile.objects.get(user=request.user)
