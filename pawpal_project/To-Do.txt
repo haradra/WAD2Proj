@@ -8,7 +8,7 @@ PRIORITY
 
 1. Upload to Pythonanywhere
 
-2. Put animals in categories - Backend database?
+2. Put animals in categories - Backend database? - Pets are identified by their "Species" field, in which the choice is (DOG, CAT, LIZARD) for now
 
 3. Display animals accordingly from the database
 
@@ -39,8 +39,6 @@ Experience - we can currently select also negative value. Needs to be corrected
 When incorrect login details are typed we need to be redirected somewhere, instead of seeing new page etc.
 
 When changing either first name or last name and leaving the other field blank, it changes that name to blank
-
-Registration: showpets checkbox - currently user has to tick it, but it shouldn't be needed for him to be able to register
 
 Unit Testing
 
