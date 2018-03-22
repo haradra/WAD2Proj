@@ -15,7 +15,7 @@ class PetForm(forms.ModelForm):
     class Meta:
         model = Pet
         exclude = ('first_name', 'last_name')
-        fields = ('location', 'name', 'species', 'description', 'profilePicture')
+        fields = ('location', 'name', 'species', 'description', 'profilePicture','latitude', 'longitude')
 
       
 class UserForm(forms.ModelForm):
@@ -41,7 +41,7 @@ class UserProfileForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ('location', 'dateOfBirth','profilePicture', 'description','experience','showPets')
+        fields = ('location', 'dateOfBirth','profilePicture', 'description','experience','showPets', 'latitude','longitude')
 
 class UpdateProfile(forms.ModelForm):
     username = forms.CharField(required=True)
