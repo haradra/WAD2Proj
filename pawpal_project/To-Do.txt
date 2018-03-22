@@ -48,4 +48,4 @@ Connect pop script fields like description etc to user profile
 
 Fix Github - will be fixed when deployed on pythonanywhere
 
-Rating - backend only
+Rating - front end too - when user gives rating, how should we handle it?
