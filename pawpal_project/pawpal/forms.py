@@ -69,11 +69,11 @@ class UpdateUserProfile(forms.ModelForm):
     last_name = forms.CharField(required=False)
     dateOfBirth = forms.DateField(required=False)
     location = forms.CharField(max_length=128, required=True)
-
+    profilePicture = forms.ImageField(required=False)
 
     class Meta:
         model = UserProfile
-        fields = ('username', 'email', 'first_name', 'last_name', 'experience', 'profilePicture', 'dateOfBirth', 'location')
+        fields = ('username', 'email', 'first_name', 'last_name', 'experience', 'profilePicture', 'description', 'dateOfBirth', 'location')
 
     def clean_email(self):
         username = self.cleaned_data.get('username')
