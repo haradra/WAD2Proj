@@ -284,10 +284,18 @@ def get_user_profile(request, username):
             userProfile = UserProfile.objects.get_or_create(user=request.user)[0]
     ratings = Rating.objects.filter(toWho=find_user)
     if len(ratings) > 0:
-        rating = float(format(sum([int(i.rating) for i in ratings]) / len(ratings), '.2f'))
+        number_of_ratings = len(ratings)
+        rating = float(format(sum([int(i.rating) for i in ratings]) / number_of_ratings, '.2f'))
     else:
-        rating = 0
-    return render(request, page_to_render, {"user":user,"rating":rating,"ratings":range(1,6),"userProfile":userProfile})
+        rating, number_of_ratings = 0, 0
+
+    try:
+        madeBy_user_rating = int(Rating.objects.get(toWho=find_user, madeBy=request.user).rating)
+    except:
+        madeBy_user_rating = 0
+    return render(request, page_to_render, {"user":user,"rating":rating,"ratings":range(1,6),
+                                            "userProfile":userProfile, "madeBy_user_rating":madeBy_user_rating,
+                                            "number_of_ratings":number_of_ratings})
 
 @login_required
 def myaccount(request):
@@ -300,9 +308,10 @@ def myaccount(request):
             userProfile = UserProfile.objects.get_or_create(user=request.user)[0]
     ratings = Rating.objects.filter(toWho=request.user)
     if len(ratings) > 0:
-        rating = float(format(sum([int(i.rating) for i in ratings]) / len(ratings), '.2f'))
+        number_of_ratings = len(ratings)
+        rating = float(format(sum([int(i.rating) for i in ratings]) / number_of_ratings, '.2f'))
     else:
-        rating = 0
+        rating, number_of_ratings = 0, 0
     chats=Dialog.objects.filter(Q(owner=request.user)|Q(opponent=request.user))
     new_chats=[]
     for chat in chats:
@@ -320,7 +329,8 @@ def myaccount(request):
             except:
                 profile = UserProfile.objects.get_or_create(user=user)[0]
         new_chats.append(profile)
-    return render(request, 'pawpal/myaccount.html', {"chats":new_chats,"user":userProfile,"rating":rating,"ratings":range(1,6),"userProfile":userProfile})
+    return render(request, 'pawpal/myaccount.html', {"chats":new_chats,"user":userProfile,"rating":rating,"ratings":range(1,6),
+                                                     "userProfile":userProfile, "number_of_ratings":number_of_ratings})
 
 
 @login_required

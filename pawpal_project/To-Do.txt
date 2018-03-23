@@ -28,6 +28,29 @@ Connect pop script fields like description etc to user profile
 
 Fix Github - will be fixed when deployed on pythonanywhere
 
-Rating - front end too - when user gives rating, how should we handle it? number of ratings received; rating assigned,
+Ratings - deleting a rating
 
-Ratings - deleting a rating, adding a new rating, etc. - how do we handle it?
+Profile pictures - deletion
+
+
+
+
+
+
+---------------------------------------------------------------------------
+
+What we possibly could implement:
+
+    Areas of future improvement/development:
+- more animal categories,
+- leaving reviews of pets/users,
+- blocking users,
+- 'Favourites' category,
+- location range - e.g. all pets within 50 km
+- "booking animal" - adding a feature that would enable booking slots when the user could do some activity with a pet
+- adding calendar option (as above)
+- adding "Report to admin"
+- captcha for registration
+- Adding adds on the website (money money money :P)
+- enabling deleting the account
+- ADDING TERMS AND CONDITIONS - actually we should really do it - it may score us a lot of points from the tutor :3
