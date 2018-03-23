@@ -10,9 +10,7 @@ PRIORITY
 
 2. Put animals in categories - Backend database? - Pets are identified by their "Species" field, in which the choice is (DOG, CAT, LIZARD, HAMSTER, REPTILE, BIRD)
 
-3. Presentation
-
-4. Clean up register.html and editaccount.html, display one of two forms depending on which button is clicked, clean up JS code, then I'll add the map functionality to edit account
+3. Clean up register.html and editaccount.html, display one of two forms depending on which button is clicked, clean up JS code, then I'll add the map functionality to edit account
 
 ---------------------------------------------------------------------------
 
@@ -31,6 +29,12 @@ Fix Github - will be fixed when deployed on pythonanywhere
 Ratings - deleting a rating
 
 Profile pictures - deletion
+
+Editprofile - being able to edit only one field not changing the others, solve pictures problem
+
+Pictures - size conversion?
+
+
 
 
 

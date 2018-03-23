@@ -4,3 +4,4 @@ db.sqlite3
 __pycache__
 *.pyo
 pawpal/migrations/
+/pawpal/migrations/
