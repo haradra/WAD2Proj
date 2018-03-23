@@ -47,7 +47,13 @@
 			<input type="submit" name="submit" value="Register" />
 			</form>
 
-		
+			<form id="pet_form" method="post" action="{% url 'register' %}" enctype="multipart/form-data" style="display: none;">
+
+				{% csrf_token %}
+				{{ user_form.as_p }}
+				{{ pet_form.as_p }}
+
+			</form>
 
 		{% endif %}
 {% endblock %}
