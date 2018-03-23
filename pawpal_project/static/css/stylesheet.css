@@ -143,3 +143,7 @@ li.active .white-link {
     width: 20px;
     height: 20px;
 }
+
+.about-text {
+    text-align: justify;
+}
