@@ -54,6 +54,7 @@
     			{% endif %}
     			{% if not user.user.is_authenticated and not user.is_authenticated%}
     			<ul class="nav navbar-nav pull-right">
+					<li><a href="{% url 'login' %}" class="white-link">Login</a></li>
     				<li><a href="{% url 'register' %}" class="white-link">Register</a></li>
     			</ul>
     			{% endif %}
@@ -80,10 +81,11 @@
     					<a href="{% url 'home' %}">Home</a><br />
     					<a href="{% url 'about' %}">About</a><br />
     					<a href="{% url 'contact' %}">Contact Us</a><br />
+						<a href="{% url 'login' %}">Login</a><br />
+						<a href="{% url 'register' %}">Register</a><br />
     				</div>
     				<div class="col-md-4">
     					<h4>Profile</h4>
-    					<a href="{% url 'register' %}">Register</a><br />
     					<a href="{% url 'myaccount' %}">My Account</a><br />
     					<a href="{% url 'editaccount' %}">Edit Account</a><br />
     					<a href="{% url 'password' %}">Change Password</a><br />
