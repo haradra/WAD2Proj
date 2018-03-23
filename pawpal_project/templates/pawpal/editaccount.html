@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-
+<script>
+//$("input[name='username']").val({{ userProfile.username }});
+</script>
 
 {% block title_block %}Edit Account{% endblock %}
 
@@ -23,11 +25,7 @@
     </style>
 			<div id="map"></div>
 			
-			<script>
-      			initMap();
-
-
-    </script>
+		
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBH49BaYo6GJDl_3bR6WRWsBkaBz04tFE4&callback=initMap">
     </script>
