@@ -3,4 +3,5 @@ db.sqlite3
 .idea/
 __pycache__
 *.pyo
-pawpal/makemigrations
+pawpal/migrations/*
+keys.py
