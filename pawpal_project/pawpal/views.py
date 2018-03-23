@@ -301,11 +301,14 @@ def get_user_profile(request, username):
 def myaccount(request):
     try:
         userProfile = UserProfile.objects.get(user=request.user)
+        last_login = userProfile.user.last_login
     except:
         try:
             userProfile = Pet.objects.get(user=request.user)
+            last_login = userProfile.user.last_login
         except:
             userProfile = UserProfile.objects.get_or_create(user=request.user)[0]
+            last_login = userProfile.user.last_login
     ratings = Rating.objects.filter(toWho=request.user)
     if len(ratings) > 0:
         number_of_ratings = len(ratings)
@@ -330,7 +333,7 @@ def myaccount(request):
                 profile = UserProfile.objects.get_or_create(user=user)[0]
         new_chats.append(profile)
     return render(request, 'pawpal/myaccount.html', {"chats":new_chats,"user":userProfile,"rating":rating,"ratings":range(1,6),
-                                                     "userProfile":userProfile, "number_of_ratings":number_of_ratings})
+                                                     "userProfile":userProfile, "number_of_ratings":number_of_ratings, "last_login":last_login})
 
 
 @login_required

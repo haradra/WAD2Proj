@@ -27,6 +27,7 @@
 				{% if user.location %}<li>Location: {{ user.location }}</li>{% endif %}
 				{% if user.dateOfBirth %}<li>Birth Date: {{ user.dateOfBirth }}</li>{% endif %}
 				{% if user.experience %}<li>Experience: {{ user.experience }}</li>{% endif %}
+                {% if user.user  and user.user.last_login %}<li>Last login: {{ user.user.last_login }}</li>{% endif %}
 				<br />
 				<div id="div-rating">
 					{% for i in ratings %}
