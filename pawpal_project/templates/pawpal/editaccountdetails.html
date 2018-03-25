@@ -23,15 +23,17 @@
         width: 50%;
        }
     </style>
-
+			<div id="map"></div>
+			
+		
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBH49BaYo6GJDl_3bR6WRWsBkaBz04tFE4&callback=initMap">
     </script>
-		<form method="POST" action="{% url 'editaccount' %}"
+		<form method="POST" action="{% url 'editaccountdetails' %}"
 				enctype="multipart/form-data", class="">
 
 			{% csrf_token %}
-            {{ user_form.as_p }}
+            {{ form.as_p }}
 
 			<input type="submit" name="submit" value="Submit changes" />
 		</form>

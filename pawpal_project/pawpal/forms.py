@@ -43,14 +43,38 @@ class UserProfileForm(forms.ModelForm):
 
 
 class UpdatePetProfile(forms.ModelForm):
-    username = forms.CharField(required=True)
-    email = forms.EmailField(required=True)
     location = forms.CharField(max_length=128, required=True)
-
 
     class Meta:
         model = Pet
-        fields = ('username', "email", 'species', 'description', 'profilePicture', 'location')
+        fields = ('species', 'description', 'profilePicture', 'location')
+
+class UpdateUserSeeker(forms.ModelForm):
+    username = forms.CharField(required=True)
+    email = forms.EmailField(required=True)
+    first_name = forms.CharField(required=False)
+    last_name = forms.CharField(required=False)
+    class Meta:
+        model = User
+        fields = ('username', "first_name", "last_name", "email")
+
+    def clean_email(self):
+        username = self.cleaned_data.get('username')
+        email = self.cleaned_data.get('email')
+
+        if email and User.objects.filter(email=email).exclude(username=username).count():
+            raise forms.ValidationError(
+                'This email address is already in use. Please supply a different email address.')
+        return email
+
+
+class UpdateUserPet(forms.ModelForm):
+    username = forms.CharField(required=True)
+    email = forms.EmailField(required=True)
+
+    class Meta:
+        model = User
+        fields = ('username', "email")
 
     def clean_email(self):
         username = self.cleaned_data.get('username')
@@ -63,26 +87,14 @@ class UpdatePetProfile(forms.ModelForm):
 
 
 class UpdateUserProfile(forms.ModelForm):
-    username = forms.CharField(required=True)
-    email = forms.EmailField(required=True)
-    first_name = forms.CharField(required=False)
-    last_name = forms.CharField(required=False)
-    dateOfBirth = forms.DateField(required=False)
     location = forms.CharField(max_length=128, required=True)
+    dateOfBirth = forms.DateField(required=True)
     profilePicture = forms.ImageField(required=False)
 
     class Meta:
         model = UserProfile
-        fields = ('username', 'email', 'first_name', 'last_name', 'experience', 'profilePicture', 'description', 'dateOfBirth', 'location')
+        fields = ('experience', 'profilePicture', 'description', 'dateOfBirth', 'location')
 
-    def clean_email(self):
-        username = self.cleaned_data.get('username')
-        email = self.cleaned_data.get('email')
-
-        if email and User.objects.filter(email=email).exclude(username=username).count():
-            raise forms.ValidationError(
-                'This email address is already in use. Please supply a different email address.')
-        return email
 
 """
 class RatingForm(forms.ModelForm):

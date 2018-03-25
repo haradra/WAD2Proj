@@ -28,8 +28,6 @@ Fix Github - will be fixed when deployed on pythonanywhere
 
 Ratings - deleting a rating
 
-Profile pictures - deletion
-
 Editprofile - being able to edit only one field not changing the others, solve pictures problem
 
 Pictures - size conversion?

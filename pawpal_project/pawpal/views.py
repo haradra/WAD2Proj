@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib import messages
 from pawpal.models import UserProfile, Pet, Rating, Messages, User
-from pawpal.forms import PetForm, UserForm, UserProfileForm, UpdateUserProfile, UpdatePetProfile
+from pawpal.forms import *
 from social_django.models import UserSocialAuth
 from django_private_chat.models import Dialog
 from django.db.models import Q
@@ -96,7 +96,7 @@ def register(request):
     if request.user and request.user.is_authenticated:
         return HttpResponseRedirect(reverse('home'))
     registered = False
-    
+
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
         profile_form = UserProfileForm(data=request.POST)
@@ -213,27 +213,68 @@ def password(request):
             userProfile = UserProfile.objects.get_or_create(user=request.user)[0]
     return render(request, 'pawpal/password.html', {'form': form,'userProfile':userProfile})
 
+
+@login_required
+def editaccountdetails(request):
+    print (request.readlines())
+    # This is really bad code, but it works for now
+    if request.method == 'POST':
+        try:
+            Pet.objects.get(user=request.user)
+            form = UpdatePetProfile(data=request.POST, instance = Pet.objects.get(user=request.user))
+        except Pet.DoesNotExist:
+            form = UpdateUserProfile(data=request.POST, instance= UserProfile.objects.get(user=request.user))
+        finally:
+            if form.is_valid():
+                profile = form.save(commit=False)
+                profile.user = request.user
+                if 'profilePicture' in request.FILES:
+                    profile.profilePicture = request.FILES['profilePicture']
+                profile.save()
+                login(request, request.user, backend='django.contrib.auth.backends.ModelBackend')
+                return HttpResponseRedirect(reverse('myaccount'))
+            else:
+                print(form.errors)
+
+    else:
+        try:
+            Pet.objects.get(user=request.user)
+            form = UpdatePetProfile(data=request.POST, instance= Pet.objects.get(user=request.user))
+        except Pet.DoesNotExist:
+            form = UpdateUserProfile(data=request.POST, instance= UserProfile.objects.get(user=request.user))
+    try:
+        Pet.objects.get(user=request.user)
+        userProfile = Pet.objects.get(user=request.user)
+    except Pet.DoesNotExist:
+        userProfile = UserProfile.objects.get(user=request.user)
+
+    context_dict = {'form': form, 'userProfile': userProfile}
+    return render(request, 'pawpal/editaccountdetails.html', context=context_dict)
+
+
 @login_required
 def editaccount(request):
-    context_dict = {}
-    user = request.user
     #This is really bad code, but it works for now
     if request.method == 'POST':
         try:
             Pet.objects.get(user=request.user)
-            form = UpdatePetProfile(request.POST, instance=user)
+            user_form = UpdateUserPet(data=request.POST, instance=request.user)
         except Pet.DoesNotExist:
-            form = UpdateUserProfile(request.POST, instance=user)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('myaccount'))
+            user_form= UpdateUserSeeker(data=request.POST, instance=request.user)
+        finally:
+            if user_form.is_valid():
+                user = user_form.save()
+                user.save()
+                login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+                return HttpResponseRedirect(reverse('myaccount'))
+            else:
+                print(user_form.errors)
     else:
         try:
             Pet.objects.get(user=request.user)
-            form = UpdatePetProfile(request.POST, instance=user)
+            user_form = UpdateUserPet(data=request.POST, instance=request.user)
         except Pet.DoesNotExist:
-            form = UpdateUserProfile(request.POST, instance=user)
-        
+            user_form= UpdateUserSeeker(data=request.POST, instance=request.user)
     try:
         Pet.objects.get(user=request.user)
         userProfile = Pet.objects.get(user=request.user)
@@ -260,7 +301,7 @@ def editaccount(request):
         userProfile = Pet.objects.get(user=request.user)
     """
         
-    context_dict = {'form':form,'userProfile':userProfile}
+    context_dict = {'user_form':user_form, 'userProfile':userProfile}
     return render(request, 'pawpal/editaccount.html', context=context_dict)
 
 @login_required
