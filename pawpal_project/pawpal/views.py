@@ -120,8 +120,8 @@ def register(request):
             user.save()
             pet = pet_form.save(commit=False)
             pet.user = user
-            if 'petPicture' in request.FILES:
-                pet.petPicture = request.FILES['petPicture']
+            if 'profilePicture' in request.FILES:
+                pet.profilePicture = request.FILES['profilePicture']
             pet.save()
             login(request,user,backend='django.contrib.auth.backends.ModelBackend')
             registered = True
@@ -243,7 +243,7 @@ def editaccountdetails(request):
         except Pet.DoesNotExist:
             form = UpdateUserProfile(data=request.POST, instance= UserProfile.objects.get(user=request.user))
     try:
-        Pet.objects.get(user=request.user)
+        #Pet.objects.get(user=request.user)
         userProfile = Pet.objects.get(user=request.user)
     except Pet.DoesNotExist:
         userProfile = UserProfile.objects.get(user=request.user)

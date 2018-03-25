@@ -27,7 +27,7 @@ class Pet(models.Model):
     location = models.CharField(max_length=128)
     latitude = models.FloatField(default=55.8642)
     longitude = models.FloatField(default=4.2518)
-    profilePicture = models.ImageField(upload_to='pet_images', blank=True)
+    profilePicture = models.ImageField(upload_to='pet_images', blank=True, default='pet_images/wednesday.png')
     
     
     def save(self, *args, **kwargs):
