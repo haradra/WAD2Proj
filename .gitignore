@@ -6,3 +6,4 @@ __pycache__
 keys.py
 /pawpal/migrations/
 pawpal/migrations/
+.pawpal/migrations/
