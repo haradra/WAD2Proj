@@ -31,20 +31,25 @@ def home(request):
 
     userProfile = {}
     listedProfiles = {}
+    userType="user"
     if request.user and request.user.is_authenticated:
         try:
             userProfile = UserProfile.objects.get(user=request.user)
             listedProfiles = Pet.objects.order_by('name')
+            userType="user"
         except:
             try:
                 userProfile = Pet.objects.get(user=request.user)
                 listedProfiles = UserProfile.objects.order_by('description')
+                userType="pet"
             except:
                 userProfile = UserProfile.objects.get_or_create(user=request.user)[0]
                 listedProfiles = Pet.objects.order_by('name')
+                userType="user"
     else:
         listedProfiles = Pet.objects.order_by('name')
-    context_dict = {'listed_profiles':listedProfiles,'userProfile':userProfile}
+        userType="user"
+    context_dict = {'listed_profiles':listedProfiles,'userProfile':userProfile,"userType":userType}
     return render(request, 'pawpal/home.html', context=context_dict)
 
 def about(request):
