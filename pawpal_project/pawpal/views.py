@@ -243,10 +243,11 @@ def editaccountdetails(request):
 
     else:
         try:
-            Pet.objects.get(user=request.user)
-            form = UpdatePetProfile(data=request.POST, instance= Pet.objects.get(user=request.user))
+            profile = Pet.objects.get(user=request.user)
+            form = UpdatePetProfile(data={'location':profile.location,'species':profile.species,'description':profile.description}, instance= Pet.objects.get(user=request.user))
         except Pet.DoesNotExist:
-            form = UpdateUserProfile(data=request.POST, instance= UserProfile.objects.get(user=request.user))
+            profile = UserProfile.objects.get(user=request.user)
+            form = UpdateUserProfile(data={'experience':profile.experience, 'description':profile.description, 'dateOfBirth':profile.dateOfBirth, 'location':profile.location}, instance= UserProfile.objects.get(user=request.user))
     try:
         #Pet.objects.get(user=request.user)
         userProfile = Pet.objects.get(user=request.user)

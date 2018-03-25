@@ -26,13 +26,6 @@ Editprofile - being able to edit only one field not changing the others, solve p
 
 Pictures - size conversion?
 
-
-
-
-
-
-
-
 ---------------------------------------------------------------------------
 
 What we possibly could implement:

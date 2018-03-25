@@ -27,7 +27,7 @@ class Pet(models.Model):
     location = models.CharField(max_length=128)
     latitude = models.FloatField(default=55.8642)
     longitude = models.FloatField(default=4.2518)
-    profilePicture = models.ImageField(upload_to='pet_images', blank=True, default='pet_images/wednesday.png')
+    profilePicture = models.ImageField(upload_to='pet_images', blank=False, default='pet_images/wednesday.png')
     
     
     def save(self, *args, **kwargs):
@@ -58,7 +58,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     location = models.CharField(max_length=128)
     dateOfBirth = models.DateField(default=now)
-    profilePicture = models.ImageField(upload_to='profile_images', blank=True, default="profile_images/user.jpeg")
+    profilePicture = models.ImageField(upload_to='profile_images', blank=False, default="profile_images/user.jpeg")
     experience = models.PositiveIntegerField(default=0)
     description = models.CharField(max_length=300)
     latitude = models.FloatField(default=55.8642)
