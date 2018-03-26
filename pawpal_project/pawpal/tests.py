@@ -1,9 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
+import datetime
+from django.core.urlresolvers import reverse
 from django.test import TestCase
+from django.utils import timezone
+from pawpal.forms import *
+from pawpal.models import *
+from pawpal.views import *
+from pawpal.urls import *
 
-# Create your tests here.
+
+# helper methods to create user personas
 def add_user(username, email, password):
     u = UserProfile.objects.get_or_create(user=username)[0]
     u.email = email
@@ -17,3 +24,10 @@ def add_pet(username, email, password):
     u.password = password
     u.save()
     return u
+
+# The following tests check whether the urls are loaded/found successfully given the correct conditions/slugs
+class test_account_page_loads(TestCase):
+    
+    def test_my_account(self):
+        response = self.client.get(reverse('myaccount'))
+        self.assertEqual(response.status_code, 302)
