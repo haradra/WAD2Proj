@@ -1,8 +1,7 @@
 *.pyc
+*.pyo
+*.pyd
 db.sqlite3
 .idea/
 __pycache__
-*.pyo
-pawpal/migrations/
-/pawpal/migrations/
-.pawpal/migrations/
+./pawpal/migrations/
