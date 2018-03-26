@@ -16,11 +16,7 @@ from django.db.models import Q
 
 # Create your views here.
 def home(request):
-    context_dict = {}
     userProfile = {}
-    listedProfiles = {}
-    
-    userType="user"
 
     # Determines whether current user is logged in and what type of user
     # Pet or Seeker
@@ -118,7 +114,7 @@ def register(request):
                 profile.profilePicture = request.FILES['profilePicture']
             profile.save()
             login(request,user,backend='django.contrib.auth.backends.ModelBackend')
-            registered = True
+            #registered = True
             return HttpResponseRedirect(reverse('home'))
         elif user_form.is_valid() and pet_form.is_valid():
             user = user_form.save()
@@ -130,7 +126,7 @@ def register(request):
                 pet.profilePicture = request.FILES['profilePicture']
             pet.save()
             login(request,user,backend='django.contrib.auth.backends.ModelBackend')
-            registered = True
+            #registered = True
             return HttpResponseRedirect(reverse('home'))
         else:
             print(user_form.errors, profile_form.errors)
@@ -251,7 +247,6 @@ def editaccountdetails(request):
             profile = UserProfile.objects.get(user=request.user)
             form = UpdateUserProfile(data={'experience':profile.experience, 'description':profile.description, 'dateOfBirth':profile.dateOfBirth, 'location':profile.location}, instance= UserProfile.objects.get(user=request.user))
     try:
-        #Pet.objects.get(user=request.user)
         userProfile = Pet.objects.get(user=request.user)
     except Pet.DoesNotExist:
         userProfile = UserProfile.objects.get(user=request.user)
@@ -277,13 +272,13 @@ def editaccount(request):
             else:
                 print(user_form.errors)
     else:
+        user_current = User.objects.get(username=request.user.username)
         try:
             Pet.objects.get(user=request.user)
-            user_form = UpdateUserPet(data=request.POST, instance=request.user)
+            user_form = UpdateUserPet(data={'username':user_current.username, 'email':user_current.email}, instance=request.user)
         except Pet.DoesNotExist:
-            user_form= UpdateUserSeeker(data=request.POST, instance=request.user)
+            user_form= UpdateUserSeeker(data={'username':user_current.username, 'first_name':user_current.first_name, 'last_name':user_current.last_name, 'email':user_current.email}, instance=request.user)
     try:
-        Pet.objects.get(user=request.user)
         userProfile = Pet.objects.get(user=request.user)
     except Pet.DoesNotExist:
         userProfile = UserProfile.objects.get(user=request.user)
@@ -299,7 +294,7 @@ def get_user_profile(request, username):
     if request.user and request.user.username == username:
         return HttpResponseRedirect(reverse('myaccount'))
     find_user = User.objects.get(username=username)
-    page_to_render=""
+    #page_to_render=""
     try:
         user = UserProfile.objects.get(user=find_user)
         page_to_render = "pawpal/user_profile.html"
