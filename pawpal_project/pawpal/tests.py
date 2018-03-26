@@ -26,8 +26,26 @@ def add_pet(username, email, password):
     return u
 
 # The following tests check whether the urls are loaded/found successfully given the correct conditions/slugs
-class test_account_page_loads(TestCase):
-    
+class PawPalUrlsTests(TestCase):
+
     def test_my_account(self):
         response = self.client.get(reverse('myaccount'))
+        self.assertEqual(response.status_code, 302)
+
+#    def test_contact_page(self):
+#        response = self.client.get(reverse('contact'))
+#        self.assertEqual(response.status_code, 302)
+
+#    def test_about_page(self):
+#        response = self.client.get(reverse('about'))
+#        self.assertEqual(response.status_code, 302)
+
+    def test_home_page(self):
+        add_pet('Tusia','tusia1234@gmail.com','DifficultPa$$word1')
+        response = self.client.get(reverse('home')
+        self.assertEqual(response.status_code, 302)
+
+        
+    def test_register_page(self):
+        response = self.client.get(reverse('register'))
         self.assertEqual(response.status_code, 302)
