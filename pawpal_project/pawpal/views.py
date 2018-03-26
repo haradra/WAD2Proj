@@ -114,7 +114,6 @@ def register(request):
                 profile.profilePicture = request.FILES['profilePicture']
             profile.save()
             login(request,user,backend='django.contrib.auth.backends.ModelBackend')
-            #registered = True
             return HttpResponseRedirect(reverse('home'))
         elif user_form.is_valid() and pet_form.is_valid():
             user = user_form.save()
@@ -126,7 +125,6 @@ def register(request):
                 pet.profilePicture = request.FILES['profilePicture']
             pet.save()
             login(request,user,backend='django.contrib.auth.backends.ModelBackend')
-            #registered = True
             return HttpResponseRedirect(reverse('home'))
         else:
             print(user_form.errors, profile_form.errors)
@@ -294,7 +292,6 @@ def get_user_profile(request, username):
     if request.user and request.user.username == username:
         return HttpResponseRedirect(reverse('myaccount'))
     find_user = User.objects.get(username=username)
-    #page_to_render=""
     try:
         user = UserProfile.objects.get(user=find_user)
         page_to_render = "pawpal/user_profile.html"
@@ -345,12 +342,10 @@ def myaccount(request):
     chats=Dialog.objects.filter(Q(owner=request.user)|Q(opponent=request.user))
     new_chats=[]
     for chat in chats:
-        user = None
         if chat.owner == request.user:
             user = chat.opponent
         else:
             user = chat.owner
-        profile = None
         try:
             profile = UserProfile.objects.get(user=user)
         except:
