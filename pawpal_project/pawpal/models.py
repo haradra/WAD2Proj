@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
@@ -10,7 +9,8 @@ from pawpal_project import settings
 
 # Create your models here.
 
-
+# Model for the Pet type user
+# Related to base User model via one to one field constraint
 class Pet(models.Model):
     SPECIES_CHOICES = (
         ('DOG', 'Dog'),
@@ -20,6 +20,7 @@ class Pet(models.Model):
         ('BIRD', 'Bird'),
         ('HAMSTER', 'Hamster')
     )
+    
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50, unique=False)
     description = models.CharField(max_length=300)
@@ -31,7 +32,6 @@ class Pet(models.Model):
     
     
     def save(self, *args, **kwargs):
-        #self.slug = slugify(self.name)
         super(Pet, self).save(*args, **kwargs)
     
     def __str__(self):
@@ -42,18 +42,17 @@ class Rating(models.Model):
     madeBy = models.ForeignKey(User, on_delete=models.CASCADE, related_name='madBy')
     toWho = models.ForeignKey(User, on_delete=models.CASCADE, related_name='toWho')
     rating = models.CharField(max_length=30)
-    #slug = models.SlugField(unique=True)
+
 
     def save(self, *args, **kwargs):
-        #Same question, what are we slugifying, is slug even necessary here?
-        #Need to think how will the URL look
-        #self.slug = slugify(self.)
         super(Rating, self).save(*args, **kwargs)
 
     def __str__(self):
         return "By " + str(self.madeBy) + " to " + str(self.toWho) + ":  " + str(self.rating)
 
 
+# Model for the Seeker type user
+# Related to base User model via one to one field constraint
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     location = models.CharField(max_length=128)
@@ -63,13 +62,9 @@ class UserProfile(models.Model):
     description = models.CharField(max_length=300)
     latitude = models.FloatField(default=55.8642)
     longitude = models.FloatField(default=4.2518)
-    #slug = models.SlugField(unique=True, blank=True)
 
-    #website = models.URLField(blank=True)  #should we include this line too?
 
     def save(self, *args, **kwargs):
-        #What are we slugifying to here? user for now
-        #self.slug = slugify(self.user)
         super(UserProfile, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -82,10 +77,9 @@ class Messages(models.Model):
     seekerUsername = models.ForeignKey(User, on_delete=models.CASCADE, related_name='seekerUsername')
     date = models.DateField(default=now)
     messages = models.CharField(max_length=200)
-    #slug = models.SlugField(unique=True)
+
+    
     def save(self, *args, **kwargs):
-        
-        #self.slug = slugify(self.)
         super(Messages, self).save(*args, **kwargs)
 
     def __str__(self):

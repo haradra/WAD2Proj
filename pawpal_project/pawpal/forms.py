@@ -4,9 +4,7 @@ from pawpal.models import UserProfile, Pet, Rating, Messages
 
 
 class PetForm(forms.ModelForm):
-    """
-    name = forms.CharField(max_length=50, help_text="Please enter your pet's name.")
-    """
+    
     location = forms.CharField(max_length=50, help_text="Please enter your location.")
     latitude = forms.FloatField(widget=forms.HiddenInput(), initial=55.8642)
     longitude = forms.FloatField(widget=forms.HiddenInput(), initial=4.2518)
@@ -28,12 +26,6 @@ class UserForm(forms.ModelForm):
 
 class UserProfileForm(forms.ModelForm):
     location = forms.CharField(max_length=128, required=True)
-    """
-    dateOfBirth = forms.DateField(initial=datetime.date.today)
-    profilePicture = forms.ImageField(required=False)
-    experience = forms.IntegerField(initial=0)
-    showPets = forms.BooleanField(initial=False)
-    """
     latitude = forms.FloatField(widget=forms.HiddenInput(), initial=55.8642)
     longitude = forms.FloatField(widget=forms.HiddenInput(), initial=4.2518)
 
@@ -95,14 +87,3 @@ class UpdateUserProfile(forms.ModelForm):
         model = UserProfile
         fields = ('experience', 'profilePicture', 'description', 'dateOfBirth', 'location')
 
-
-"""
-class RatingForm(forms.ModelForm):
-    toWho = forms.CharField(required=True)
-    madeBy = forms.CharField(required=True)
-    rating = forms.CharField(required=True)
-
-    class Meta:
-        model = Rating
-        fields = ('toWho', 'madeBy', 'rating')
-"""
