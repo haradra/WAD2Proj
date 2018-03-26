@@ -21,16 +21,17 @@ Example:
 ## Running the application locally
 
 Change to the pawpal_project directory and run:
+
 ```python manage.py runserver```
 
 
 ## To enable messaging functionality
 
     make migrations for chat server:
-      ```python manage.py migrate django_private_chat```
+      python manage.py migrate django_private_chat
 
     run message server:
-      ```python manage.py run_chat_server```
+      python manage.py run_chat_server
 
     You can talk to two different users (or to yourself) on the same machine by accessing:
         http://127.0.0.1:8000/pawpal/dialogs/user_name1
