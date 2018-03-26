@@ -156,6 +156,8 @@ def user_logout(request):
 @login_required
 def settings(request):
     # Allows users to manage and dis/connect multiple social media accounts
+    # Note: the social media authentication no longer works on localhost
+    # This is due to the change of callback url to suit the pythonanywhere deployment
     user = request.user
 
     try:
