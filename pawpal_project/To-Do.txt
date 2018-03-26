@@ -6,11 +6,7 @@ PRIORITY
 
 ---------------------------------------------------------------------------
 
-1. Upload to Pythonanywhere
-
-2. Put animals in categories - Backend database? - Pets are identified by their "Species" field, in which the choice is (DOG, CAT, LIZARD, HAMSTER, REPTILE, BIRD)
-
-3. Clean up register.html and editaccount.html, display one of two forms depending on which button is clicked, clean up JS code, then I'll add the map functionality to edit account
+1. Clean up register.html and editaccount.html, display one of two forms depending on which button is clicked, clean up JS code, then I'll add the map functionality to edit account
 
 ---------------------------------------------------------------------------
 
@@ -24,20 +20,11 @@ Unit Testing
 
 Connect pop script fields like description etc to user profile
 
-Fix Github - will be fixed when deployed on pythonanywhere
-
 Ratings - deleting a rating
 
 Editprofile - being able to edit only one field not changing the others, solve pictures problem
 
 Pictures - size conversion?
-
-
-
-
-
-
-
 
 ---------------------------------------------------------------------------
 

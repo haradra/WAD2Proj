@@ -33,8 +33,7 @@
 			<button type="button" name="petbtn" value="Pet" onclick="petFunction();">I am a pet!</button><br />
 			<button type="button" name="userbtn" value="User" onclick="userFunction();">I am a seeker!</button><br />
 			
-			<form id="user_form" method="post" action="{% url 'register' %}"
-				enctype="multipart/form-data">
+			<form id="user_form" method="post" action="{% url 'register' %}" enctype="multipart/form-data">
 
 			{% csrf_token %}
 			{{ user_form.as_p }}
@@ -47,7 +46,7 @@
 				{% csrf_token %}
 				{{ user_form.as_p }}
 				{{ pet_form.as_p }}
-
+			<input type="submit" name="submit" value="Register" />
 			</form>
 
 		{% endif %}

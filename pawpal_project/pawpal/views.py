@@ -17,37 +17,38 @@ from django.db.models import Q
 # Create your views here.
 def home(request):
     context_dict = {}
-#    return HttpResponse("""Home page. PawPal
-#    <br/> <a href='/pawpal/about/'>About</a>
-#    <br/> <a href='/pawpal/contact/'>Contact us</a>
-#    <br/> <a href='/pawpal/editaccount/'>Edit account</a>
-#    <br/> <a href='/pawpal/register/'>Register page</a>
-#    <br/> <a href='/pawpal/login/'>Login page</a>
-#    <br/> <a href='/pawpal/pets/'>Pets page</a>
-#    <br/> <a href='/pawpal/messenger/'>Messenger page</a>
-#    <br/> <a href='/pawpal/chosenpet/'>Chosen pet page</a>
-#    <br/> <a href='/pawpal/myaccount/'>My account page</a>""")
-    context_dict = {}
-
     userProfile = {}
     listedProfiles = {}
+    
+    userType="user"
+
+    # Determines whether current user is logged in and what type of user
+    # Pet or Seeker
+    # The resulting display depends on which type of user makes the request
     if request.user and request.user.is_authenticated:
         try:
             userProfile = UserProfile.objects.get(user=request.user)
             listedProfiles = Pet.objects.order_by('name')
+            userType="user"
         except:
             try:
                 userProfile = Pet.objects.get(user=request.user)
                 listedProfiles = UserProfile.objects.order_by('description')
+                userType="pet"
             except:
                 userProfile = UserProfile.objects.get_or_create(user=request.user)[0]
                 listedProfiles = Pet.objects.order_by('name')
+                userType="user"
+                
     else:
         listedProfiles = Pet.objects.order_by('name')
-    context_dict = {'listed_profiles':listedProfiles,'userProfile':userProfile}
+        userType="user"
+        
+    context_dict = {'listed_profiles':listedProfiles,'userProfile':userProfile,"userType":userType}
     return render(request, 'pawpal/home.html', context=context_dict)
 
 def about(request):
+    # Checks if user is logged in and displays about page
     userProfile = {}
     if request.user and request.user.is_authenticated:
         try:
@@ -60,6 +61,8 @@ def about(request):
     return render(request, 'pawpal/about.html',{'userProfile':userProfile})
 
 def contact(request):
+    
+    # Checks if user is logged in and displays contact page
     userProfile={}
     if request.user and request.user.is_authenticated:
         try:
@@ -72,6 +75,7 @@ def contact(request):
     return render(request, 'pawpal/contact.html',{'userProfile':userProfile})
 
 def user_login(request):
+    # Displays login page, includes error message if incorrect authentication
     login_error = False
     if request.method == 'POST':
 
@@ -92,11 +96,13 @@ def user_login(request):
         return render(request, 'pawpal/login.html', {})
 
 def register(request):
-
+    # Displays register page, if user is logged in redirects to home page
     if request.user and request.user.is_authenticated:
         return HttpResponseRedirect(reverse('home'))
     registered = False
 
+    # Lets user decide between 2 types, Pet or Seeker
+    # Displays appropriate form fields depending on type of user
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
         profile_form = UserProfileForm(data=request.POST)
@@ -120,8 +126,8 @@ def register(request):
             user.save()
             pet = pet_form.save(commit=False)
             pet.user = user
-            if 'petPicture' in request.FILES:
-                pet.petPicture = request.FILES['petPicture']
+            if 'profilePicture' in request.FILES:
+                pet.profilePicture = request.FILES['profilePicture']
             pet.save()
             login(request,user,backend='django.contrib.auth.backends.ModelBackend')
             registered = True
@@ -141,9 +147,6 @@ def register(request):
                    'pet_form': pet_form,
                    'registered': registered
                   })
-    """
-    return HttpResponse("Register page<a href="/pawpal/">home</a>")
-    """
 
 @login_required
 def user_logout(request):
@@ -152,6 +155,7 @@ def user_logout(request):
 
 @login_required
 def settings(request):
+    # Allows users to manage and dis/connect multiple social media accounts
     user = request.user
 
     try:
@@ -188,6 +192,7 @@ def settings(request):
 
 @login_required
 def password(request):
+    # Allows user to change password, or define it if user was connected through social media
     if request.user.has_usable_password():
         PasswordForm = PasswordChangeForm
     else:
@@ -216,8 +221,8 @@ def password(request):
 
 @login_required
 def editaccountdetails(request):
+    # User can update certain fields relating to their account
     print (request.readlines())
-    # This is really bad code, but it works for now
     if request.method == 'POST':
         try:
             Pet.objects.get(user=request.user)
@@ -238,12 +243,13 @@ def editaccountdetails(request):
 
     else:
         try:
-            Pet.objects.get(user=request.user)
-            form = UpdatePetProfile(data=request.POST, instance= Pet.objects.get(user=request.user))
+            profile = Pet.objects.get(user=request.user)
+            form = UpdatePetProfile(data={'location':profile.location,'species':profile.species,'description':profile.description}, instance= Pet.objects.get(user=request.user))
         except Pet.DoesNotExist:
-            form = UpdateUserProfile(data=request.POST, instance= UserProfile.objects.get(user=request.user))
+            profile = UserProfile.objects.get(user=request.user)
+            form = UpdateUserProfile(data={'experience':profile.experience, 'description':profile.description, 'dateOfBirth':profile.dateOfBirth, 'location':profile.location}, instance= UserProfile.objects.get(user=request.user))
     try:
-        Pet.objects.get(user=request.user)
+        #Pet.objects.get(user=request.user)
         userProfile = Pet.objects.get(user=request.user)
     except Pet.DoesNotExist:
         userProfile = UserProfile.objects.get(user=request.user)
@@ -254,7 +260,6 @@ def editaccountdetails(request):
 
 @login_required
 def editaccount(request):
-    #This is really bad code, but it works for now
     if request.method == 'POST':
         try:
             Pet.objects.get(user=request.user)
@@ -280,32 +285,15 @@ def editaccount(request):
         userProfile = Pet.objects.get(user=request.user)
     except Pet.DoesNotExist:
         userProfile = UserProfile.objects.get(user=request.user)
-        
-        """
-        if hasattr(user, 'Pet'):
-            form = UpdateUserProfile(request.POST, instance=user)
-        elif hasattr(user, 'UserProfile'):
-            form = UpdatePetProfile(request.POST, instance=user)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('myaccount'))
-    else:
-        if hasattr(user, 'Pet'):
-            form = UpdateUserProfile(request.POST, instance=user)
-        elif hasattr(user, 'UserProfile'):
-            form = UpdatePetProfile(request.POST, instance=user)
-            
-    if hasattr(user, 'Pet'):
-        userProfile = UserProfile.objects.get(user=request.user)
-    elif hasattr(user, 'UserProfile'):
-        userProfile = Pet.objects.get(user=request.user)
-    """
+    
         
     context_dict = {'user_form':user_form, 'userProfile':userProfile}
     return render(request, 'pawpal/editaccount.html', context=context_dict)
 
 @login_required
 def get_user_profile(request, username):
+    # Allows users to visit and view other users profiles and their info
+    # If user searches for his own account, redirects to myaccount
     if request.user and request.user.username == username:
         return HttpResponseRedirect(reverse('myaccount'))
     find_user = User.objects.get(username=username)
@@ -340,6 +328,7 @@ def get_user_profile(request, username):
 
 @login_required
 def myaccount(request):
+    # Lets users view their own account and info
     try:
         userProfile = UserProfile.objects.get(user=request.user)
         last_login = userProfile.user.last_login
@@ -379,6 +368,7 @@ def myaccount(request):
 
 @login_required
 def create_rating(request, username, rating):
+    # Creates rating for user
     if not (username and rating):
         return HttpResponseRedirect(reverse('home'))
     find_user = User.objects.get(username=username)

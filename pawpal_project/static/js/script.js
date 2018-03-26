@@ -1,6 +1,8 @@
-function selectButton(element) {
+function selectButton(element,species) {
     $(element).parent().find("button").removeClass("active");
     $(element).addClass("active");
+    $("#images-left a").hide();
+    $(".pet-species-"+species).show();
 }
 
 function selectPaws(paws) {

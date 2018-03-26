@@ -15,17 +15,20 @@ PawPal
 
 {% block body_block %}
 		<h2>Welcome to PawPal!</h2><br />
-		<h4> {% if user.is_authenticated %}Hello {{ user.username }}, look at all these pets needing a pal!{% else %}Here are some of our animals looking for a friend. Join us today and become a PawPal!{% endif %}</h4>
+		<h4> {% if user.is_authenticated %}Hello {{ user.username }}, look at all these {% ifequal userType "user" %} pets {% else %} people {% endifequal %} needing a pal!{% else %}Here are some of our animals looking for a friend. Join us today and become a PawPal!{% endif %}</h4>
+		{% ifequal userType "user" %}
 		<div class="btn-group" role="group" aria-label="Basic example" style="width: 100%;">
-			<button type="button" class="btn btn-secondary" onclick="selectButton(this);">Dogs</button>
-			<button type="button" class="btn btn-secondary" onclick="selectButton(this);">Cats</button>
-			<button type="button" class="btn btn-secondary" onclick="selectButton(this);">Hamsters</button>
-			<button type="button" class="btn btn-secondary" onclick="selectButton(this);">Reptiles</button>
-			<button type="button" class="btn btn-secondary" onclick="selectButton(this);">Birds</button>
+			<button type="button" class="btn btn-secondary" onclick="selectButton(this,'Dog');">Dogs</button>
+			<button type="button" class="btn btn-secondary" onclick="selectButton(this,'Cat');">Cats</button>
+			<button type="button" class="btn btn-secondary" onclick="selectButton(this,'Hamster');">Hamsters</button>
+			<button type="button" class="btn btn-secondary" onclick="selectButton(this,'Reptile');">Reptiles</button>
+			<button type="button" class="btn btn-secondary" onclick="selectButton(this,'Bird');">Birds</button>
+			<button type="button" class="btn btn-secondary" onclick="selectButton(this,'Lizard');">Lizards</button>
 		</div>
+		{% endifequal %}
 		<div id="images-left">
 			{% for profile in listed_profiles %}
-			<a href="{% url 'user_profile' profile.user.username %}"><img src="{{ profile.profilePicture.url }}" /></a>
+			<a href="{% url 'user_profile' profile.user.username %}" class="pet-species-{{ profile.species }}"><img src="{{ profile.profilePicture.url }}" /></a>
 			{% endfor %}
 		</div>
 
