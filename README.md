@@ -44,9 +44,9 @@ Link:
 
 ## External Sources
 
-Tango With Django: A beginner's Guide to Web Development With Django 1.9 (Leif Azzopardi, David Maxwell)
-Picture sources: www.pexels.com
-Private Chat functionality: https://github.com/Bearle/django-private-chat
+* Tango With Django: A beginner's Guide to Web Development With Django 1.9 (Leif Azzopardi, David Maxwell)
+* Picture sources: www.pexels.com
+* Private Chat functionality: https://github.com/Bearle/django-private-chat
 
 
 
