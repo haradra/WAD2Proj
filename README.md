@@ -5,7 +5,7 @@ This is a group project undertaken under the WAD2 module. The purpose of this we
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 
 ### Prerequisites
@@ -42,13 +42,14 @@ Link:
 * [Bootstrap 3](https://getbootstrap.com/docs/3.3/)
 
 
-## Sources
+## External Sources
 
+Tango With Django: A beginner's Guide to Web Development With Django 1.9 (Leif Azzopardi, David Maxwell)
 Picture sources: www.pexels.com
+Private Chat functionality: https://github.com/Bearle/django-private-chat
+
 
 
 ## Team Members
 
 See list of [contributors](https://github.com/haradra/WAD2Proj/graphs/contributors) who participated in this project.
-
-
