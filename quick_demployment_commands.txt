@@ -8,6 +8,7 @@ Changing default to python3:
 alias python='python3'
 alias populate='rm db.sqlite3; rm -R pawpal/migrations; python3 manage.py makemigrations pawpal; python3 manage.py migrate; python3 populate_pawpal.py;'
 
+GitHub useful instructions:
 https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf
 
 Messaging functionality:
@@ -22,7 +23,7 @@ Messaging functionality:
         python manage.py run_chat_server
 
     messaging can be accessed from pawpal/dialogs/<username>
-    
+
     You can talk to two different users (or to yourself) on the same machine by accessing:
         http://127.0.0.1:8000/pawpal/dialogs/user_name1
         http://localhost:8000/pawpal/dialogs/user_name2
