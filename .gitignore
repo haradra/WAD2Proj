@@ -7,3 +7,4 @@ keys.py
 /pawpal/migrations/
 pawpal/migrations/
 .pawpal/migrations/
+pawpal/migrations/0001_initial.py

@@ -58,8 +58,6 @@ def populate():
     for user in users:
         add_user(user)
 
-
-
     pets = [
         {"username": "cameleon123",
          "password":"qwerty12345",
@@ -120,8 +118,6 @@ def populate():
     for pet in pets:
         add_pet(pet)
 
-
-
     ratings = [
         {"madeBy": User.objects.get(username="LoveIguanas"),
          "toWho": User.objects.get(username="Doggos"),
@@ -171,28 +167,6 @@ def populate():
 
     for rating in ratings:
         add_rating(rating["madeBy"], rating["toWho"], rating["rating"])
-
-
-    """
-    messages = [
-        {"petId": User.objects.get(username="doggo123"),
-         "seekerUsername": User.objects.get(username="Doggos"),
-         "date": datetime.date(1999, 6, 1),
-         "messages":"Can I steal your lizard for the weekend, please?"},
-        {"petId": User.objects.get(username="catto123"),
-         "seekerUsername": User.objects.get(username="Doggos"),
-         "date": datetime.date(1999, 6, 1),
-         "messages": "That's a nice cat! Can I cuddle it?"},
-        {"petId": User.objects.get(username="lizardo123"),
-         "seekerUsername": User.objects.get(username="anilano"),
-         "date": datetime.date(1999, 6, 1),
-         "messages": "I love dogs! What would you say for a walk together?"},   ]
-
-    for message in messages:
-        add_message(message["petId"], message["seekerUsername"], message["date"], message["messages"])
-    """
-
-
 
 
 def add_user(user):
