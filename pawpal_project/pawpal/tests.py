@@ -49,20 +49,8 @@ class PawPalUrlsTests(TestCase):
         self.assertEqual(response.status_code, 302)
 
 
-#    def test_contact_page(self):
-#        response = self.client.get(reverse('contact'))
-#        self.assertEqual(response.status_code, 302)
 
-#    def test_about_page(self):
-#        response = self.client.get(reverse('about'))
-#        self.assertEqual(response.status_code, 302)
-
-#    def test_home_page(self):
-#        add_pet('Tusia','tusia1234@gmail.com','DifficultPa$$word1')
-#        response = self.client.get(reverse('home')
-#        self.assertEqual(response.status_code, 302)
-
-
-#    def test_register_page(self):
-#        response = self.client.get(reverse('register'))
-#        self.assertEqual(response.status_code, 302)
+    #def test_login(self):
+    #    add_pet('Tusia','tusia1234@gmail.com','DifficultPassword1')
+    #    response = self.client.get(reverse('/pawpal/login/')
+    #    self.assertEqual(response.status_code, 302)
