@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+<!--> User profile template. All the details displayed with a rating as well as the message button on the side.</!-->
 {% load staticfiles %}
 
 {% block title_block %}User Profile{% endblock %}
@@ -49,7 +50,7 @@
 		</div>
 			<div class="col-md-2">
 				<br /><br />
-				<button type="button" class="btn btn-info" onclick="location.href = '{% url 'dialogs_detail' user.user.username %}';">Messenger</button><br />
+				<button type="button" class="btn btn-info" onclick="location.href = '{% url 'dialogs_detail' user.user.username %}';">Message {{ user.name }} </button><br />
 			</div>
 		</div>
 {% endblock %}

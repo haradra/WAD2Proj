@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+<!-->My account template. All the details displayed including the rating, with buttons for editing a profile and settings.</!-->
 {% load staticfiles %}
 
 {% block title_block %}My Account{% endblock %}
@@ -55,14 +56,5 @@
 			{% for chat in chats %}
 			<a href="{% url 'user_profile' chat.user.username %}"><img src="{{ chat.profilePicture.url}}" /></a>
 			{% endfor %}
-			<!--<img src="{% static 'images/scroll_images/lion.jpg' %}" />
-			<img src="{% static 'images/scroll_images/bunny.jpeg' %}" />
-			<img src="{% static 'images/scroll_images/squirrel.jpg' %}" />
-			<img src="{% static 'images/scroll_images/lion.jpg' %}" />
-			<img src="{% static 'images/scroll_images/bunny.jpeg' %}" />
-			<img src="{% static 'images/scroll_images/squirrel.jpg' %}" />
-			<img src="{% static 'images/scroll_images/lion.jpg' %}" />
-			<img src="{% static 'images/scroll_images/bunny.jpeg' %}" />
-			<img src="{% static 'images/scroll_images/squirrel.jpg' %}" />-->
 		</div>
 {% endblock %}

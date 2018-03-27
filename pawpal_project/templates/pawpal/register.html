@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
+<!-->Register page template. Some functionality added to the basic django register template (user types and google maps). </!-->
 {% load staticfiles %}
-	
+
 {% block title_block %}Register{% endblock %}
 
 {% block menubutton1_active %}{% endblock %}
@@ -26,13 +27,13 @@
        }
     </style>
 			<div id="map"></div>
-			
+
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBH49BaYo6GJDl_3bR6WRWsBkaBz04tFE4&callback=initMap">
     </script>
 			<button type="button" name="petbtn" value="Pet" onclick="petFunction();">I am a pet!</button><br />
 			<button type="button" name="userbtn" value="User" onclick="userFunction();">I am a seeker!</button><br />
-			
+
 			<form id="user_form" method="post" action="{% url 'register' %}" enctype="multipart/form-data">
 
 			{% csrf_token %}
