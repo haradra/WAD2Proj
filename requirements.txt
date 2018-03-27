@@ -2,7 +2,6 @@ certifi==2018.1.18
 chardet==3.0.4
 defusedxml==0.5.0
 Django==1.11.7
-django-private-chat==0.1.6
 idna==2.6
 oauthlib==2.0.6
 Pillow==5.0.0
