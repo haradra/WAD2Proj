@@ -1,36 +1,34 @@
+<!-- Contact us page template. List of all team members and our contact details. -->
 {% extends "base.html" %}
-<!-->Contact us page template. List of team members and conatact details. </!-->
 {% load staticfiles %}
-
-{% block title_block %}Contact Us{% endblock %}
+{% block title_block %}
+	Contact Us
+{% endblock %}
 
 {% block menubutton1_active %}{% endblock %}
-
 {% block menubutton2_active %}{% endblock %}
-
 {% block menubutton3_active %}class="active"{% endblock %}
-
 {% block menubutton4_active %}{% endblock %}
 
 {% block body_block %}
+<h2>Contact us</h2>
 
-	<h2>Contact us</h2>
-	<div class="row">
-		<div class="col-md-6">
-			<p>Our team consists of four members.</p>
-			<p>Adam Czyzewski</p>
-			<p>Malgorzata Kurkiewicz</p>
-			<p>Ivelina Doynova</p>
-			<p>Milo Krawiec</p>
-		</div>
+<div class="row">
+    <div class="col-md-6">
+        <p>Our team consists of four members.</p>
+        <p>Adam Czyzewski</p>
+        <p>Ivelina Doynova</p>
+        <p>Malgorzata Kurkiewicz</p>
+        <p>Milo Krawiec</p>
+    </div>
 
-		<div class="col-md-6">
-			<br />
-			<p>Email: pawpal@pawpal.com</p>
-			<p>Telephone: 07852545875</p>
-			<p>Address: Boyd Orr Building</p>
-			<p>University Avenue, Glasgow G12 8QQ</p>
-		</div>
-	</div>
-	
+    <div class="col-md-6">
+        <br />
+        <p>Email: pawpal@pawpal.com</p>
+        <p>Telephone: 07852545875</p>
+        <p>Address: Boyd Orr Building</p>
+        <p>University Avenue, Glasgow G12 8QQ</p>
+    </div>
+</div>
+
 {% endblock %}
