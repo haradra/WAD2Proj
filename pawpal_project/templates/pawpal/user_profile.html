@@ -13,6 +13,7 @@
 {% block menubutton4_active %}{% endblock %}
 
 {% block body_block %}
+
 		<div class="row">
             <div class="col-md-4">
 				<h2>{{ user.user.username }}</h2>
@@ -53,4 +54,5 @@
 				<button type="button" class="btn btn-info" onclick="location.href = '{% url 'dialogs_detail' user.user.username %}';">Message {{ user.name }} </button><br />
 			</div>
 		</div>
+		
 {% endblock %}

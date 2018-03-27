@@ -15,18 +15,21 @@
 {% block menubutton4_active %}{% endblock %}
 
 {% block body_block %}
+
 		<h2>Edit Account</h2>
 		<html>
-<style>
+
+		<style>
        #map {
         height: 400px;
         width: 50%;
        }
-    </style>
+		 </style>
 
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBH49BaYo6GJDl_3bR6WRWsBkaBz04tFE4&callback=initMap">
     </script>
+
 		<form method="POST" action="{% url 'editaccount' %}"
 				enctype="multipart/form-data", class="">
 
@@ -35,4 +38,5 @@
 
 			<input type="submit" name="submit" value="Submit changes" />
 		</form>
+		
 {% endblock %}

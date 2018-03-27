@@ -17,8 +17,10 @@ PawPal
 {% block menubutton4_active %}{% endblock %}
 
 {% block body_block %}
+
 		<h2>Welcome to PawPal!</h2><br />
 		<h4> {% if user.is_authenticated %}Hello {{ user.username }}, look at all these {% ifequal userType "user" %} pets {% else %} people {% endifequal %} needing a pal!{% else %}Here are some of our animals looking for a friend. Join us today and become a PawPal!{% endif %}</h4>
+
 		{% ifequal userType "user" %}
 		<div class="btn-group" role="group" aria-label="Basic example" style="width: 100%;">
 			<button type="button" class="btn btn-secondary" onclick="selectButton(this,'Dog');">Dogs</button>
@@ -29,6 +31,7 @@ PawPal
 			<button type="button" class="btn btn-secondary" onclick="selectButton(this,'Lizard');">Lizards</button>
 		</div>
 		{% endifequal %}
+
 		<div id="images-left">
 			{% for profile in listed_profiles %}
 			<a href="{% url 'user_profile' profile.user.username %}" class="pet-species-{{ profile.species }}"><img src="{{ profile.profilePicture.url }}" /></a>
@@ -46,7 +49,9 @@ PawPal
 
                     </div>
             {% endfor %}
+
 			<h4>Login to PawPal</h4>
+
 			<form id="login_form" method="post" action="{% url 'login' %}">
 				{% csrf_token %}
             	<div class="form-group">
@@ -64,11 +69,14 @@ PawPal
 					</label>
 				</div>
 			</form>
+
 					<br>
 					Login with:
 					<a href="{% url 'social:begin' 'github' %}"><img class="small-image" src="{% static 'images/social_images/github.png' %}" class="visible" /></a>
 					<a href="{% url 'social:begin' 'twitter' %}"><img class="small-image" src="{% static 'images/social_images/twitter.png' %}" class="visible" /></a>
 					<a href="{% url 'social:begin' 'facebook' %}"><img class="small-image" src="{% static 'images/social_images/facebook.png' %}" class="visible" /></a>
 			{% endif %}
+			
 		</div>
+
 {% endblock %}
