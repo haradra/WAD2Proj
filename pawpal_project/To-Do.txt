@@ -22,7 +22,7 @@ Connect pop script fields like description etc to user profile
 
 Ratings - deleting a rating
 
-Editprofile - being able to edit only one field not changing the others, solve pictures problem
+Editprofile - pictures problem
 
 Pictures - size conversion?
 
