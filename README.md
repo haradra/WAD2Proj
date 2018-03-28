@@ -26,7 +26,6 @@ Change to the pawpal_project directory and run:
 
 NOTE: In order the social media connection to work use localhost rather than 127.0.0.1
 The keys for the social media are sent by email. You must place these keys into pawpal_project/pawpal_project directory.
-Read the section ##Additional information below ## Running the tests section.
 
 ## To enable messaging functionality
 
@@ -47,11 +46,11 @@ Run the test functionality by using command:
 ```python manage.py test```
 
 
-##Additional information (Please, read!)
+## Additional information (Please, read!)
 
-*We know that this way of dealing with the keys for the social media is not the best because it is coupled our code to
-*sensative data. However, becasue of time constraints, we were not be able to effectively decouple them.
-*This is how we would have done it:
+We know that this way of dealing with the keys for the social media is not the best because it is coupled our code to
+sensative data. However, becasue of time constraints, we were not be able to effectively decouple them.
+This is how we would have done it:
 
  1) Create a file called pawpal_project/keys.py
  2) Paste in the keys to that file
@@ -72,12 +71,12 @@ Run the test functionality by using command:
 
  key = settings.SOCIAL_MEDIA_KEYS
 
- *We did originally have the keys in the repository, as they show in the commit history. However, we learnt as we went along
- *that is not a good thing to do.
+ We did originally have the keys in the repository, as they show in the commit history. However, we learnt as we went along
+ that is not a good thing to do.
 
 ## WhiteNoise
- ***We tried to implement WhiteNoise in our project so Django to be able to recognise static files even when the DEBUG was
- set to False, but we did not manage to complete that on time before the deadline.
+We tried to implement WhiteNoise in our project so Django to be able to recognise static files even when the DEBUG was
+set to False, but we did not manage to complete that on time before the deadline.
 
 
 ## Deployment
@@ -105,10 +104,10 @@ Link:
 
 ## Team Members
 
-*Adam Czyzewski
-*Ivelina Doynova
-*Malgorzata Kurkiewicz
-*Milosz Krawiec
+* Adam Czyzewski
+* Ivelina Doynova
+* Malgorzata Kurkiewicz
+* Milosz Krawiec
 
 See list of [contributors](https://github.com/haradra/WAD2Proj/graphs/contributors) who participated in this project.
 
@@ -127,4 +126,3 @@ See list of [contributors](https://github.com/haradra/WAD2Proj/graphs/contributo
     - enabling deleting the account
     - ADDING TERMS AND CONDITIONS
 
-       
