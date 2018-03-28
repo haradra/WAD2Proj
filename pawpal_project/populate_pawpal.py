@@ -61,7 +61,7 @@ def populate():
     pets = [
         {"username": "cameleon123",
          "password":"qwerty12345",
-        "name": "Cameleon",
+         "name": "Cameleon",
          "description": "I'm a wee lizard, I like to eat fruit flies and creepy spiders. I don't like grasshoppers though, YAK!",
          "species": "Lizard",
          "location": "Glasgow",

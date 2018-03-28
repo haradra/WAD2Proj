@@ -16,7 +16,6 @@ class Pet(models.Model):
         ('DOG', 'Dog'),
         ('CAT', 'Cat'),
         ('LIZARD', 'Lizard'),
-        ('REPTILE', 'Reptile'),
         ('BIRD', 'Bird'),
         ('HAMSTER', 'Hamster')
     )

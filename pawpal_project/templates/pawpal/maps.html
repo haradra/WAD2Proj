@@ -3,12 +3,12 @@
 <html>
 
 <head>
-  <style>
-    #map {
-      height: 400px;
-      width: 100%;
-    }
-  </style>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
@@ -27,8 +27,8 @@
             position: uluru,
             map: map
         });
-        google.maps.event.addListener(map, 'click', function(event) {
-            alert( 'Lat: ' + event.latLng.lat() + ' and Longitude is: ' + event.latLng.lng() );
+        google.maps.event.addListener(map, 'click', function (event) {
+            alert('Lat: ' + event.latLng.lat() + ' and Longitude is: ' + event.latLng.lng());
             var latlng = new google.maps.LatLng(event.latLng.lat(), event.latLng.lng());
             marker.setPosition(latlng);
         });
