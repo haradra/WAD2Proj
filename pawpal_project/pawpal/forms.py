@@ -4,7 +4,6 @@ from pawpal.models import UserProfile, Pet, Rating, Messages
 
 
 class PetForm(forms.ModelForm):
-    
     location = forms.CharField(max_length=50, help_text="Please enter your location.")
     latitude = forms.FloatField(widget=forms.HiddenInput(), initial=55.8642)
     longitude = forms.FloatField(widget=forms.HiddenInput(), initial=4.2518)
@@ -41,11 +40,13 @@ class UpdatePetProfile(forms.ModelForm):
         model = Pet
         fields = ('species', 'description', 'profilePicture', 'location')
 
+
 class UpdateUserSeeker(forms.ModelForm):
     username = forms.CharField(required=True)
     email = forms.EmailField(required=True)
     first_name = forms.CharField(required=False)
     last_name = forms.CharField(required=False)
+
     class Meta:
         model = User
         fields = ('username', "first_name", "last_name", "email")
@@ -86,4 +87,3 @@ class UpdateUserProfile(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('experience', 'profilePicture', 'description', 'dateOfBirth', 'location')
-

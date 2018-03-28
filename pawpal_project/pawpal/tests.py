@@ -18,12 +18,14 @@ def add_user(username, email, password):
     u.save()
     return u
 
+
 def add_pet(username, email, password):
     u = Pet.objects.get_or_create(user=username)[0]
     u.email = email
     u.password = password
     u.save()
     return u
+
 
 # The following tests check whether the urls are loaded/found successfully given the correct conditions/slugs
 class PawPalUrlsTests(TestCase):
@@ -48,9 +50,7 @@ class PawPalUrlsTests(TestCase):
         response = self.client.get(reverse('password'))
         self.assertEqual(response.status_code, 302)
 
-
-
-    #def test_login(self):
+    # def test_login(self):
     #    add_pet('Tusia','tusia1234@gmail.com','DifficultPassword1')
     #    response = self.client.get(reverse('/pawpal/login/')
     #    self.assertEqual(response.status_code, 302)
