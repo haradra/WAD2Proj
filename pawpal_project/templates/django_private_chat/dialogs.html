@@ -1,10 +1,10 @@
+<!-- Messenger template. Activity buttons of users that you communicate with, basic input box and details of the message sent. -->
 {% extends "base.html" %}
-<!-->Messenger template. Activity buttons of users that you communicate with, basic input box and details of the message sent.</!-->
 {% load static %}
 {% load i18n %}
 {% block css %}
-    {{ block.super }}
-    <link href="{% static "django_private_chat/css/django_private_chat.css" %}" rel="stylesheet" type="text/css" media="all">
+{{ block.super }}
+<link href="{% static "django_private_chat/css/django_private_chat.css" %}" rel="stylesheet" type="text/css" media="all">
 {% endblock css %}
 
 {% block body_block %}

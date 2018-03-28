@@ -1,82 +1,77 @@
+<!-- Home page template. If user is not logged in, login functionality is available on the side with a selection of pets.
+When users are logged in, depending on their profile type, images of pets or users are shown.
+When images of pets/people are clicked, the user is redirected to their profiles. Pets can be sorted based on their species. -->
 {% extends 'base.html' %}
-<!-->Home page template. If user is not logged in, login functionality is available on the side with a selection of pets/people.
-When images of pets/people are clicked, it redirects to login again. If user is logged in, all pets/people are displayed which
-when click redirect the user to their user profiles. </!-->
 {% load staticfiles %}
-
 {% block title_block %}
-PawPal
+	PawPal
 {% endblock %}
 
 {% block menubutton1_active %}class="active"{% endblock %}
-
 {% block menubutton2_active %}{% endblock %}
-
 {% block menubutton3_active %}{% endblock %}
-
 {% block menubutton4_active %}{% endblock %}
 
 {% block body_block %}
+<h2>Welcome to PawPal!</h2><br />
+<h4>{% if user.is_authenticated %}Hello {{ user.username }}, look at all these {% ifequal userType "user" %} pets {% else %} people {% endifequal %} needing a pal!{% else %}Here are some of our animals looking for a friend. Join us today and become a PawPal!{% endif %}</h4>
+{% ifequal userType "user" %}
 
-		<h2>Welcome to PawPal!</h2><br />
-		<h4> {% if user.is_authenticated %}Hello {{ user.username }}, look at all these {% ifequal userType "user" %} pets {% else %} people {% endifequal %} needing a pal!{% else %}Here are some of our animals looking for a friend. Join us today and become a PawPal!{% endif %}</h4>
+<div class="btn-group" role="group" aria-label="Basic example" style="width: 100%;">
+	<button type="button" class="btn btn-secondary" onclick="selectButton(this,'Dog');">Dogs</button>
+	<button type="button" class="btn btn-secondary" onclick="selectButton(this,'Cat');">Cats</button>
+	<button type="button" class="btn btn-secondary" onclick="selectButton(this,'Hamster');">Hamsters</button>
+	<button type="button" class="btn btn-secondary" onclick="selectButton(this,'Reptile');">Reptiles</button>
+	<button type="button" class="btn btn-secondary" onclick="selectButton(this,'Bird');">Birds</button>
+	<button type="button" class="btn btn-secondary" onclick="selectButton(this,'Lizard');">Lizards</button>
+</div>
 
-		{% ifequal userType "user" %}
-		<div class="btn-group" role="group" aria-label="Basic example" style="width: 100%;">
-			<button type="button" class="btn btn-secondary" onclick="selectButton(this,'Dog');">Dogs</button>
-			<button type="button" class="btn btn-secondary" onclick="selectButton(this,'Cat');">Cats</button>
-			<button type="button" class="btn btn-secondary" onclick="selectButton(this,'Hamster');">Hamsters</button>
-			<button type="button" class="btn btn-secondary" onclick="selectButton(this,'Reptile');">Reptiles</button>
-			<button type="button" class="btn btn-secondary" onclick="selectButton(this,'Bird');">Birds</button>
-			<button type="button" class="btn btn-secondary" onclick="selectButton(this,'Lizard');">Lizards</button>
+{% endifequal %}
+
+<div id="images-left">
+	{% for profile in listed_profiles %}
+	<a href="{% url 'user_profile' profile.user.username %}" class="pet-species-{{ profile.species }}"><img src="{{ profile.profilePicture.url }}" /></a>
+	{% endfor %}
+</div>
+
+<div id="login-right">
+	{% if not user.is_authenticated %}
+	{% for message in messages %}
+
+	<div class="alert alert-success">
+		<a class="close" href="#" data-dismiss="alert">×</a>
+		{{ message }}
+	</div>
+	{% endfor %}
+
+	<h4>Login to PawPal</h4>
+	<form id="login_form" method="post" action="{% url 'login' %}">
+		{% csrf_token %}
+
+		<div class="form-group">
+			<label for="username-input">Username:</label>
+			<input type="text" name="username" id="username-input" class="form-control" placeholder="Username" />
 		</div>
-		{% endifequal %}
 
-		<div id="images-left">
-			{% for profile in listed_profiles %}
-			<a href="{% url 'user_profile' profile.user.username %}" class="pet-species-{{ profile.species }}"><img src="{{ profile.profilePicture.url }}" /></a>
-			{% endfor %}
+		<div class="form-group">
+			<label for="password-input">Password:</label>
+			<input type="password" name="password" id="password-input" class="form-control" placeholder="Password" />
 		</div>
+		<input type="submit" value="Login" class="btn btn-default" />
 
-		<div id="login-right">
-			{% if not user.is_authenticated %}
-			   {% for message in messages %}
-
-                    <div class="alert alert-success">
-                        <a class="close" href="#" data-dismiss="alert">×</a>
-
-                        {{ message }}
-
-                    </div>
-            {% endfor %}
-
-			<h4>Login to PawPal</h4>
-
-			<form id="login_form" method="post" action="{% url 'login' %}">
-				{% csrf_token %}
-            	<div class="form-group">
-					<label for="username-input">Username:</label>
-					<input type="text" name="username" id="username-input" class="form-control" placeholder="Username" />
-				</div>
-				<div class="form-group">
-					<label for="password-input">Password:</label>
-					<input type="password" name="password" id="password-input" class="form-control" placeholder="Password" />
-				</div>
-				<input type="submit" value="Login" class="btn btn-default" />
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" name="remember-me" />Remember me
-					</label>
-				</div>
-			</form>
-
-					<br>
-					Login with:
-					<a href="{% url 'social:begin' 'github' %}"><img class="small-image" src="{% static 'images/social_images/github.png' %}" class="visible" /></a>
-					<a href="{% url 'social:begin' 'twitter' %}"><img class="small-image" src="{% static 'images/social_images/twitter.png' %}" class="visible" /></a>
-					<a href="{% url 'social:begin' 'facebook' %}"><img class="small-image" src="{% static 'images/social_images/facebook.png' %}" class="visible" /></a>
-			{% endif %}
-			
+		<div class="checkbox">
+			<label>
+				<input type="checkbox" name="remember-me" />Remember me
+			</label>
 		</div>
+	</form>
+
+	<br>
+	Login with:
+	<a href="{% url 'social:begin' 'github' %}"><img class="small-image" src="{% static 'images/social_images/github.png' %}" class="visible" /></a>
+	<a href="{% url 'social:begin' 'twitter' %}"><img class="small-image" src="{% static 'images/social_images/twitter.png' %}" class="visible" /></a>
+	<a href="{% url 'social:begin' 'facebook' %}"><img class="small-image" src="{% static 'images/social_images/facebook.png' %}" class="visible" /></a>
+	{% endif %}
+</div>
 
 {% endblock %}
