@@ -107,31 +107,22 @@ def register(request):
         user_form = UserForm(data=request.POST)
         profile_form = UserProfileForm(data=request.POST)
         pet_form = PetForm(data=request.POST)
-        if user_form.is_valid() and profile_form.is_valid():
+        if not ((user_form.is_valid() and profile_form.is_valid()) or (user_form.is_valid() and pet_form.is_valid())):
+            print(user_form.errors, profile_form.errors)
+        else:
             user = user_form.save()
             user.set_password(user.password)
             user.save()
-
-            profile = profile_form.save(commit=False)
+            if profile_form.is_valid():
+                profile = profile_form.save(commit=False)
+            else:
+                profile = pet_form.save(commit=False)
             profile.user = user
             if 'profilePicture' in request.FILES:
                 profile.profilePicture = request.FILES['profilePicture']
             profile.save()
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return HttpResponseRedirect(reverse('home'))
-        elif user_form.is_valid() and pet_form.is_valid():
-            user = user_form.save()
-            user.set_password(user.password)
-            user.save()
-            pet = pet_form.save(commit=False)
-            pet.user = user
-            if 'profilePicture' in request.FILES:
-                pet.profilePicture = request.FILES['profilePicture']
-            pet.save()
-            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-            return HttpResponseRedirect(reverse('home'))
-        else:
-            print(user_form.errors, profile_form.errors)
     else:
 
         user_form = UserForm()
@@ -225,7 +216,6 @@ def password(request):
 @login_required
 def editaccountdetails(request):
     # User can update certain fields relating to their account
-    print(request.readlines())
     if request.method == 'POST':
         try:
             Pet.objects.get(user=request.user)
