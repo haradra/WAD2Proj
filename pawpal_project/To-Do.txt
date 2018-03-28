@@ -1,39 +1,12 @@
-Things to do:
-
----------------------------------------------------------------------------
-
-PRIORITY
-
----------------------------------------------------------------------------
-
-1. Clean up register.html and editaccount.html, display one of two forms depending on which button is clicked, clean up JS code, then I'll add the map functionality to edit account
-
----------------------------------------------------------------------------
-
-Backend
-
----------------------------------------------------------------------------
-
-When changing either first name or last name and leaving the other field blank, it changes that name to blank
-
-Unit Testing
-
-Connect pop script fields like description etc to user profile
-
-Ratings - deleting a rating
-
-Editprofile - pictures problem
-
-Pictures - size conversion?
-
----------------------------------------------------------------------------
-
 What we possibly could implement:
 
     Areas of future improvement/development:
 - more animal categories,
 - leaving reviews of pets/users,
 - blocking users,
+- pictures - size conversion,
+- deleting a rating,
+- deleting own accouunt,
 - 'Favourites' category,
 - location range - e.g. all pets within 50 km
 - "booking animal" - adding a feature that would enable booking slots when the user could do some activity with a pet
