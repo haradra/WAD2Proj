@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block title_block %}
-	Edit Account
+    Edit Account
 {% endblock %}
 
 {% block menubutton1_active %}{% endblock %}
@@ -11,12 +11,12 @@
 {% block menubutton4_active %}{% endblock %}
 
 {% block body_block %}
-<h2>Edit Account</h2>
+    <h2>Edit Account</h2>
 
-<form method="POST" action="{% url 'editaccount' %}" enctype="multipart/form-data", class="">
-	{% csrf_token %}
-	{{ user_form.as_p }}
-	<input type="submit" name="submit" value="Submit changes" />
-</form>
+    <form method="POST" action="{% url 'editaccount' %}" enctype="multipart/form-data" , class="">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        <input type="submit" name="submit" value="Submit changes"/>
+    </form>
 
 {% endblock %}

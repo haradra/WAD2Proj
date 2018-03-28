@@ -26,7 +26,7 @@ MEDIA_URL = '/media/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
-#AUTH_ERRORS
+# AUTH_ERRORS
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '3okpkvnip6mv6&7)e#77wr0)m0j^p$=if0o6fvd^9bs^6l*%^5'
@@ -39,7 +39,7 @@ SOCIAL_AUTH_FACEBOOK_SECRET = keys.SOCIAL_AUTH_FACEBOOK_SECRET
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['pawpal.pythonanywhere.com', '127.0.0.1','localhost']
+ALLOWED_HOSTS = ['pawpal.pythonanywhere.com', '127.0.0.1', 'localhost']
 
 CHAT_WS_SERVER_HOST = 'localhost'
 CHAT_WS_SERVER_PORT = 5002
@@ -96,7 +96,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'pawpal_project.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -107,7 +106,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
@@ -117,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-        'OPTIONS': { 'min_length': 8, }
+        'OPTIONS': {'min_length': 8, }
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
@@ -146,7 +144,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/

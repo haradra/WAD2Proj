@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block title_block %}
-	User Profile
+    User Profile
 {% endblock %}
 
 {% block menubutton1_active %}{% endblock %}
@@ -11,48 +11,53 @@
 {% block menubutton4_active %}{% endblock %}
 
 {% block body_block %}
-<div class="row">
-	<div class="col-md-4">
-		<h2>{{ user.user.username }}</h2>
-		<img src="{{ user.profilePicture.url }}" class="profile-image-myaccount"/>
-	</div>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>{{ user.user.username }}</h2>
+            <img src="{{ user.profilePicture.url }}" class="profile-image-myaccount"/>
+        </div>
 
-	<div class="col-md-6">
-		<br /><br />
-		<h3>About {{ user.user.first_name }}:</h3>
-		<li>Email: {{ user.user.email }}</li>
-		<li>First Name: {{ user.user.first_name }}</li>
-		<li>Last Name: {{ user.user.last_name }}</li>
-		<li>Location: {{ user.location }}</li>
-		<br />
+        <div class="col-md-6">
+            <br/><br/>
+            <h3>About {{ user.user.first_name }}:</h3>
+            <li>Email: {{ user.user.email }}</li>
+            <li>First Name: {{ user.user.first_name }}</li>
+            <li>Last Name: {{ user.user.last_name }}</li>
+            <li>Location: {{ user.location }}</li>
+            <br/>
 
-		<div id="div-rating">
-			{% for i in ratings %}
-			{% if rating >= i %}
-			<a href="{% url 'rating' user.user.username  i %}">
-				<img src="{% static 'images/paw-filled.png' %}" class="images-rating images-rating-filled" onmouseover="selectPaws({{ i }});" onmouseout="unselectPaws();" />
-			</a>
-			{% else %}
-			<a href="{% url 'rating' user.user.username i %}">
-				<img src="{% static 'images/paw-empty.png' %}" class="images-rating images-rating-empty" onmouseover="selectPaws({{ i }});" onmouseout="unselectPaws();" />
-			</a>
-			{% endif %}
-			{% endfor %}
-		</div>
+            <div id="div-rating">
+                {% for i in ratings %}
+                    {% if rating >= i %}
+                        <a href="{% url 'rating' user.user.username  i %}">
+                            <img src="{% static 'images/paw-filled.png' %}" class="images-rating images-rating-filled"
+                                 onmouseover="selectPaws({{ i }});" onmouseout="unselectPaws();"/>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'rating' user.user.username i %}">
+                            <img src="{% static 'images/paw-empty.png' %}" class="images-rating images-rating-empty"
+                                 onmouseover="selectPaws({{ i }});" onmouseout="unselectPaws();"/>
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
 
-		<h4>Rating: {{ rating }}/5 Paws</h4>
-		<p>Number of ratings: {{ number_of_ratings }}</p>
-		{% if madeBy_user_rating > 0 %}
-		<p>Your given rating: {{ madeBy_user_rating }}</p>
-		{% else %}
-		<p>You haven't rated this user yet.</p>
-		{% endif %}
-	</div>
+            <h4>Rating: {{ rating }}/5 Paws</h4>
+            <p>Number of ratings: {{ number_of_ratings }}</p>
+            {% if madeBy_user_rating > 0 %}
+                <p>Your given rating: {{ madeBy_user_rating }}</p>
+            {% else %}
+                <p>You haven't rated this user yet.</p>
+            {% endif %}
+        </div>
 
-	<div class="col-md-2">
-		<br /><br />
-		<button type="button" class="btn btn-info" onclick="location.href = '{% url 'dialogs_detail' user.user.username %}';">Message {{ user.name }} </button><br />
-	</div>
-</div>
+        <div class="col-md-2">
+            <br/><br/>
+            <button type="button" class="btn btn-info"
+                    onclick="location.href = '{% url 'dialogs_detail' user.user.username %}';">
+                Message {{ user.name }} </button>
+            <br/>
+        </div>
+    </div>
 
 {% endblock %}
