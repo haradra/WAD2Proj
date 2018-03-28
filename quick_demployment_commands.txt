@@ -1,12 +1,12 @@
 Removing database, making and applying migrations, creating and admin account: admin, qweasdzxc
 
-    rm db.sqlite3; rm -R pawpal/migrations; python3 manage.py makemigrations pawpal; python3 manage.py migrate; python3 populate_pawpal.py
+    rm db.sqlite3; rm -R pawpal/migrations; python3 manage.py makemigrations pawpal; python3 manage.py migrate; python3 population_script.py
     echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'qweasdzxc')" | python3 manage.py shell
 
 
 Changing default to python3:
 alias python='python3'
-alias populate='rm db.sqlite3; rm -R pawpal/migrations; python3 manage.py makemigrations pawpal; python3 manage.py migrate; python3 populate_pawpal.py;'
+alias populate='rm db.sqlite3; rm -R pawpal/migrations; python3 manage.py makemigrations pawpal; python3 manage.py migrate; python3 population_script.py;'
 
 GitHub useful instructions:
 https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf
