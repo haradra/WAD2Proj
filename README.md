@@ -22,8 +22,11 @@ Example:
 
 Change to the pawpal_project directory and run:
 
-```python manage.py runserver```
+```python manage.py runserver``` (Use localhost instead of the loopback address)
 
+NOTE: In order the social media connection to work use localhost rather than 127.0.0.1
+The keys for the social media are sent by email. You must place these keys into pawpal_project/pawpal_project directory.
+Read the section ##Additional information below ## Running the tests section.
 
 ## To enable messaging functionality
 
@@ -42,6 +45,39 @@ Change to the pawpal_project directory and run:
 Run the test functionality by using command:
 
 ```python manage.py test```
+
+
+##Additional information (Please, read!)
+
+*We know that this way of dealing with the keys for the social media is not the best because it is coupled our code to
+*sensative data. However, becasue of time constraints, we were not be able to effectively decouple them.
+*This is how we would have done it:
+
+ 1) Create a file called pawpal_project/keys.py
+ 2) Paste in the keys to that file
+ 3) Add pawpal_project/keys.py to our .gitignore file
+
+ (We did the first three steps)
+
+ 4) In settings.py add these lines of code:
+
+ with open('keys.py', 'r') as f:
+ SOCIAL_MEDIA_KEYS = f.read().strip()
+
+ 5) In views.py add:
+
+ from django.conf import settings
+
+ 6) To access the the keys you need to do:
+
+ key = settings.SOCIAL_MEDIA_KEYS
+
+ *We did originally have the keys in the repository, as they show in the commit history. However, we learnt as we went along
+ *that is not a good thing to do.
+
+## WhiteNoise
+ ***We tried to implement WhiteNoise in our project so Django to be able to recognise static files even when the DEBUG was
+ set to False, but we did not manage to complete that on time before the deadline.
 
 
 ## Deployment
@@ -67,7 +103,28 @@ Link:
 * Private Chat functionality: https://github.com/Bearle/django-private-chat
 
 
-
 ## Team Members
 
+*Adam Czyzewski
+*Ivelina Doynova
+*Malgorzata Kurkiewicz
+*Milosz Krawiec
+
 See list of [contributors](https://github.com/haradra/WAD2Proj/graphs/contributors) who participated in this project.
+
+
+## Areas of future improvement/development:
+    - more animal categories,
+    - leaving reviews of pets/users,
+    - blocking users,
+    - 'Favourites' category,
+    - location range - e.g. all pets within 50 km
+    - "booking animal" - adding a feature that would enable booking slots when the user could do some activity with a pet
+    - adding calendar option (as above)
+    - adding "Report to admin"
+    - captcha for registration
+    - Adding adds on the website
+    - enabling deleting the account
+    - ADDING TERMS AND CONDITIONS
+
+       
