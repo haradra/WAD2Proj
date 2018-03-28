@@ -1,38 +1,22 @@
+<!-- Edit account page template. The users can change their username, first and last name and email. -->
 {% extends 'base.html' %}
 {% load staticfiles %}
-<script>
-//$("input[name='username']").val({{ userProfile.username }});
-</script>
-
-{% block title_block %}Edit Account{% endblock %}
+{% block title_block %}
+	Edit Account
+{% endblock %}
 
 {% block menubutton1_active %}{% endblock %}
-
 {% block menubutton2_active %}{% endblock %}
-
 {% block menubutton3_active %}{% endblock %}
-
 {% block menubutton4_active %}{% endblock %}
 
 {% block body_block %}
-		<h2>Edit Account</h2>
-		<html>
-<style>
-       #map {
-        height: 400px;
-        width: 50%;
-       }
-    </style>
+<h2>Edit Account</h2>
 
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBH49BaYo6GJDl_3bR6WRWsBkaBz04tFE4&callback=initMap">
-    </script>
-		<form method="POST" action="{% url 'editaccount' %}"
-				enctype="multipart/form-data", class="">
+<form method="POST" action="{% url 'editaccount' %}" enctype="multipart/form-data", class="">
+	{% csrf_token %}
+	{{ user_form.as_p }}
+	<input type="submit" name="submit" value="Submit changes" />
+</form>
 
-			{% csrf_token %}
-            {{ user_form.as_p }}
-
-			<input type="submit" name="submit" value="Submit changes" />
-		</form>
 {% endblock %}
