@@ -1,60 +1,67 @@
+<!-- My account template. The users account page showing their details, rating and other users they have written to.
+There are buttons for editing a profile and settings. -->
 {% extends 'base.html' %}
-<!-->My account template. All the details displayed including the rating, with buttons for editing a profile and settings.</!-->
 {% load staticfiles %}
-
-{% block title_block %}My Account{% endblock %}
+{% block title_block %}
+	My Account
+{% endblock %}
 
 {% block menubutton1_active %}{% endblock %}
-
 {% block menubutton2_active %}{% endblock %}
-
 {% block menubutton3_active %}{% endblock %}
-
 {% block menubutton4_active %}class="active"{% endblock %}
 
 {% block body_block %}
-		<div class="row">
-			<div class="col-md-4">
-				<h2>{{ user.user.username }}</h2>
-				<img src="{{ user.profilePicture.url }}" class="profile-image-myaccount" alt="No Picture uploaded" />
-			</div>
-			<div class="col-md-6">
-				<h3>About you:</h3>
-				{% if user.user and user.user.email %}<li>Email: {{ user.user.email }}</li>{% endif %}
-				{% if user.user and user.user.first_name %}<li>First Name: {{ user.user.first_name }}</li>{% endif %}
-				{% if user.user and user.user.last_name %}<li>Last Name: {{ user.user.last_name }}</li>{% endif %}
-				{% if user.name %}<li>Name: {{ user.name }}</li>{% endif %}
-				{% if user.description %}<li>Description: {{ user.description }}</li>{% endif %}
-				{% if user.location %}<li>Location: {{ user.location }}</li>{% endif %}
-				{% if user.dateOfBirth %}<li>Birth Date: {{ user.dateOfBirth }}</li>{% endif %}
-				{% if user.experience %}<li>Experience: {{ user.experience }}</li>{% endif %}
-                {% if user.user  and user.user.last_login %}<li>Last login: {{ user.user.last_login }}</li>{% endif %}
-				<br />
-				<div id="div-rating">
-					{% for i in ratings %}
-					{% if rating >= i %}
-					<img src="{% static 'images/paw-filled.png' %}" class="images-rating" />
-					{% else %}
-					<img src="{% static 'images/paw-empty.png' %}" class="images-rating" />
-					{% endif %}
-					{% endfor %}
-				</div>
-				<h4>Rating: {{ rating }}/5 Paws</h4>
-                <p>Number of ratings: {{ number_of_ratings }}</p>
-			</div>
-			<div class="col-md-2">
-				<br /><br />
-				<button type="button" class="btn btn-info" onclick="location.href = '{% url 'editaccount' %}';">Edit Account</button><br />
-                <button type="button" class="btn btn-info" onclick="location.href = '{% url 'editaccountdetails' %}';">Edit Account Details</button><br />
-				<button type="button" class="btn btn-info" onclick="location.href = '{% url 'password' %}';">Change Password</button><br />
-				<button type="button" class="btn btn-info" onclick="location.href = '{% url 'settings' %}';">Settings</button><br />
-			</div>
-		</div>
+<div class="row">
+
+	<div class="col-md-4">
+		<h2>{{ user.user.username }}</h2>
+		<img src="{{ user.profilePicture.url }}" class="profile-image-myaccount" alt="No Picture uploaded" />
+	</div>
+
+	<div class="col-md-6">
+		<h3>About you:</h3>
+		{% if user.user and user.user.email %}<li>Email: {{ user.user.email }}</li>{% endif %}
+		{% if user.user and user.user.first_name %}<li>First Name: {{ user.user.first_name }}</li>{% endif %}
+		{% if user.user and user.user.last_name %}<li>Last Name: {{ user.user.last_name }}</li>{% endif %}
+		{% if user.name %}<li>Name: {{ user.name }}</li>{% endif %}
+		{% if user.description %}<li>Description: {{ user.description }}</li>{% endif %}
+		{% if user.location %}<li>Location: {{ user.location }}</li>{% endif %}
+		{% if user.dateOfBirth %}<li>Birth Date: {{ user.dateOfBirth }}</li>{% endif %}
+		{% if user.experience %}<li>Experience: {{ user.experience }}</li>{% endif %}
+		{% if user.user and user.user.last_login %}<li>Last login: {{ user.user.last_login }}</li>{% endif %}
 		<br />
-		<h4>Your Pals:</h4>
-		<div class="images-myaccount">
-			{% for chat in chats %}
-			<a href="{% url 'user_profile' chat.user.username %}"><img src="{{ chat.profilePicture.url}}" /></a>
+
+		<div id="div-rating">
+			{% for i in ratings %}
+			{% if rating >= i %}
+			<img src="{% static 'images/paw-filled.png' %}" class="images-rating" />
+			{% else %}
+			<img src="{% static 'images/paw-empty.png' %}" class="images-rating" />
+			{% endif %}
 			{% endfor %}
 		</div>
+
+		<h4>Rating: {{ rating }}/5 Paws</h4>
+		<p>Number of ratings: {{ number_of_ratings }}</p>
+	</div>
+
+	<div class="col-md-2">
+		<br /><br />
+		<button type="button" class="btn btn-info" onclick="location.href = '{% url 'editaccount' %}';">Edit Account</button><br />
+		<button type="button" class="btn btn-info" onclick="location.href = '{% url 'editaccountdetails' %}';">Edit Account Details</button><br />
+		<button type="button" class="btn btn-info" onclick="location.href = '{% url 'password' %}';">Change Password</button><br />
+		<button type="button" class="btn btn-info" onclick="location.href = '{% url 'settings' %}';">Settings</button><br />
+	</div>
+</div>
+<!-- The users you have written to are shown here -->
+<br />
+<h4>Your Pals:</h4>
+
+<div class="images-myaccount">
+	{% for chat in chats %}
+	<a href="{% url 'user_profile' chat.user.username %}"><img src="{{ chat.profilePicture.url}}" /></a>
+	{% endfor %}
+</div>
+
 {% endblock %}
