@@ -1,53 +1,51 @@
+<!-- Login page template. Login form, asking for username and password. Ability to login with GitHub, Facebook and Twitter
+by clicking the icons. -->
 {% extends 'base.html' %}
-<!-->Login page template. Login form, asking for username and password. Ability to login with GitHub, Facebook and Twitter
-by clicking the icons.</!-->
 {% load staticfiles %}
-
-{% block title_block %}Login{% endblock %}
+{% block title_block %}
+    Login
+{% endblock %}
 
 {% block menubutton1_active %}{% endblock %}
-
 {% block menubutton2_active %}{% endblock %}
-
 {% block menubutton3_active %}{% endblock %}
-
 {% block menubutton4_active %}class="active"{% endblock %}
 
 {% block body_block %}
+<h3>Login to PawPal</h3>
+<br />
+{% for message in messages %}
 
-	<h3>Login to PawPal</h3>
+<div class="alert alert-success">
+    <a class="close" href="#" data-dismiss="alert">×</a>
+    {{ message }}
+</div>
+{% endfor %}
 
-		<br />
-	   {% for message in messages %}
+<form id="login_form" method="post" action="{% url 'login' %}">
+    {% csrf_token %}
 
-                    <div class="alert alert-success">
-                        <a class="close" href="#" data-dismiss="alert">×</a>
+    <div class="form-group">
+        <label for="username-input">Username:</label>
+        <input type="text" name="username" id="username-input" class="form-control login-form" placeholder="Username" />
+    </div>
 
-                        {{ message }}
+    <div class="form-group"><label for="password-input">Password:</label>
+        <input type="password" name="password" id="password-input" class="form-control login-form" placeholder="Password" />
+    </div>
+    <input type="submit" value="Login" class="btn btn-default" />
 
-                    </div>
-            {% endfor %}
-	<form id="login_form" method="post" action="{% url 'login' %}">
-		{% csrf_token %}
-        <div class="form-group">
-            <label for="username-input">Username:</label>
-            <input type="text" name="username" id="username-input" class="form-control login-form" placeholder="Username" />
-        </div>
-        <div class="form-group">
-            <label for="password-input">Password:</label>
-            <input type="password" name="password" id="password-input" class="form-control login-form" placeholder="Password" />
-        </div>
-        <input type="submit" value="Login" class="btn btn-default" />
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" name="remember-me" />Remember me
-            </label>
-        </div>
-	</form>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" name="remember-me" />Remember me
+        </label>
+    </div>
 
-		Login with:
-			<a href="{% url 'social:begin' 'github' %}"><img class="small-image" src="{% static 'images/social_images/github.png' %}" class="visible" /></a>
-			<a href="{% url 'social:begin' 'twitter' %}"><img class="small-image" src="{% static 'images/social_images/twitter.png' %}" class="visible" /></a>
-			<a href="{% url 'social:begin' 'facebook' %}"><img class="small-image" src="{% static 'images/social_images/facebook.png' %}" class="visible" /></a>
-			
+</form>
+
+Login with:
+<a href="{% url 'social:begin' 'github' %}"><img class="small-image" src="{% static 'images/social_images/github.png' %}" class="visible" /></a>
+<a href="{% url 'social:begin' 'twitter' %}"><img class="small-image" src="{% static 'images/social_images/twitter.png' %}" class="visible" /></a>
+<a href="{% url 'social:begin' 'facebook' %}"><img class="small-image" src="{% static 'images/social_images/facebook.png' %}" class="visible" /></a>
+
 {% endblock %}
