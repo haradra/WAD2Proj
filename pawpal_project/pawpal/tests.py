@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-import datetime
 from django.core.urlresolvers import reverse
 from django.test import TestCase
-from django.utils import timezone
 from pawpal.forms import *
 from pawpal.models import *
 from pawpal.views import *
@@ -116,7 +114,3 @@ class ModelTests(TestCase):
         except:
             print('Something went wrong in the populate() function')
 
-    #def test_login(self):
-    #    add_pet('Tusia','tusia1234@gmail.com','DifficultPassword1')
-    #    response = self.client.get(reverse('/pawpal/login/')
-    #    self.assertEqual(response.status_code, 302)
