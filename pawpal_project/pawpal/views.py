@@ -266,6 +266,7 @@ def editaccountdetails(request):
 
 @login_required
 def editaccount(request):
+    # User can update details relating to the user model (username, email and first name, surname if not a pet)
     if request.method == 'POST':
         try:
             Pet.objects.get(user=request.user)
